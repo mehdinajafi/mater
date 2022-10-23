@@ -7,6 +7,7 @@ import typography from "./typography";
 const theme = (): ThemeOptions => {
   return createTheme({
     palette: lightpalette,
+    spacing: (px: number) => `${px / 16}rem`,
     components,
     typography,
     shadows,
