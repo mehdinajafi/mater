@@ -1,6 +1,16 @@
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 
 const typography: TypographyOptions = {
+  fontFamily: [
+    "Public Sans",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    '"Segoe UI"',
+    "Roboto",
+    '"Helvetica Neue"',
+    "Arial",
+    "sans-serif",
+  ].join(","),
   h1: {
     fontSize: 64,
     lineHeight: "80px",
