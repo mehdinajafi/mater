@@ -1,31 +1,16 @@
 export declare module "@mui/material/styles" {
-  interface Palette {
-    gray: {
-      100?: string;
-      200?: string;
-      300?: string;
-      400?: string;
-      500?: string;
-      600?: string;
-      700?: string;
-      800?: string;
-      900?: string;
-    };
-  }
-  interface PaletteOptions {
-    gray: {
-      100?: string;
-      200?: string;
-      300?: string;
-      400?: string;
-      500?: string;
-      600?: string;
-      700?: string;
-      800?: string;
-      900?: string;
-    };
+  // Theme
+  interface Theme {
+    borderRadius: IBorderRadius;
   }
 
+  // Palette
+  interface Palette {
+    gray: IGrayPalette;
+  }
+  interface PaletteOptions {
+    gray: IGrayPalette;
+  }
   interface PaletteColor {
     darker?: string;
     lighter?: string;
@@ -34,4 +19,62 @@ export declare module "@mui/material/styles" {
     darker?: string;
     lighter?: string;
   }
+
+  // Typography
+  interface TypographyVariants {
+    fontWeight: IFontWeight;
+    fontSize: IFontSize;
+  }
+  interface TypographyVariantsOptions {
+    fontWeight: IFontWeight;
+    fontSize: IFontSize;
+  }
+}
+
+// Interfaces
+
+interface IGrayPalette {
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+}
+
+interface IBorderRadius {
+  none: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+  "2xl": string;
+  "3xl": string;
+  "4xl": string;
+  full: string;
+}
+
+interface IFontSize {
+  "2xs": string;
+  xs: string;
+  sm: string;
+  base: string;
+  lg: string;
+  xl: string;
+  "2xl": string;
+  "3xl": string;
+  "4xl": string;
+  "5xl": string;
+  "6xl": string;
+  "7xl": string;
+}
+
+interface IFontWeight {
+  regular: number;
+  medium: number;
+  semiBold: number;
+  bold: number;
 }
