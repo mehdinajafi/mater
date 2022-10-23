@@ -22,12 +22,12 @@ export declare module "@mui/material/styles" {
 
   // Typography
   interface TypographyVariants {
-    fontWeight: IFontWeight;
-    fontSize: IFontSize;
+    fontWeights: IFontWeights;
+    fontSizes: IFontSizes;
   }
   interface TypographyVariantsOptions {
-    fontWeight: IFontWeight;
-    fontSize: IFontSize;
+    fontWeights: IFontWeights;
+    fontSizes: IFontSizes;
   }
 }
 
@@ -57,7 +57,7 @@ interface IBorderRadius {
   full: string;
 }
 
-interface IFontSize {
+interface IFontSizes {
   "2xs": string;
   xs: string;
   sm: string;
@@ -72,7 +72,7 @@ interface IFontSize {
   "7xl": string;
 }
 
-interface IFontWeight {
+interface IFontWeights {
   regular: number;
   medium: number;
   semiBold: number;

@@ -11,13 +11,13 @@ const typography: TypographyOptions = {
     "Arial",
     "sans-serif",
   ].join(","),
-  fontWeight: {
+  fontWeights: {
     regular: 400,
     medium: 500,
     semiBold: 600,
     bold: 700,
   },
-  fontSize: {
+  fontSizes: {
     "2xs": "0.65rem",
     xs: "0.75rem",
     sm: "0.875rem",
