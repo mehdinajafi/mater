@@ -3,6 +3,9 @@ export declare module "@mui/material/styles" {
   interface Theme {
     borderRadius: IBorderRadius;
   }
+  interface ThemeOptions {
+    borderRadius: IBorderRadius;
+  }
 
   // Palette
   interface Palette {
