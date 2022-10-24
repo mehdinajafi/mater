@@ -62,6 +62,7 @@ export const lightpalette: PaletteOptions = {
   },
   background: {
     semiTransparent: "rgba(249, 250, 251, 0.8)",
+    default: "rgb(249, 250, 251)",
   },
   action: {
     disabled: "rgb(99, 115, 129)",
