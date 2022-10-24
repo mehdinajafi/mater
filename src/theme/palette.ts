@@ -60,6 +60,9 @@ export const lightpalette: PaletteOptions = {
     800: "rgb(33, 43, 54)",
     900: "rgb(22, 28, 36)",
   },
+  background: {
+    semiTransparent: "rgba(249, 250, 251, 0.8)",
+  },
   action: {
     disabled: "rgb(99, 115, 129)",
     hover: "rgba(145, 158, 171, 0.08)",

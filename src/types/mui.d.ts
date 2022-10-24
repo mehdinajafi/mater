@@ -14,6 +14,9 @@ export declare module "@mui/material/styles" {
   interface PaletteOptions {
     gray: IGrayPalette;
   }
+  interface TypeBackground {
+    semiTransparent?: string;
+  }
   interface PaletteColor {
     darker?: string;
     lighter?: string;
