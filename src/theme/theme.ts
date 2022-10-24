@@ -1,5 +1,5 @@
 import { createTheme, ThemeOptions } from "@mui/material";
-import { lightpalette } from "./pallette";
+import { lightpalette } from "./palette";
 import { shadows } from "./shadows";
 import components from "./components";
 import typography from "./typography";
