@@ -1,6 +1,37 @@
 import { ThemeOptions } from "@mui/material";
 
 const components: ThemeOptions["components"] = {
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        textTransform: "none",
+        boxShadow: "none",
+      },
+    },
+  },
+  MuiTypography: {
+    variants: [
+      {
+        props: { color: "text-primary" },
+        style: {
+          color: "rgb(33, 43, 54)",
+        },
+      },
+      {
+        props: { color: "text-secondary" },
+        style: {
+          color: "rgb(99, 115, 129)",
+        },
+      },
+      {
+        props: { color: "disabled" },
+        style: {
+          color: "rgb(145, 158, 171)",
+        },
+      },
+    ],
+    styleOverrides: {},
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {
@@ -53,6 +84,11 @@ const components: ThemeOptions["components"] = {
           url("/assets/fonts/public-sans-v14-latin-700.woff") format("woff"),
           url("/assets/fonts/public-sans-v14-latin-700.ttf") format("truetype"),
           url("/assets/fonts/public-sans-v14-latin-700.svg#PublicSans") format("svg");
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
       }
     `,
   },
