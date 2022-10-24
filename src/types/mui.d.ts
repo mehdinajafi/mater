@@ -37,6 +37,13 @@ export declare module "@mui/material/styles" {
   }
 }
 
+// Divider
+declare module "@mui/material/Divider" {
+  interface DividerPropsVariantOverrides {
+    dashed;
+  }
+}
+
 // Interfaces
 
 interface IGrayPalette {
