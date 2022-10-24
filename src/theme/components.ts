@@ -13,24 +13,58 @@ const components: ThemeOptions["components"] = {
     variants: [
       {
         props: { color: "text-primary" },
-        style: {
-          color: "rgb(33, 43, 54)",
-        },
+        style: ({ theme }) => ({
+          color: theme.palette.gray[800],
+        }),
       },
       {
         props: { color: "text-secondary" },
-        style: {
-          color: "rgb(99, 115, 129)",
-        },
+        style: ({ theme }) => ({
+          color: theme.palette.gray[600],
+        }),
       },
       {
         props: { color: "disabled" },
+        style: ({ theme }) => ({
+          color: theme.palette.gray[500],
+        }),
+      },
+    ],
+  },
+  MuiMenu: {
+    styleOverrides: {
+      list: {
+        padding: 0,
+      },
+      root: ({ theme }) => ({
+        "& .MuiPaper-root": {
+          marginTop: theme.spacing(10),
+          boxShadow:
+            "rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) -20px 20px 40px -4px",
+          borderRadius: theme.borderRadius.xl,
+        },
+      }),
+    },
+  },
+  MuiMenuItem: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        fontSize: theme.typography.fontSizes.sm,
+        padding: theme.spacing(6, 8),
+        borderRadius: theme.borderRadius.md,
+      }),
+    },
+  },
+  MuiDivider: {
+    variants: [
+      {
+        props: { variant: "dashed" },
         style: {
-          color: "rgb(145, 158, 171)",
+          borderStyle: "dashed",
+          borderColor: "rgba(145, 158, 171, 0.24)",
         },
       },
     ],
-    styleOverrides: {},
   },
   MuiCssBaseline: {
     styleOverrides: `
