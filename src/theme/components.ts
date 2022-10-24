@@ -70,6 +70,30 @@ const components: ThemeOptions["components"] = {
       },
     ],
   },
+  MuiTooltip: {
+    styleOverrides: {
+      tooltip: ({ theme }) => ({
+        backgroundColor: theme.palette.gray[900],
+        fontSize: theme.typography.fontSizes["2xs"],
+        padding: theme.spacing(4, 8),
+        borderRadius: theme.borderRadius.lg,
+      }),
+    },
+  },
+  MuiList: {
+    styleOverrides: {
+      root: {
+        padding: 0,
+      },
+    },
+  },
+  MuiListSubheader: {
+    styleOverrides: {
+      root: {
+        lineHeight: 1.5,
+      },
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {
@@ -127,6 +151,11 @@ const components: ThemeOptions["components"] = {
       a {
         color: inherit;
         text-decoration: none;
+      }
+
+      img, picture, video, canvas, svg {
+        display: block;
+        max-width: 100%;
       }
     `,
   },

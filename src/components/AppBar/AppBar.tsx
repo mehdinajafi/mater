@@ -4,6 +4,7 @@ import AccountDropdown from "./AccountDropdown";
 import ContactsDropdown from "./ContactsDropdown";
 import { ReactComponent as SearchIcon } from "@/assets/icons/search.svg";
 import { ReactComponent as MenuIcon } from "@/assets/icons/menu.svg";
+import NotificationsDropdown from "./NotificationsDropdown";
 
 const AppBar = () => {
   const toggleSidebar = useAppStore((store) => store.toggleSidebar);
@@ -41,6 +42,7 @@ const AppBar = () => {
             gap: 12,
           }}
         >
+          <NotificationsDropdown />
           <ContactsDropdown />
           <AccountDropdown />
         </Box>
