@@ -3,7 +3,7 @@ import { rest, RestHandler } from "msw";
 export const handlers: RestHandler[] = [
   rest.get("/api/user/profile", (req, res, ctx) => {
     return res(
-      ctx.delay(2000),
+      ctx.status(200),
       ctx.json({
         name: "Mehdi Najafi",
         role: "admin",
