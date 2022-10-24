@@ -17,6 +17,9 @@ export declare module "@mui/material/styles" {
   interface TypeBackground {
     semiTransparent?: string;
   }
+  interface TypeAction {
+    attention?: string;
+  }
   interface PaletteColor {
     darker?: string;
     lighter?: string;

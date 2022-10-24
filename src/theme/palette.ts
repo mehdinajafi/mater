@@ -68,5 +68,6 @@ export const lightpalette: PaletteOptions = {
     disabled: "rgb(99, 115, 129)",
     hover: "rgba(145, 158, 171, 0.08)",
     selected: "rgba(118, 53, 220, 0.08)",
+    attention: "rgba(145, 158, 171, 0.16)",
   },
 };
