@@ -1,8 +1,9 @@
 import { AppBar as BaseAppbar, Box, IconButton, Toolbar } from "@mui/material";
-import { ReactComponent as SearchIcon } from "@/assets/icons/search.svg";
-import { ReactComponent as MenuIcon } from "@/assets/icons/menu.svg";
 import { useAppStore } from "@/store";
 import AccountDropdown from "./AccountDropdown";
+import ContactsDropdown from "./ContactsDropdown";
+import { ReactComponent as SearchIcon } from "@/assets/icons/search.svg";
+import { ReactComponent as MenuIcon } from "@/assets/icons/menu.svg";
 
 const AppBar = () => {
   const toggleSidebar = useAppStore((store) => store.toggleSidebar);
@@ -30,7 +31,17 @@ const AppBar = () => {
         <IconButton>
           <SearchIcon width={20} height={20} />
         </IconButton>
-        <Box sx={{ display: "flex", flexGrow: 1, justifyContent: "flex-end" }}>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            flexGrow: 1,
+            gap: 12,
+          }}
+        >
+          <ContactsDropdown />
           <AccountDropdown />
         </Box>
       </Toolbar>

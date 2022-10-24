@@ -45,6 +45,10 @@ const components: ThemeOptions["components"] = {
         },
       }),
     },
+    defaultProps: {
+      transformOrigin: { horizontal: "right", vertical: "top" },
+      anchorOrigin: { horizontal: "right", vertical: "bottom" },
+    },
   },
   MuiMenuItem: {
     styleOverrides: {
