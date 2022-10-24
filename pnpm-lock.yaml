@@ -11,6 +11,7 @@ specifiers:
   '@types/react-dom': ^18.0.6
   '@vitejs/plugin-react': ^2.1.0
   msw: ^0.47.4
+  nanoid: ^4.0.0
   path: ^0.12.7
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -26,6 +27,7 @@ dependencies:
   '@mui/material': 5.10.10_ikcgkdnp4bn3rgptamntbhbo7e
   '@tanstack/react-query': 4.13.0_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.13.0_vwr3yfyniquaygdm2roeczqxuu
+  nanoid: 4.0.0
   path: 0.12.7
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1939,6 +1941,12 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid/4.0.0:
+    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /node-fetch/2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
