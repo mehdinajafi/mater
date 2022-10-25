@@ -49,7 +49,7 @@ const Layout = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          width: { lg: `calc(100% - ${SidebarWidth}px)` },
+          width: { xs: "100%", lg: `calc(100% - ${SidebarWidth}px)` },
         }}
       >
         <AppBar />
