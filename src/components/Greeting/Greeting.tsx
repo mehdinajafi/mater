@@ -4,7 +4,7 @@ import getProfile from "@/api/getProfile";
 import { ReactComponent as DashboardImage } from "@/assets/images/dashboard_illustration.svg";
 
 const Greeting = () => {
-  const { data: profile, isLoading } = useQuery(["profile"], getProfile);
+  const { data: profile } = useQuery(["profile"], getProfile);
 
   return (
     <Box
@@ -14,13 +14,14 @@ const Greeting = () => {
         alignItems: "center",
         bgcolor: "rgb(236 225 251)",
         borderRadius: theme.borderRadius["2xl"],
+        height: "100%",
       })}
     >
       <Box
         sx={{
           pl: 40,
-          py: { xs: 40, lg: 0 },
-          pr: { xs: 40, lg: 0 },
+          py: { xs: 40, md: 0 },
+          pr: { xs: 40, md: 0 },
           display: "flex",
           flexDirection: "column",
           alignItems: { xs: "center", md: "flex-start" },
