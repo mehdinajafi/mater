@@ -2,9 +2,11 @@ export declare module "@mui/material/styles" {
   // Theme
   interface Theme {
     borderRadius: IBorderRadius;
+    customShadows: ICustomShadows;
   }
   interface ThemeOptions {
     borderRadius: IBorderRadius;
+    customShadows: ICustomShadows;
   }
 
   // Palette
@@ -93,4 +95,9 @@ interface IFontWeights {
   medium: number;
   semiBold: number;
   bold: number;
+}
+
+interface ICustomShadows {
+  card: string;
+  dropdown: string;
 }

@@ -40,8 +40,7 @@ const components: ThemeOptions["components"] = {
       root: ({ theme }) => ({
         "& .MuiPaper-root": {
           marginTop: theme.spacing(10),
-          boxShadow:
-            "rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) -20px 20px 40px -4px",
+          boxShadow: theme.customShadows.dropdown,
           borderRadius: theme.borderRadius.xl,
         },
       }),

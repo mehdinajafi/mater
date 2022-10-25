@@ -27,3 +27,9 @@ export const shadows: ThemeOptions["shadows"] = [
   "rgb(145 158 171 / 20%) 0px 11px 14px -7px, rgb(145 158 171 / 14%) 0px 23px 36px 3px, rgb(145 158 171 / 12%) 0px 9px 44px 8px",
   "rgb(145 158 171 / 20%) 0px 11px 15px -7px, rgb(145 158 171 / 14%) 0px 24px 38px 3px, rgb(145 158 171 / 12%) 0px 9px 46px 8px",
 ];
+
+export const customShadows = {
+  card: "rgb(145 158 171 / 20%) 0px 0px 2px 0px, rgb(145 158 171 / 12%) 0px 12px 24px -4px",
+  dropdown:
+    "rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) -20px 20px 40px -4px",
+};
