@@ -3,10 +3,11 @@ import { ThemeOptions } from "@mui/material";
 const components: ThemeOptions["components"] = {
   MuiButton: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         textTransform: "none",
         boxShadow: "none",
-      },
+        borderRadius: theme.borderRadius.lg,
+      }),
     },
   },
   MuiTypography: {
