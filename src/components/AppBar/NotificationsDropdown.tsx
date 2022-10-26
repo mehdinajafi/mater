@@ -34,8 +34,7 @@ interface INotification {
 const NotificationsDropdown = () => {
   const { data: notifications, isLoading } = useQuery(
     ["notifications"],
-    getNotifications,
-    { suspense: true }
+    getNotifications
   );
   const { anchorEl, isOpen, onToggle, onClose } = useAnchorDisclosure();
 
