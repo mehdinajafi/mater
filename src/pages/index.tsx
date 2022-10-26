@@ -1,6 +1,8 @@
+import { Container, Grid } from "@mui/material";
+import TotalStats from "@/components/Cards/TotalStats";
 import FeaturedApps from "@/components/FeaturedApps";
 import Greeting from "@/components/Greeting";
-import { Container, Grid, Paper } from "@mui/material";
+import SectionCard from "@/components/Cards/SectionCard";
 
 const AppPage = () => {
   return (
@@ -10,26 +12,36 @@ const AppPage = () => {
           <Greeting />
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card>
+          <SectionCard>
             <FeaturedApps />
-          </Card>
+          </SectionCard>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TotalStats
+            title="Active Users"
+            color="primary"
+            total={18765}
+            history={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TotalStats
+            title="Installed"
+            color="info"
+            total={4876}
+            history={[1, 2, 3, 4, 5, 6, 7, 8, 10, 9]}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TotalStats
+            title="Downloads"
+            color="warning"
+            total={678}
+            history={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          />
         </Grid>
       </Grid>
     </Container>
-  );
-};
-
-const Card: React.FC<{ children: React.ReactNode }> = (props) => {
-  return (
-    <Paper
-      elevation={0}
-      sx={(theme) => ({
-        boxShadow: theme.customShadows.card,
-        borderRadius: theme.borderRadius["2xl"],
-      })}
-    >
-      {props.children}
-    </Paper>
   );
 };
 
