@@ -8,6 +8,7 @@ export const lightpalette: PaletteOptions = {
     main: "rgb(118, 53, 220)",
     light: "rgb(185, 133, 244)",
     lighter: "rgb(235, 214, 253)",
+    semiTransparent: "rgba(118, 53, 220, 0.08)",
   },
   secondary: {
     darker: "rgb(9, 26, 122)",
@@ -15,6 +16,7 @@ export const lightpalette: PaletteOptions = {
     main: "rgb(51, 102, 255)",
     light: "rgb(132, 169, 255)",
     lighter: "rgb(214, 228, 255)",
+    semiTransparent: "rgba(51, 102, 255, 0.08)",
   },
   info: {
     darker: "rgb(0, 55, 104)",
@@ -22,6 +24,7 @@ export const lightpalette: PaletteOptions = {
     main: "rgb(0, 184, 217)",
     light: "rgb(97, 243, 243)",
     lighter: "rgb(202, 253, 245)",
+    semiTransparent: "rgba(0, 184, 217, 0.08)",
   },
   success: {
     darker: "rgb(10, 85, 84)",
@@ -29,6 +32,7 @@ export const lightpalette: PaletteOptions = {
     main: "rgb(54, 179, 126)",
     light: "rgb(134, 232, 171)",
     lighter: "rgb(216, 251, 222)",
+    semiTransparent: "rgba(54, 179, 126, 0.08)",
   },
   warning: {
     darker: "rgb(122, 65, 0)",
@@ -36,6 +40,7 @@ export const lightpalette: PaletteOptions = {
     main: "rgb(255, 171, 0)",
     light: "rgb(255, 214, 102)",
     lighter: "rgb(255, 245, 204)",
+    semiTransparent: "rgba(255, 171, 0, 0.08)",
   },
   error: {
     darker: "rgb(122, 9, 22)",
@@ -43,6 +48,7 @@ export const lightpalette: PaletteOptions = {
     main: "rgb(255, 86, 48)",
     light: "rgb(255, 172, 130)",
     lighter: "rgb(255, 233, 213)",
+    semiTransparent: "rgba(255, 86, 48, 0.08)",
   },
   text: {
     primary: "rgb(33, 43, 54)",

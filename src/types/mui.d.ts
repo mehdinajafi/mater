@@ -25,10 +25,12 @@ export declare module "@mui/material/styles" {
   interface PaletteColor {
     darker?: string;
     lighter?: string;
+    semiTransparent?: string;
   }
   interface SimplePaletteColorOptions {
     darker?: string;
     lighter?: string;
+    semiTransparent?: string;
   }
 
   // Typography
