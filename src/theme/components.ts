@@ -32,6 +32,68 @@ const components: ThemeOptions["components"] = {
       },
     ],
   },
+  MuiCard: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        boxShadow: theme.customShadows.card,
+        borderRadius: theme.borderRadius["2xl"],
+      }),
+    },
+  },
+  MuiChip: {
+    variants: [
+      {
+        props: { color: "success" },
+        style: ({ theme }) => ({
+          backgroundColor: "rgba(54, 179, 126, 0.16)",
+          color: theme.palette.success.dark,
+        }),
+      },
+      {
+        props: { color: "error" },
+        style: ({ theme }) => ({
+          backgroundColor: "rgba(255, 86, 48, 0.16)",
+          color: theme.palette.error.dark,
+        }),
+      },
+      {
+        props: { color: "warning" },
+        style: ({ theme }) => ({
+          backgroundColor: "rgba(255, 171, 0, 0.16)",
+          color: theme.palette.warning.dark,
+        }),
+      },
+    ],
+    styleOverrides: {
+      root: ({ theme }) => ({
+        height: 24,
+        borderRadius: theme.borderRadius.md,
+      }),
+      label: ({ theme }) => ({
+        paddingInline: 8,
+        fontSize: theme.typography.fontSizes.xs,
+        fontWeight: theme.typography.fontWeights.bold,
+      }),
+    },
+  },
+  MuiTableHead: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        backgroundColor: theme.palette.gray[200],
+        "& .MuiTableCell-root": {
+          color: theme.palette.gray[600],
+          fontWeight: 600,
+        },
+      }),
+    },
+  },
+  MuiTableCell: {
+    styleOverrides: {
+      root: {
+        borderBottom: 0,
+      },
+    },
+  },
   MuiMenu: {
     styleOverrides: {
       list: {
@@ -69,6 +131,11 @@ const components: ThemeOptions["components"] = {
         },
       },
     ],
+    styleOverrides: {
+      root: {
+        borderColor: "rgba(145, 158, 171, 0.24)",
+      },
+    },
   },
   MuiTooltip: {
     styleOverrides: {
