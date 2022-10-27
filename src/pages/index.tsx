@@ -3,6 +3,7 @@ import TotalStats from "@/components/Cards/TotalStats";
 import FeaturedApps from "@/components/FeaturedApps";
 import Greeting from "@/components/Greeting";
 import SectionCard from "@/components/Cards/SectionCard";
+import NewInvoices from "@/components/NewInvoices";
 
 const AppPage = () => {
   return (
@@ -38,6 +39,30 @@ const AppPage = () => {
             color="warning"
             total={678}
             history={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          />
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <NewInvoices
+            invoices={[
+              {
+                id: "INV-1666857553344",
+                category: "Windows",
+                price: 16.9,
+                status: 0,
+              },
+              {
+                id: "INV-1666857553345",
+                category: "Windows",
+                price: 35.71,
+                status: 2,
+              },
+              {
+                id: "INV-1666857553347",
+                category: "Mac",
+                price: 93.1,
+                status: 1,
+              },
+            ]}
           />
         </Grid>
       </Grid>
