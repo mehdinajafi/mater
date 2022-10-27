@@ -8,6 +8,7 @@ import TopApplications from "@/components/TopApplications";
 import ChromeIcon from "@/assets/icons/apps/chrome.svg";
 import DriveIcon from "@/assets/icons/apps/drive.svg";
 import TopCountries from "@/components/TopCountries";
+import TopAuthors from "@/components/TopAuthors";
 
 const AppPage = () => {
   return (
@@ -130,6 +131,30 @@ const AppPage = () => {
                 android: 1030,
                 windows: 78950,
                 mac: 11150,
+              },
+            ]}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TopAuthors
+            authors={[
+              {
+                avatar:
+                  "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+                name: "Deja Brady",
+                likes: 17230,
+              },
+              {
+                avatar:
+                  "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+                name: "Jayvion Simon",
+                likes: 11870,
+              },
+              {
+                avatar:
+                  "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+                name: "Lucian Obrien",
+                likes: 10560,
               },
             ]}
           />
