@@ -161,6 +161,13 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
+  MuiRating: {
+    styleOverrides: {
+      iconEmpty: {
+        color: "rgba(145, 158, 171, 0.48)",
+      },
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {
