@@ -7,6 +7,7 @@ import NewInvoices from "@/components/NewInvoices";
 import TopApplications from "@/components/TopApplications";
 import ChromeIcon from "@/assets/icons/apps/chrome.svg";
 import DriveIcon from "@/assets/icons/apps/drive.svg";
+import TopCountries from "@/components/TopCountries";
 
 const AppPage = () => {
   return (
@@ -88,6 +89,47 @@ const AppPage = () => {
                 os: "Mac",
                 rate: 3,
                 reviews: 71630,
+              },
+            ]}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TopCountries
+            countries={[
+              {
+                countryName: "Germany",
+                countryCode: "de",
+                android: 1030,
+                windows: 78950,
+                mac: 11150,
+              },
+              {
+                countryName: "England",
+                countryCode: "en",
+                android: 1030,
+                windows: 78950,
+                mac: 11150,
+              },
+              {
+                countryName: "France",
+                countryCode: "fr",
+                android: 1030,
+                windows: 78950,
+                mac: 11150,
+              },
+              {
+                countryName: "Korean",
+                countryCode: "kr",
+                android: 1030,
+                windows: 78950,
+                mac: 11150,
+              },
+              {
+                countryName: "USA",
+                countryCode: "us",
+                android: 1030,
+                windows: 78950,
+                mac: 11150,
               },
             ]}
           />
