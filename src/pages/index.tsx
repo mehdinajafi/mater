@@ -4,6 +4,9 @@ import FeaturedApps from "@/components/FeaturedApps";
 import Greeting from "@/components/Greeting";
 import SectionCard from "@/components/Cards/SectionCard";
 import NewInvoices from "@/components/NewInvoices";
+import TopApplications from "@/components/TopApplications";
+import ChromeIcon from "@/assets/icons/apps/chrome.svg";
+import DriveIcon from "@/assets/icons/apps/drive.svg";
 
 const AppPage = () => {
   return (
@@ -61,6 +64,30 @@ const AppPage = () => {
                 category: "Mac",
                 price: 93.1,
                 status: 1,
+              },
+            ]}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TopApplications
+            applications={[
+              {
+                id: 0,
+                logo: ChromeIcon,
+                name: "Chrome",
+                price: 0,
+                os: "Mac",
+                rate: 3,
+                reviews: 4090,
+              },
+              {
+                id: 1,
+                logo: DriveIcon,
+                name: "Drive",
+                price: 35.71,
+                os: "Mac",
+                rate: 3,
+                reviews: 71630,
               },
             ]}
           />
