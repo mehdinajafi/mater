@@ -168,6 +168,30 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
+  MuiTab: {
+    styleOverrides: {
+      selected: {
+        color: "gray.600",
+      },
+      root: ({ theme }) => ({
+        fontSize: theme.typography.fontSizes.sm,
+        fontWeight: theme.typography.fontWeights.semiBold,
+        textTransform: "none",
+        minHeight: 48,
+        minWidth: 48,
+        padding: 0,
+
+        "& .MuiTab-iconWrapper": {
+          marginRight: "0.5rem",
+          width: 20,
+          height: 20,
+        },
+      }),
+    },
+    defaultProps: {
+      disableRipple: true,
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {
