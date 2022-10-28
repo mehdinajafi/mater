@@ -46,7 +46,10 @@ const ApplicationRow: React.FC<IApplicationRow> = ({ application }) => {
           <Typography variant="caption" ml={4} mr={8}>
             {application.os}
           </Typography>
-          <Chip label="Free" color="success" />
+          <Chip
+            label={application.price === 0 ? "Free" : "$" + application.price}
+            color={application.price === 0 ? "success" : "error"}
+          />
         </Box>
       </Box>
 
