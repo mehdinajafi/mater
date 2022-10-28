@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import TotalStats from "@/components/Cards/TotalStats";
 import FeaturedApps from "@/components/FeaturedApps";
 import Greeting from "@/components/Greeting";
@@ -9,6 +9,7 @@ import ChromeIcon from "@/assets/icons/apps/chrome.svg";
 import DriveIcon from "@/assets/icons/apps/drive.svg";
 import TopCountries from "@/components/TopCountries";
 import TopAuthors from "@/components/TopAuthors";
+import ProfileCounter from "@/components/ProfileCounter";
 
 const AppPage = () => {
   return (
@@ -158,6 +159,14 @@ const AppPage = () => {
               },
             ]}
           />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Box
+            sx={{ display: "flex", flexDirection: "column", gap: 24, pb: 72 }}
+          >
+            <ProfileCounter title="conversion" value={38566} percent={48} />
+            <ProfileCounter title="applications" value={55566} percent={75} />
+          </Box>
         </Grid>
       </Grid>
     </Container>
