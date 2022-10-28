@@ -47,7 +47,7 @@ const AppPage = () => {
             history={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} lg={8}>
           <NewInvoices
             invoices={[
               {
@@ -71,7 +71,7 @@ const AppPage = () => {
             ]}
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6} lg={4}>
           <TopApplications
             applications={[
               {
@@ -95,7 +95,7 @@ const AppPage = () => {
             ]}
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6} lg={4}>
           <TopCountries
             countries={[
               {
@@ -136,7 +136,7 @@ const AppPage = () => {
             ]}
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6} lg={4}>
           <TopAuthors
             authors={[
               {
@@ -160,7 +160,7 @@ const AppPage = () => {
             ]}
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6} lg={4}>
           <Box
             sx={{ display: "flex", flexDirection: "column", gap: 24, pb: 72 }}
           >
