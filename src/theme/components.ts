@@ -170,9 +170,6 @@ const components: ThemeOptions["components"] = {
   },
   MuiTab: {
     styleOverrides: {
-      selected: {
-        color: "gray.600",
-      },
       root: ({ theme }) => ({
         fontSize: theme.typography.fontSizes.sm,
         fontWeight: theme.typography.fontWeights.semiBold,
@@ -191,6 +188,89 @@ const components: ThemeOptions["components"] = {
     defaultProps: {
       disableRipple: true,
     },
+  },
+  MuiSwitch: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        width: 28,
+        height: 16,
+        padding: 0,
+        display: "flex",
+        "&:active": {
+          "& .MuiSwitch-thumb": {
+            width: 15,
+          },
+          "& .MuiSwitch-switchBase.Mui-checked": {
+            transform: "translateX(9px)",
+          },
+        },
+      }),
+      switchBase: ({ theme }) => ({
+        padding: 2,
+        "&.Mui-checked": {
+          transform: "translateX(12px)",
+          color: "#fff",
+          "& + .MuiSwitch-track": {
+            opacity: 1,
+            backgroundColor: theme.palette.primary.main,
+          },
+        },
+      }),
+      thumb: ({ theme }) => ({
+        boxShadow: "0 2px 4px 0 rgb(0 35 11 / 20%)",
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        transition: theme.transitions.create(["width"], {
+          duration: 200,
+        }),
+      }),
+      track: ({ theme }) => ({
+        borderRadius: 16 / 2,
+        opacity: 1,
+        backgroundColor:
+          theme.palette.mode === "dark"
+            ? "rgba(255,255,255,.35)"
+            : "rgba(0,0,0,.25)",
+        boxSizing: "border-box",
+      }),
+    },
+  },
+  MuiTextField: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        "& .MuiFormLabel-root": {
+          color: theme.palette.gray[500],
+        },
+        "& .MuiInputBase-root": {
+          borderRadius: "0.5rem",
+        },
+        "& .MuiOutlinedInput-notchedOutline": {
+          borderColor: "rgba(145, 158, 171, 0.32)",
+        },
+        "& .MuiNativeSelect-icon": {
+          width: 16,
+          height: 16,
+          color: theme.palette.gray[500],
+        },
+      }),
+    },
+    variants: [
+      {
+        props: { color: "gray" },
+        style: ({ theme }) => ({
+          "& .MuiFormLabel-root.Mui-focused": {
+            color: theme.palette.gray[800],
+          },
+          "& .MuiInputBase-root.Mui-focused": {
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderWidth: 1,
+              borderColor: theme.palette.gray[800],
+            },
+          },
+        }),
+      },
+    ],
   },
   MuiCssBaseline: {
     styleOverrides: `
