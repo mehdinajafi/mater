@@ -272,6 +272,13 @@ const components: ThemeOptions["components"] = {
       },
     ],
   },
+  MuiPaper: {
+    styleOverrides: {
+      rounded: {
+        borderRadius: "0.5rem",
+      },
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {
