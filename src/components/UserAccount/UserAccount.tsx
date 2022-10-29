@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
 import TabPanel from "@/components/TabPanel";
+import AccountGeneralTab from "./AccountGeneralTab";
+import BillingTab from "./BillingTab";
+import NotificationsTab from "./NotificationsTab";
+import SocialLinksTab from "./SocialLinksTab";
+import ChangePasswordTab from "./ChangePasswordTab";
 import { ReactComponent as UserIcon } from "@/assets/icons/user.svg";
 import { ReactComponent as DocumentIcon } from "@/assets/icons/document.svg";
 import { ReactComponent as BellIcon } from "@/assets/icons/bell.svg";
 import { ReactComponent as ShareIcon } from "@/assets/icons/share.svg";
 import { ReactComponent as KeyIcon } from "@/assets/icons/key.svg";
-import AccountGeneralTab from "./AccountGeneralTab";
-import BillingTab from "./BillingTab";
-import NotificationsTab from "./NotificationsTab";
-import SocialLinksTab from "./SocialLinksTab";
 
 const UserAccount = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -54,7 +55,7 @@ const UserAccount = () => {
           <SocialLinksTab />
         </TabPanel>
         <TabPanel selectedTab={selectedTab} index={4}>
-          Change Password
+          <ChangePasswordTab />
         </TabPanel>
       </Box>
     </Box>
