@@ -191,24 +191,30 @@ const components: ThemeOptions["components"] = {
   },
   MuiSwitch: {
     styleOverrides: {
-      root: ({ theme }) => ({
-        width: 28,
-        height: 16,
-        padding: 0,
+      root: {
         display: "flex",
-        "&:active": {
-          "& .MuiSwitch-thumb": {
-            width: 15,
-          },
-          "& .MuiSwitch-switchBase.Mui-checked": {
-            transform: "translateX(9px)",
+        padding: "9px 13px 9px 12px",
+      },
+      sizeMedium: {
+        "& .MuiSwitch-thumb": {
+          width: 14,
+          height: 14,
+        },
+        "& .MuiSwitch-track": {
+          borderRadius: 14,
+          width: 33,
+          height: 20,
+        },
+        "& .MuiSwitch-switchBase": {
+          padding: 12,
+          left: 3,
+          "&.Mui-checked": {
+            transform: "translateX(13px)",
           },
         },
-      }),
+      },
       switchBase: ({ theme }) => ({
-        padding: 2,
         "&.Mui-checked": {
-          transform: "translateX(12px)",
           color: "#fff",
           "& + .MuiSwitch-track": {
             opacity: 1,
@@ -216,24 +222,23 @@ const components: ThemeOptions["components"] = {
           },
         },
       }),
-      thumb: ({ theme }) => ({
-        boxShadow: "0 2px 4px 0 rgb(0 35 11 / 20%)",
-        width: 12,
-        height: 12,
-        borderRadius: 6,
-        transition: theme.transitions.create(["width"], {
-          duration: 200,
-        }),
-      }),
+      thumb: {
+        boxShadow: "none",
+      },
       track: ({ theme }) => ({
-        borderRadius: 16 / 2,
         opacity: 1,
         backgroundColor:
           theme.palette.mode === "dark"
             ? "rgba(255,255,255,.35)"
             : "rgba(0,0,0,.25)",
-        boxSizing: "border-box",
       }),
+    },
+  },
+  MuiFormControlLabel: {
+    styleOverrides: {
+      root: {
+        margin: 0,
+      },
     },
   },
   MuiTextField: {
