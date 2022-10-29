@@ -7,6 +7,7 @@ import { ReactComponent as BellIcon } from "@/assets/icons/bell.svg";
 import { ReactComponent as ShareIcon } from "@/assets/icons/share.svg";
 import { ReactComponent as KeyIcon } from "@/assets/icons/key.svg";
 import AccountGeneralTab from "./AccountGeneralTab";
+import BillingTab from "./BillingTab";
 
 const UserAccount = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -42,7 +43,7 @@ const UserAccount = () => {
           <AccountGeneralTab />
         </TabPanel>
         <TabPanel selectedTab={selectedTab} index={1}>
-          Billing
+          <BillingTab />
         </TabPanel>
         <TabPanel selectedTab={selectedTab} index={2}>
           Notifications
