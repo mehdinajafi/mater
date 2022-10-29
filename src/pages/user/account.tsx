@@ -1,5 +1,6 @@
 import { Box, Breadcrumbs, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import UserAccount from "@/components/UserAccount";
 
 const UserAccountPage = () => {
   return (
@@ -39,6 +40,8 @@ const UserAccountPage = () => {
           </Typography>
         </Breadcrumbs>
       </Box>
+
+      <UserAccount />
     </Box>
   );
 };
