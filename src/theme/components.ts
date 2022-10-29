@@ -286,6 +286,11 @@ const components: ThemeOptions["components"] = {
   },
   MuiDialog: {
     styleOverrides: {
+      root: {
+        "& .MuiBackdrop-root": {
+          backgroundColor: "rgba(33, 43, 54, 0.8)",
+        },
+      },
       paper: ({ theme }) => ({
         borderRadius: "16px",
         boxShadow: theme.customShadows.dialog,
@@ -296,13 +301,6 @@ const components: ThemeOptions["components"] = {
     styleOverrides: {
       root: {
         padding: 24,
-      },
-    },
-  },
-  MuiBackdrop: {
-    styleOverrides: {
-      root: {
-        backgroundColor: "rgba(33, 43, 54, 0.8)",
       },
     },
   },
