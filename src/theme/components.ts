@@ -279,6 +279,28 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
+  MuiDialog: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        borderRadius: "16px",
+        boxShadow: theme.customShadows.dialog,
+      }),
+    },
+  },
+  MuiDialogTitle: {
+    styleOverrides: {
+      root: {
+        padding: 24,
+      },
+    },
+  },
+  MuiBackdrop: {
+    styleOverrides: {
+      root: {
+        backgroundColor: "rgba(33, 43, 54, 0.8)",
+      },
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {
