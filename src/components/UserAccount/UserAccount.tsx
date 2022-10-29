@@ -9,6 +9,7 @@ import { ReactComponent as KeyIcon } from "@/assets/icons/key.svg";
 import AccountGeneralTab from "./AccountGeneralTab";
 import BillingTab from "./BillingTab";
 import NotificationsTab from "./NotificationsTab";
+import SocialLinksTab from "./SocialLinksTab";
 
 const UserAccount = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -50,7 +51,7 @@ const UserAccount = () => {
           <NotificationsTab />
         </TabPanel>
         <TabPanel selectedTab={selectedTab} index={3}>
-          Social Links
+          <SocialLinksTab />
         </TabPanel>
         <TabPanel selectedTab={selectedTab} index={4}>
           Change Password
