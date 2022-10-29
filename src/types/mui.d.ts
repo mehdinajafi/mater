@@ -51,8 +51,14 @@ declare module "@mui/material/Divider" {
   }
 }
 
-// Interfaces
+// TextField
+declare module "@mui/material/TextField" {
+  interface TextFieldPropsColorOverrides {
+    gray;
+  }
+}
 
+// Interfaces
 interface IGrayPalette {
   100: string;
   200: string;
