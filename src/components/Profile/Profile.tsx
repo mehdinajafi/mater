@@ -24,7 +24,17 @@ const Profile = () => {
           <Grid item xs={12} md={4}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <ProfileCounter follower={68651} following={9406} />
-              <ProfileAbout />
+              <ProfileAbout
+                about={{
+                  bio: "Tart I love sugar plum I love oat cake. Sweet roll caramels I love jujubes. Topping cake wafer..",
+                  location: "Live at Alborz",
+                  email: "dev.mehdinajafi@gmail.com",
+                  resume: [
+                    "UI Designer at Gleichner, Mueller and Tromp",
+                    "Studied at Nikolaus - Leuschke",
+                  ],
+                }}
+              />
               <ProfileSocial />
             </Box>
           </Grid>
