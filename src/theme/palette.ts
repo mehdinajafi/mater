@@ -2,6 +2,11 @@ import { PaletteOptions } from "@mui/material";
 
 export const lightpalette: PaletteOptions = {
   mode: "light",
+  rgbToRgba: (rgb: string, alpha: number) => {
+    let color = rgb.replace(/rgb/i, "rgba");
+    color = color.replace(/\)/i, `,${alpha})`);
+    return color;
+  },
   primary: {
     darker: "rgb(32, 10, 105)",
     dark: "rgb(67, 26, 158)",

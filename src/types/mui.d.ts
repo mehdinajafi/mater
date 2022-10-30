@@ -12,9 +12,11 @@ export declare module "@mui/material/styles" {
   // Palette
   interface Palette {
     gray: IGrayPalette;
+    rgbToRgba: (rgb: string, alpha: number) => string;
   }
   interface PaletteOptions {
     gray: IGrayPalette;
+    rgbToRgba: (rgb: string, alpha: number) => string;
   }
   interface TypeBackground {
     semiTransparent?: string;
@@ -23,14 +25,14 @@ export declare module "@mui/material/styles" {
     attention?: string;
   }
   interface PaletteColor {
-    darker?: string;
-    lighter?: string;
-    semiTransparent?: string;
+    darker: string;
+    lighter: string;
+    semiTransparent: string;
   }
   interface SimplePaletteColorOptions {
-    darker?: string;
-    lighter?: string;
-    semiTransparent?: string;
+    darker: string;
+    lighter: string;
+    semiTransparent: string;
   }
 
   // Typography
