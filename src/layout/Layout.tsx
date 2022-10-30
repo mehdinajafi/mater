@@ -46,15 +46,15 @@ const Layout = () => {
       </Box>
 
       <Box
-        component="main"
         sx={{
           flexGrow: 1,
           width: { xs: "100%", lg: `calc(100% - ${SidebarWidth}px)` },
-          pb: 100,
         }}
       >
         <AppBar />
-        <Outlet />
+        <Box component="main" sx={{ px: { xs: 24, lg: 50 }, pb: 100 }}>
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );

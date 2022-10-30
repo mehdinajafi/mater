@@ -13,7 +13,7 @@ import ProfileCounter from "@/components/ProfileCounter";
 
 const AppPage = () => {
   return (
-    <Container sx={{ px: { xs: 24, lg: 50 } }}>
+    <Container>
       <Grid container spacing={24}>
         <Grid item xs={12} md={8}>
           <Greeting />

@@ -4,7 +4,7 @@ import UserAccount from "@/components/UserAccount";
 
 const UserAccountPage = () => {
   return (
-    <Box sx={{ px: 40 }}>
+    <Box>
       <Box mt={30} mb={40}>
         <Typography variant="h4" mb={8}>
           Account
