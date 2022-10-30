@@ -35,7 +35,14 @@ const Profile = () => {
                   ],
                 }}
               />
-              <ProfileSocial />
+              <ProfileSocial
+                social={{
+                  facebook: "https://www.facebook.com/lorem.ipsum",
+                  instagram: "https://www.instagram.com/lorem.ipsum",
+                  linkedin: "https://www.linkedin.com/in/lorem.ipsum",
+                  twitter: "https://www.twitter.com/lorem.ipsum",
+                }}
+              />
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
