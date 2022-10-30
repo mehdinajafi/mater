@@ -1,5 +1,6 @@
 import { Box, Breadcrumbs, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Profile from "@/components/Profile";
 
 const UserProfilePage = () => {
   return (
@@ -39,6 +40,8 @@ const UserProfilePage = () => {
           </Typography>
         </Breadcrumbs>
       </Box>
+
+      <Profile />
     </Box>
   );
 };
