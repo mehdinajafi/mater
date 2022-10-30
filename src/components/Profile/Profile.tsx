@@ -45,7 +45,7 @@ const Profile = () => {
               />
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={8}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <NewPostForm />
               <SingleProfilePost />
