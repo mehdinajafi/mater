@@ -4,8 +4,9 @@ import { ReactComponent as TrophyIcon } from "@/assets/icons/trophy.svg";
 import kFormatter from "@/utils/kFormatter";
 import IAuthor from "@/types/interfaces/author";
 
+type Author = { likes: number } & IAuthor;
 interface ITopAuthors {
-  authors: IAuthor[];
+  authors: Author[];
 }
 
 const colors = ["primary", "info", "error"];
