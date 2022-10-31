@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import TabPanel from "../TabPanel";
 import ProfileHeader from "./ProfileHeader";
@@ -9,6 +9,7 @@ import NewPostForm from "./NewPostForm";
 import SingleProfilePost from "./SingleProfilePost";
 import { nanoid } from "nanoid";
 import FollowerCard from "./FollowerCard";
+import FriendsTab from "./FriendsTab";
 
 const Profile = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -166,10 +167,25 @@ const Profile = () => {
       </TabPanel>
 
       <TabPanel selectedTab={selectedTab} index={2}>
-        <Typography variant="h4" my={40}>
-          Friends
-        </Typography>
+        <FriendsTab
+          friends={[
+            {
+              id: nanoid(),
+              name: "Jayvion Simon",
+              avatar:
+                "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+              job: "ux designer",
+              socials: {
+                facebook: "https://www.facebook.com/lorem_ipsum",
+                instagram: "https://www.instagram.com/lorem_ipsum",
+                linkedin: "https://www.linkedin.com/in/lorem_ipsum",
+                twitter: "https://www.twitter.com/lorem_ipsum",
+              },
+            },
+          ]}
+        />
       </TabPanel>
+
       <TabPanel selectedTab={selectedTab} index={3}>
         Gallery
       </TabPanel>
