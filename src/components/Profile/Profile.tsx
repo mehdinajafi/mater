@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import TabPanel from "../TabPanel";
 import ProfileHeader from "./ProfileHeader";
@@ -8,6 +8,7 @@ import ProfileSocial from "./ProfileSocial";
 import NewPostForm from "./NewPostForm";
 import SingleProfilePost from "./SingleProfilePost";
 import { nanoid } from "nanoid";
+import FollowerCard from "./FollowerCard";
 
 const Profile = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -105,9 +106,61 @@ const Profile = () => {
           </Grid>
         </Grid>
       </TabPanel>
+
       <TabPanel selectedTab={selectedTab} index={1}>
-        Followers
+        <Typography variant="h4" my={40}>
+          Followers
+        </Typography>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 24,
+          }}
+        >
+          <FollowerCard
+            follower={{
+              id: nanoid(),
+              name: "Mehdi Najafi",
+              avatar:
+                "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+              following: true,
+              location: "Kenya",
+            }}
+          />
+          <FollowerCard
+            follower={{
+              id: nanoid(),
+              name: "Mehdi Najafi",
+              avatar:
+                "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+              following: true,
+              location: "Kenya",
+            }}
+          />
+          <FollowerCard
+            follower={{
+              id: nanoid(),
+              name: "Mehdi Najafi",
+              avatar:
+                "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+              following: true,
+              location: "Kenya",
+            }}
+          />
+          <FollowerCard
+            follower={{
+              id: nanoid(),
+              name: "Mehdi Najafi",
+              avatar:
+                "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+              following: true,
+              location: "Kenya",
+            }}
+          />
+        </Box>
       </TabPanel>
+
       <TabPanel selectedTab={selectedTab} index={2}>
         Friends
       </TabPanel>
