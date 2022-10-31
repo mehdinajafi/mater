@@ -10,6 +10,7 @@ import SingleProfilePost from "./SingleProfilePost";
 import { nanoid } from "nanoid";
 import FollowerCard from "./FollowerCard";
 import FriendsTab from "./FriendsTab";
+import GalleryTab from "./GalleryTab";
 
 const Profile = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -187,7 +188,28 @@ const Profile = () => {
       </TabPanel>
 
       <TabPanel selectedTab={selectedTab} index={3}>
-        Gallery
+        <GalleryTab
+          images={[
+            {
+              id: nanoid(),
+              title: "Apply These 7 Secret Techniques To Improve Event",
+              date: new Date().getTime(),
+              src: "/assets/images/covers/cover_3.jpeg",
+            },
+            {
+              id: nanoid(),
+              title: "Apply These 7 Secret Techniques To Improve Event",
+              date: new Date().getTime(),
+              src: "/assets/images/covers/cover_3.jpeg",
+            },
+            {
+              id: nanoid(),
+              title: "Apply These 7 Secret Techniques To Improve Event",
+              date: new Date().getTime(),
+              src: "/assets/images/covers/cover_3.jpeg",
+            },
+          ]}
+        />
       </TabPanel>
     </Box>
   );
