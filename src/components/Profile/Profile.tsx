@@ -114,7 +114,11 @@ const Profile = () => {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: {
+              xs: "repeat(1, minmax(10px, 1fr))",
+              sm: "repeat(2, minmax(10px, 1fr))",
+              md: "repeat(3, minmax(10px, 1fr))",
+            },
             gap: 24,
           }}
         >
@@ -162,7 +166,9 @@ const Profile = () => {
       </TabPanel>
 
       <TabPanel selectedTab={selectedTab} index={2}>
-        Friends
+        <Typography variant="h4" my={40}>
+          Friends
+        </Typography>
       </TabPanel>
       <TabPanel selectedTab={selectedTab} index={3}>
         Gallery

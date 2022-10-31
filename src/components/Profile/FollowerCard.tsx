@@ -28,7 +28,9 @@ const FollowerCard: React.FC<IFollowerCard> = ({ follower }) => {
         sx={{ flexShrink: 0 }}
       />
       <Box flexGrow={1} pl={16} pr={8}>
-        <Typography variant="subtitle2">{follower.name}</Typography>
+        <Typography variant="subtitle2" noWrap>
+          {follower.name}
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -38,15 +40,26 @@ const FollowerCard: React.FC<IFollowerCard> = ({ follower }) => {
           }}
         >
           <Box component={LocationIcon} sx={{ width: 16, height: 16 }} />
-          <Typography variant="body2">{follower.location}</Typography>
+          <Typography variant="body2" noWrap>
+            {follower.location}
+          </Typography>
         </Box>
       </Box>
       <Button
         variant={following ? "text" : "outlined"}
         color={following ? "primary" : "inherit"}
         size="small"
-        startIcon={following && <CheckIcon />}
+        startIcon={
+          following && (
+            <Box component={CheckIcon} sx={{ width: 20, height: 20 }} />
+          )
+        }
         onClick={toggleFollow}
+        sx={{
+          "& .MuiButton-startIcon": {
+            flexShrink: 0,
+          },
+        }}
       >
         {following ? "Followed" : "Follow"}
       </Button>
