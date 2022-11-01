@@ -3,11 +3,23 @@ import { ThemeOptions } from "@mui/material";
 const components: ThemeOptions["components"] = {
   MuiButton: {
     styleOverrides: {
-      root: ({ theme }) => ({
+      root: ({ theme, ownerState }) => ({
         textTransform: "none",
         boxShadow: "none",
         borderRadius: theme.borderRadius.lg,
       }),
+      containedInherit: ({ theme }) => ({
+        color: "#fff",
+        backgroundColor:
+          theme.palette.mode === "light" ? theme.palette.gray[800] : "#fff",
+        "&:hover": {
+          backgroundColor:
+            theme.palette.mode === "light" ? theme.palette.gray[800] : "#fff",
+        },
+      }),
+      sizeLarge: {
+        paddingBlock: "0.75rem",
+      },
     },
   },
   MuiTypography: {
@@ -128,6 +140,12 @@ const components: ThemeOptions["components"] = {
         style: {
           borderStyle: "dashed",
           borderColor: "rgba(145, 158, 171, 0.24)",
+          "&:after": {
+            borderTopStyle: "dashed",
+          },
+          "&:before": {
+            borderTopStyle: "dashed",
+          },
         },
       },
     ],
@@ -356,6 +374,10 @@ const components: ThemeOptions["components"] = {
           url("/assets/fonts/public-sans-v14-latin-700.woff") format("woff"),
           url("/assets/fonts/public-sans-v14-latin-700.ttf") format("truetype"),
           url("/assets/fonts/public-sans-v14-latin-700.svg#PublicSans") format("svg");
+      }
+
+      html, body, #root {
+        height: 100%;
       }
 
       a {
