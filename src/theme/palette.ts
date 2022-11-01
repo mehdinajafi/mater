@@ -55,6 +55,14 @@ export const lightpalette: PaletteOptions = {
     lighter: "rgb(255, 233, 213)",
     semiTransparent: "rgba(255, 86, 48, 0.08)",
   },
+  dark: {
+    darker: "rgb(33, 43, 54)",
+    dark: "rgb(33, 43, 54)",
+    main: "rgb(33, 43, 54)",
+    light: "rgb(33, 43, 54)",
+    lighter: "rgb(33, 43, 54)",
+    semiTransparent: "rgb(33, 43, 54, 0.08)",
+  },
   text: {
     primary: "rgb(33, 43, 54)",
     secondary: "rgb(99, 115, 129)",
