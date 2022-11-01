@@ -45,25 +45,27 @@ const AuthRegisterPage = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
+        height: "100%",
       }}
     >
       <Box
         sx={{
           width: 480,
           px: { xs: 20, md: 64 },
+          py: 24,
           display: "flex",
           flexDirection: "column",
         }}
       >
-        <Box pt={24}>
+        <Box mb={24}>
           <LogoIcon width={40} height={40} />
         </Box>
 
-        <Typography variant="h4" mt={28}>
-          Get started absolutely free.
+        <Typography variant="h4" mb={8}>
+          Welcome
         </Typography>
 
-        <Box mt={16}>
+        <Box mb={40}>
           <Typography component="span" variant="body2">
             Already have an account?
           </Typography>
@@ -80,7 +82,7 @@ const AuthRegisterPage = () => {
         </Box>
 
         <form onSubmit={formik.handleSubmit}>
-          <Stack mt={40} mb={16} spacing={16}>
+          <Stack spacing={16}>
             <Box display="flex" gap={16}>
               <TextField
                 name="firstName"
@@ -132,7 +134,7 @@ const AuthRegisterPage = () => {
           </Stack>
         </form>
 
-        <Typography variant="caption" color="text-secondary">
+        <Typography variant="caption" color="text-secondary" mt={16}>
           By signing up, I agree to{" "}
           <Link color="gray.800">Terms of Service</Link> and{" "}
           <Link color="gray.800">Privacy Policy</Link>.
@@ -167,17 +169,29 @@ const AuthRegisterPage = () => {
       <Box
         sx={{
           flexGrow: 1,
-          display: { xs: "none", md: "flex" },
-          justifyContent: "center",
-          alignItems: "center",
+          display: { xs: "none", md: "block" },
         }}
       >
         <Box
-          component="img"
-          src="/assets/illustrations/dashboard.png"
-          alt="auth"
-          sx={{ borderRadius: "1rem", width: 700, maxWidth: "100%" }}
-        />
+          sx={{
+            backgroundColor: "#F1F2F7",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 480,
+          }}
+        >
+          <Box
+            component="img"
+            src="/assets/illustrations/dashboard.png"
+            alt="auth"
+            sx={{ maxHeight: "100%" }}
+          />
+        </Box>
       </Box>
     </Box>
   );
