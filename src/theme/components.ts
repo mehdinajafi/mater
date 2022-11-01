@@ -3,18 +3,14 @@ import { ThemeOptions } from "@mui/material";
 const components: ThemeOptions["components"] = {
   MuiButton: {
     styleOverrides: {
-      root: ({ theme, ownerState }) => ({
+      root: ({ theme }) => ({
         textTransform: "none",
         boxShadow: "none",
         borderRadius: theme.borderRadius.lg,
       }),
-      containedInherit: ({ theme }) => ({
-        color: "#fff",
-        backgroundColor:
-          theme.palette.mode === "light" ? theme.palette.gray[800] : "#fff",
-        "&:hover": {
-          backgroundColor:
-            theme.palette.mode === "light" ? theme.palette.gray[800] : "#fff",
+      contained: ({ theme }) => ({
+        "&.MuiButton-containedDark": {
+          color: theme.palette.mode === "light" ? "#fff" : "rgb(33, 43, 54)",
         },
       }),
       sizeLarge: {
@@ -319,6 +315,41 @@ const components: ThemeOptions["components"] = {
     styleOverrides: {
       root: {
         padding: 24,
+      },
+    },
+  },
+  MuiAlert: {
+    styleOverrides: {
+      standardInfo: ({ theme }) => ({
+        backgroundColor: theme.palette.info.lighter,
+        color: theme.palette.info.darker,
+        "& .MuiAlert-icon": {
+          color: theme.palette.info.main,
+        },
+      }),
+      standardSuccess: ({ theme }) => ({
+        backgroundColor: theme.palette.success.lighter,
+        color: theme.palette.success.darker,
+        "& .MuiAlert-icon": {
+          color: theme.palette.success.main,
+        },
+      }),
+      standardWarning: ({ theme }) => ({
+        backgroundColor: theme.palette.warning.lighter,
+        color: theme.palette.warning.darker,
+        "& .MuiAlert-icon": {
+          color: theme.palette.warning.main,
+        },
+      }),
+      standardError: ({ theme }) => ({
+        backgroundColor: theme.palette.error.lighter,
+        color: theme.palette.error.darker,
+        "& .MuiAlert-icon": {
+          color: theme.palette.error.main,
+        },
+      }),
+      icon: {
+        flexShrink: 0,
       },
     },
   },
