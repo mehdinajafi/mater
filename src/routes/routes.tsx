@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "@/App";
-import Layout from "@/layout";
+import AuthLayout from "@/layouts/AuthLayout";
+import MainLayout from "@/layouts/MainLayout";
 import AppPage from "@/pages";
 import UserAccountPage from "@/pages/user/account";
 import UserProfilePage from "@/pages/user/profile";
@@ -12,19 +13,24 @@ const routes = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/auth",
-        element: <AuthLoginPage />,
+        element: <AuthLayout />,
+        children: [
+          {
+            path: "/auth",
+            element: <AuthLoginPage />,
+          },
+          {
+            path: "/auth/login",
+            element: <AuthLoginPage />,
+          },
+          {
+            path: "/auth/register",
+            element: <AuthRegisterPage />,
+          },
+        ],
       },
       {
-        path: "/auth/login",
-        element: <AuthLoginPage />,
-      },
-      {
-        path: "/auth/register",
-        element: <AuthRegisterPage />,
-      },
-      {
-        element: <Layout />,
+        element: <MainLayout />,
         children: [
           {
             path: "/",
