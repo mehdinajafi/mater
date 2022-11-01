@@ -45,7 +45,6 @@ const AuthRegisterPage = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        height: "100%",
       }}
     >
       <Box
@@ -126,7 +125,7 @@ const AuthRegisterPage = () => {
               type="submit"
               variant="contained"
               size="large"
-              color="inherit"
+              color="dark"
               disableElevation
             >
               Create Account
