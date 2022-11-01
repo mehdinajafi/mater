@@ -12,10 +12,12 @@ export declare module "@mui/material/styles" {
   // Palette
   interface Palette {
     gray: IGrayPalette;
+    dark: PaletteOptions["primary"];
     rgbToRgba: (rgb: string, alpha: number) => string;
   }
   interface PaletteOptions {
     gray: IGrayPalette;
+    dark: PaletteOptions["primary"];
     rgbToRgba: (rgb: string, alpha: number) => string;
   }
   interface TypeBackground {
@@ -57,6 +59,13 @@ declare module "@mui/material/Divider" {
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
     gray;
+  }
+}
+
+//Button
+declare module "@mui/material/Button" {
+  interface ButtonPropsColorOverrides {
+    dark: true;
   }
 }
 
