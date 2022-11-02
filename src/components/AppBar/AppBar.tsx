@@ -8,7 +8,7 @@ import NotificationsDropdown from "./NotificationsDropdown";
 import LanguageDropdown from "./LanguageDropdown";
 
 const AppBar = () => {
-  const toggleSidebar = useAppStore((store) => store.toggleSidebar);
+  const setSidebarIsOpen = useAppStore((store) => store.setSidebarIsOpen);
 
   return (
     <BaseAppbar
@@ -26,7 +26,7 @@ const AppBar = () => {
             marginInlineEnd: 8,
             display: { xs: "inline-flex", lg: "none" },
           }}
-          onClick={toggleSidebar}
+          onClick={() => setSidebarIsOpen(true)}
         >
           <MenuIcon width={20} height={20} />
         </IconButton>

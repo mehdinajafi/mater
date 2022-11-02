@@ -10,7 +10,12 @@ import {
   Typography,
 } from "@mui/material";
 import getProfile from "@/api/getProfile";
+import { useAppStore } from "@/store";
 import { ReactComponent as ArrowPathIcon } from "@/assets/icons/arrow-path.svg";
+
+interface IProfileCard {
+  onClick: () => void;
+}
 
 const SCurrentUser = styled("div")(({ theme }) => ({
   display: "flex",
@@ -21,11 +26,12 @@ const SCurrentUser = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(24),
 }));
 
-const ProfileCard = () => {
+const ProfileCard: React.FC<IProfileCard> = (props) => {
   const { data, isError, isLoading, refetch } = useQuery(
     ["profile"],
     getProfile
   );
+  const setSidebarIsOpen = useAppStore((store) => store.setSidebarIsOpen);
 
   if (isLoading) {
     return (
@@ -65,7 +71,7 @@ const ProfileCard = () => {
   }
 
   return (
-    <Link to="/user/account">
+    <Link to="/user/account" onClick={props.onClick}>
       <SCurrentUser>
         <Avatar src={data.avatar} alt={data.name} />
 

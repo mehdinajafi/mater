@@ -3,16 +3,16 @@ import { RootState } from ".";
 
 export interface ISidebarSlice {
   isSidebarOpen: boolean;
-  toggleSidebar: () => void;
+  setSidebarIsOpen: (isOpen: boolean) => void;
 }
 
 const createSidebarSlice: StateCreator<RootState, [], [], ISidebarSlice> = (
   set
 ) => ({
   isSidebarOpen: false,
-  toggleSidebar: () =>
-    set((state) => ({
-      isSidebarOpen: !state.isSidebarOpen,
+  setSidebarIsOpen: (isOpen) =>
+    set(() => ({
+      isSidebarOpen: isOpen,
     })),
 });
 

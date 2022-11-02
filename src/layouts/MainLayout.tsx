@@ -8,7 +8,7 @@ const SidebarWidth = 280;
 
 const Layout = () => {
   const isSidebarOpen = useAppStore((store) => store.isSidebarOpen);
-  const toggleSidebar = useAppStore((store) => store.toggleSidebar);
+  const setSidebarIsOpen = useAppStore((store) => store.setSidebarIsOpen);
 
   return (
     <Box display="flex">
@@ -19,7 +19,7 @@ const Layout = () => {
         <Drawer
           variant="temporary"
           open={isSidebarOpen}
-          onClose={toggleSidebar}
+          onClose={() => setSidebarIsOpen(false)}
           ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: "block", lg: "none" },

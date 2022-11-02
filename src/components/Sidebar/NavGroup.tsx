@@ -23,12 +23,13 @@ interface INavGroup {
     text: string;
     to: string;
   }[];
+  onClickOnLinks: () => void;
 }
 
 const NavGroup: React.FC<INavGroup> = (props) => {
-  const match = useMatch({ path: props.toggle.to, end: false });
-  const isActive = match != null;
-  const [isOpen, setIsOpen] = useState(isActive);
+  const linkMatch = useMatch({ path: props.toggle.to, end: false });
+  const isLinkActive = linkMatch != null;
+  const [isOpen, setIsOpen] = useState(isLinkActive);
 
   const toggle = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -39,7 +40,7 @@ const NavGroup: React.FC<INavGroup> = (props) => {
       <NavItem
         icon={props.toggle.icon}
         text={props.toggle.text}
-        isActive={isActive}
+        isActive={isLinkActive}
         onClick={toggle}
         endIcon={isOpen ? <ChevronBottomIcon /> : <ChevronRightIcon />}
       />
@@ -47,7 +48,11 @@ const NavGroup: React.FC<INavGroup> = (props) => {
       <Collapse in={isOpen} timeout="auto">
         <List component="div" disablePadding>
           {props.items.map((item) => (
-            <NavLink to={item.to} key={item.text}>
+            <NavLink
+              to={item.to}
+              key={item.text}
+              onClick={props.onClickOnLinks}
+            >
               {({ isActive }) => (
                 <ListItemButton
                   sx={(theme) => ({

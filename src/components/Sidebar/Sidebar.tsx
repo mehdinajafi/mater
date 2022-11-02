@@ -1,31 +1,43 @@
-import { Box, List } from "@mui/material";
-import NavSubHeader from "./NavSubHeader";
+import { Box, List, useMediaQuery, useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
+import Logo from "@/components/Logo";
+import { useAppStore } from "@/store";
 import ProfileCard from "./ProfileCard";
 import NavGroup from "./NavGroup";
 import NavLink from "./NavLink";
-import { ReactComponent as LogoImg } from "@/assets/images/logo.svg";
 import { ReactComponent as DashboardIcon } from "@/assets/icons/dashboard.svg";
-import { ReactComponent as EcommerceIcon } from "@/assets/icons/ecommerce.svg";
 import { ReactComponent as UserIcon } from "@/assets/icons/user.svg";
 
 const Sidebar = () => {
+  const theme = useTheme();
+  const matchesDownLg = useMediaQuery(theme.breakpoints.down("lg"));
+  const setSidebarIsOpen = useAppStore((store) => store.setSidebarIsOpen);
+
+  const handleItemClick = () => {
+    if (matchesDownLg) {
+      setSidebarIsOpen(false);
+    }
+  };
+
   return (
     <Box sx={{ px: 20 }}>
       <Box pt={24} pb={16}>
-        <div>
-          <LogoImg width={40} height={40} />
-        </div>
+        <Link to="/" onClick={handleItemClick}>
+          <Logo />
+        </Link>
 
-        <ProfileCard />
+        <ProfileCard onClick={handleItemClick} />
       </Box>
 
       <List disablePadding>
-        <NavSubHeader>general</NavSubHeader>
-        <NavLink to="/" icon={<DashboardIcon />} text="app" />
-        <NavLink to="/ecommerce" icon={<EcommerceIcon />} text="e-commerce" />
-
-        <NavSubHeader>management</NavSubHeader>
+        <NavLink
+          to="/"
+          icon={<DashboardIcon />}
+          text="app"
+          onClick={handleItemClick}
+        />
         <NavGroup
+          onClickOnLinks={handleItemClick}
           toggle={{
             text: "profile",
             icon: <UserIcon />,
@@ -33,7 +45,7 @@ const Sidebar = () => {
           }}
           items={[
             { to: "/user/profile", text: "profile" },
-            { to: "/user/cards", text: "cards" },
+            { to: "/user/account", text: "account" },
           ]}
         />
       </List>
