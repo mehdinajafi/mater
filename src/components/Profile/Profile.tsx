@@ -1,5 +1,6 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import { Box, Grid } from "@mui/material";
+import { nanoid } from "nanoid";
 import TabPanel from "../TabPanel";
 import ProfileHeader from "./ProfileHeader";
 import ProfileCounter from "./ProfileCounter";
@@ -7,9 +8,8 @@ import ProfileAbout from "./ProfileAbout";
 import ProfileSocial from "./ProfileSocial";
 import NewPostForm from "./NewPostForm";
 import SingleProfilePost from "./SingleProfilePost";
-import { nanoid } from "nanoid";
-import FollowerCard from "./FollowerCard";
 import FriendsTab from "./FriendsTab";
+import FollowersTab from "./FollowersTab";
 import GalleryTab from "./GalleryTab";
 
 const Profile = () => {
@@ -110,61 +110,42 @@ const Profile = () => {
       </TabPanel>
 
       <TabPanel selectedTab={selectedTab} index={1}>
-        <Typography variant="h4" my={40}>
-          Followers
-        </Typography>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "repeat(1, minmax(10px, 1fr))",
-              sm: "repeat(2, minmax(10px, 1fr))",
-              md: "repeat(3, minmax(10px, 1fr))",
+        <FollowersTab
+          followers={[
+            {
+              id: nanoid(),
+              name: "Mehdi Najafi",
+              avatar:
+                "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+              following: true,
+              location: "Kenya",
             },
-            gap: 24,
-          }}
-        >
-          <FollowerCard
-            follower={{
+            {
               id: nanoid(),
               name: "Mehdi Najafi",
               avatar:
                 "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
               following: true,
               location: "Kenya",
-            }}
-          />
-          <FollowerCard
-            follower={{
+            },
+            {
               id: nanoid(),
               name: "Mehdi Najafi",
               avatar:
                 "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
               following: true,
               location: "Kenya",
-            }}
-          />
-          <FollowerCard
-            follower={{
+            },
+            {
               id: nanoid(),
               name: "Mehdi Najafi",
               avatar:
                 "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
               following: true,
               location: "Kenya",
-            }}
-          />
-          <FollowerCard
-            follower={{
-              id: nanoid(),
-              name: "Mehdi Najafi",
-              avatar:
-                "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
-              following: true,
-              location: "Kenya",
-            }}
-          />
-        </Box>
+            },
+          ]}
+        />
       </TabPanel>
 
       <TabPanel selectedTab={selectedTab} index={2}>

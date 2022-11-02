@@ -1,16 +1,46 @@
-import { Avatar, Box, Button, Card, Typography } from "@mui/material";
+import { useState } from "react";
+import { Box, Typography, Avatar, Button, Card } from "@mui/material";
 import { ReactComponent as LocationIcon } from "@/assets/icons/location.svg";
 import { ReactComponent as CheckIcon } from "@/assets/icons/check.svg";
-import { useState } from "react";
 
-interface IFollowerCard {
-  follower: {
+interface IFollowersTab {
+  followers: {
     id: string;
     name: string;
     avatar: string;
     location: string;
     following: boolean;
-  };
+  }[];
+}
+
+const FollowersTab: React.FC<IFollowersTab> = (props) => {
+  return (
+    <div>
+      <Typography variant="h4" my={40}>
+        Followers
+      </Typography>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(1, minmax(10px, 1fr))",
+            sm: "repeat(2, minmax(10px, 1fr))",
+            md: "repeat(3, minmax(10px, 1fr))",
+          },
+          gap: 24,
+        }}
+      >
+        {props.followers.map((follower) => (
+          <FollowerCard key={follower.id} follower={follower} />
+        ))}
+      </Box>
+    </div>
+  );
+};
+
+// -------------------- Follower Card -------------------- //
+interface IFollowerCard {
+  follower: IFollowersTab["followers"][number];
 }
 
 const FollowerCard: React.FC<IFollowerCard> = ({ follower }) => {
@@ -67,4 +97,4 @@ const FollowerCard: React.FC<IFollowerCard> = ({ follower }) => {
   );
 };
 
-export default FollowerCard;
+export default FollowersTab;
