@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import Carousel from "@/components/Carousel";
 import Cover1Img from "@/assets/images/covers/cover_1.jpeg";
 import Cover2Img from "@/assets/images/covers/cover_2.jpeg";
@@ -6,37 +6,42 @@ import Cover3Img from "@/assets/images/covers/cover_3.jpeg";
 
 const FeaturedApps = () => {
   return (
-    <Carousel arrowPosition="top-right" dotsPosition="top-left">
-      <Carousel.Item>
-        <Card
-          img={Cover1Img}
-          title="Harry Potter and the Deathly Hallows - Part 2"
-          des="Apply These 7 Secret Techniques To Improve Event"
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Card
-          img={Cover2Img}
-          title="Disney Zombies 2"
-          des="Believing These 7 Myths About Event Keeps You From Growing"
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Card
-          img={Cover3Img}
-          title="Lightroom mobile - Koloro"
-          des="Don't Waste Time! 7 Facts Until You Reach Your Event"
-        />
-      </Carousel.Item>
-    </Carousel>
+    <Card>
+      <Carousel arrowPosition="top-right" dotsPosition="top-left">
+        <Carousel.Item>
+          <Slide
+            img={Cover1Img}
+            title="Harry Potter and the Deathly Hallows - Part 2"
+            des="Apply These 7 Secret Techniques To Improve Event"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <Slide
+            img={Cover2Img}
+            title="Disney Zombies 2"
+            des="Believing These 7 Myths About Event Keeps You From Growing"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <Slide
+            img={Cover3Img}
+            title="Lightroom mobile - Koloro"
+            des="Don't Waste Time! 7 Facts Until You Reach Your Event"
+          />
+        </Carousel.Item>
+      </Carousel>
+    </Card>
   );
 };
 
-const Card: React.FC<{
+// ------------------------- Slide ------------------------- //
+interface ISlide {
   img: string;
   title: string;
   des: string;
-}> = (props) => {
+}
+
+const Slide: React.FC<ISlide> = (props) => {
   return (
     <Box
       sx={{

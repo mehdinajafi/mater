@@ -1,8 +1,7 @@
 import { Box, Container, Grid } from "@mui/material";
-import TotalStats from "@/components/Cards/TotalStats";
+import TotalStats from "@/components/TotalStats";
 import FeaturedApps from "@/components/FeaturedApps";
 import Greeting from "@/components/Greeting";
-import SectionCard from "@/components/Cards/SectionCard";
 import NewInvoices from "@/components/NewInvoices";
 import TopApplications from "@/components/TopApplications";
 import ChromeIcon from "@/assets/icons/apps/chrome.svg";
@@ -19,9 +18,7 @@ const AppPage = () => {
           <Greeting />
         </Grid>
         <Grid item xs={12} md={4}>
-          <SectionCard>
-            <FeaturedApps />
-          </SectionCard>
+          <FeaturedApps />
         </Grid>
         <Grid item xs={12} md={4}>
           <TotalStats

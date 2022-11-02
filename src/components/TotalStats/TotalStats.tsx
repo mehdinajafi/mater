@@ -1,9 +1,8 @@
-import { Box, Paper, Stack, styled, Typography, useTheme } from "@mui/material";
-import { ReactComponent as TrendUpIcon } from "@/assets/icons/trend-up.svg";
-import { ReactComponent as TrendDownIcon } from "@/assets/icons/trend-down.svg";
+import { Box, Card, Stack, styled, Typography, useTheme } from "@mui/material";
 import Chart from "react-apexcharts";
 import addCommas from "@/utils/addCommas";
-import SectionCard from "../SectionCard";
+import { ReactComponent as TrendUpIcon } from "@/assets/icons/trend-up.svg";
+import { ReactComponent as TrendDownIcon } from "@/assets/icons/trend-down.svg";
 
 interface ITotalStats {
   title: "Active Users" | "Installed" | "Downloads";
@@ -121,7 +120,7 @@ const TotalStats: React.FC<ITotalStats> = (props) => {
   const status = changePresent > 0 ? "profit" : "loss";
 
   return (
-    <SectionCard p={24}>
+    <Card sx={{ p: 24 }}>
       <Stack
         flexDirection="row"
         justifyContent="space-between"
@@ -170,7 +169,7 @@ const TotalStats: React.FC<ITotalStats> = (props) => {
           />
         </ChartWrapper>
       </Stack>
-    </SectionCard>
+    </Card>
   );
 };
 export default TotalStats;
