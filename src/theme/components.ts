@@ -353,6 +353,14 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
+  MuiBreadcrumbs: {
+    styleOverrides: {
+      separator: {
+        marginLeft: "1rem",
+        marginRight: "1rem",
+      },
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {

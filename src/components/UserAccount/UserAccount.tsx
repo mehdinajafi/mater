@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
 import TabPanel from "@/components/TabPanel";
+import useUser from "@/hooks/useUser";
 import AccountGeneralTab from "./AccountGeneralTab";
 import BillingTab from "./BillingTab";
 import NotificationsTab from "./NotificationsTab";
@@ -13,6 +14,7 @@ import { ReactComponent as ShareIcon } from "@/assets/icons/share.svg";
 import { ReactComponent as KeyIcon } from "@/assets/icons/key.svg";
 
 const UserAccount = () => {
+  const { data: currentUser } = useUser();
   const [selectedTab, setSelectedTab] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -43,7 +45,7 @@ const UserAccount = () => {
 
       <Box mt={30}>
         <TabPanel selectedTab={selectedTab} index={0}>
-          <AccountGeneralTab />
+          <AccountGeneralTab currentUser={currentUser} />
         </TabPanel>
         <TabPanel selectedTab={selectedTab} index={1}>
           <BillingTab />

@@ -1,5 +1,5 @@
-import { Box, Breadcrumbs, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import UserAccount from "@/components/UserAccount";
 
 const UserAccountPage = () => {
@@ -23,20 +23,26 @@ const UserAccountPage = () => {
             />
           }
         >
-          <Link to="/">
-            <Typography variant="body2" color="text.primary">
-              Dashboard
-            </Typography>
+          <Link
+            to="/"
+            component={RouterLink}
+            variant="body2"
+            color="text.primary"
+            underline="hover"
+          >
+            Dashboard
           </Link>
-          <Link to="/user">
-            <Typography variant="body2" color="text.primary">
-              User
-            </Typography>
+          <Link
+            to="/user"
+            component={RouterLink}
+            variant="body2"
+            color="text.primary"
+            underline="hover"
+          >
+            User
           </Link>
-          <Typography>
-            <Typography variant="body2" color="gray.500">
-              Account Settings
-            </Typography>
+          <Typography variant="body2" color="gray.500">
+            Account Settings
           </Typography>
         </Breadcrumbs>
       </Box>

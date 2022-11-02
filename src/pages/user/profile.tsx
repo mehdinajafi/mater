@@ -1,8 +1,11 @@
-import { Box, Breadcrumbs, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import Profile from "@/components/Profile";
+import useUser from "@/hooks/useUser";
 
 const UserProfilePage = () => {
+  const { data: currentColor } = useUser();
+
   return (
     <Box>
       <Box mt={30} mb={40}>
@@ -23,20 +26,26 @@ const UserProfilePage = () => {
             />
           }
         >
-          <Link to="/">
-            <Typography variant="body2" color="text.primary">
-              Dashboard
-            </Typography>
+          <Link
+            to="/"
+            component={RouterLink}
+            variant="body2"
+            color="text.primary"
+            underline="hover"
+          >
+            Dashboard
           </Link>
-          <Link to="/user">
-            <Typography variant="body2" color="text.primary">
-              User
-            </Typography>
+          <Link
+            to="/user"
+            component={RouterLink}
+            variant="body2"
+            color="text.primary"
+            underline="hover"
+          >
+            User
           </Link>
-          <Typography>
-            <Typography variant="body2" color="gray.500">
-              Mehdi Najafi
-            </Typography>
+          <Typography variant="body2" color="gray.500">
+            {currentColor?.name}
           </Typography>
         </Breadcrumbs>
       </Box>

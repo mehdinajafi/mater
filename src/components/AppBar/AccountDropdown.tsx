@@ -1,5 +1,3 @@
-import getProfile from "@/api/getProfile";
-import useAnchorDisclosure from "@/hooks/useAnchorDisclosure";
 import {
   Menu,
   MenuItem,
@@ -10,17 +8,21 @@ import {
   Divider,
   Skeleton,
 } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import useAnchorDisclosure from "@/hooks/useAnchorDisclosure";
+import useUser from "@/hooks/useUser";
 
 const AccountDropdown = () => {
-  const { data: profile } = useQuery(["profile"], getProfile);
+  const { data: currentUser } = useUser();
   const { anchorEl, isOpen, onToggle, onClose } = useAnchorDisclosure();
 
   return (
     <>
       <IconButton onClick={(e) => onToggle(e.currentTarget)} sx={{ p: 0 }}>
-        <Avatar src={profile && profile.avatar} alt={profile && profile.name} />
+        <Avatar
+          src={currentUser && currentUser.avatar}
+          alt={currentUser && currentUser.name}
+        />
       </IconButton>
 
       <Menu
@@ -34,11 +36,11 @@ const AccountDropdown = () => {
         }}
       >
         <Box px={20} py={12}>
-          {profile ? (
+          {currentUser ? (
             <>
-              <Typography variant="subtitle2">{profile.name}</Typography>
+              <Typography variant="subtitle2">{currentUser.name}</Typography>
               <Typography variant="body2" color="text-secondary">
-                {profile.role}
+                {currentUser.role}
               </Typography>
             </>
           ) : (

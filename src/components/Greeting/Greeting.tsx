@@ -1,10 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
-import getProfile from "@/api/getProfile";
+import useUser from "@/hooks/useUser";
 import { ReactComponent as DashboardImage } from "@/assets/images/dashboard_illustration.svg";
 
 const Greeting = () => {
-  const { data: profile } = useQuery(["profile"], getProfile);
+  const { data: currentUser } = useUser();
 
   return (
     <Box
@@ -37,7 +36,7 @@ const Greeting = () => {
           }}
         >
           Welcome back!
-          <br /> {profile && profile.name}
+          <br /> {currentUser && currentUser.name}
         </Typography>
         <Typography variant="body2" mb={24} color="primary.darker">
           If you are going to use a passage of Lorem Ipsum, you need to be sure

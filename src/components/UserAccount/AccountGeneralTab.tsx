@@ -15,6 +15,11 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { ReactComponent as ChevronDownIcon } from "@/assets/icons/chevron-down.svg";
 import { ReactComponent as CameraPlusIcon } from "@/assets/icons/camera-plus.svg";
+import ICurrentUser from "@/types/interfaces/currentUser";
+
+interface IAccountGeneralTab {
+  currentUser: ICurrentUser;
+}
 
 const SAvatarWrapper = styled("label")({
   display: "flex",
@@ -51,31 +56,24 @@ const validationSchema = yup.object({
     .string()
     .email("Enter a valid email")
     .required("Email is required"),
-  phoneNumber: yup.string().required("Phone Number is required"),
-  address: yup.string().required("Address is required"),
-  country: yup.string().required("Country is required"),
-  state: yup.string().required("State is required"),
-  city: yup.string().required("City is required"),
-  zipCode: yup.string().required("Zip/code is required"),
-  about: yup.string().required("About is required"),
 });
 
-const AccountGeneralTab = () => {
-  const [avatar, setAvatar] = useState(
-    "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1"
-  );
+const AccountGeneralTab: React.FC<IAccountGeneralTab> = ({ currentUser }) => {
+  const [avatarUrl, setAvatarUrl] = useState(currentUser?.avatar);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const formik = useFormik({
     initialValues: {
-      name: "Mehdi",
-      email: "dev.mehdinajafi@gmail.com",
-      phoneNumber: "+989123456789",
-      address: "Alborz",
-      country: "ir",
-      state: "Alborz",
-      city: "Alborz",
-      zipCode: "123456",
-      about: "I am Front-end devloper.",
+      name: currentUser?.name,
+      email: currentUser?.email,
+      phoneNumber: currentUser?.phoneNumber,
+      address: currentUser?.address,
+      country: currentUser?.countryCode,
+      state: currentUser?.region,
+      city: currentUser?.city,
+      zipCode: currentUser?.zipcode,
+      about: currentUser?.bio,
+      publicAccount: currentUser?.publicAccount,
     },
     validationSchema,
     onSubmit: (values, helpers) => {
@@ -92,7 +90,8 @@ const AccountGeneralTab = () => {
     if (files) {
       const img = files[0];
       formik.handleChange(e);
-      setAvatar(URL.createObjectURL(img));
+      setAvatarFile(img);
+      setAvatarUrl(URL.createObjectURL(img));
     }
   };
 
@@ -137,7 +136,7 @@ const AccountGeneralTab = () => {
                     },
                   }}
                 >
-                  <img src={avatar} alt="avatar" />
+                  <img src={avatarUrl} alt="avatar" />
                 </Box>
 
                 <SAvatarPlaceHolder className="avatar-plceholder">
@@ -158,11 +157,17 @@ const AccountGeneralTab = () => {
               </Typography>
 
               <FormControlLabel
-                control={<Switch defaultChecked />}
                 label={
                   <Typography variant="body2" mr={12}>
                     Public Profile
                   </Typography>
+                }
+                control={
+                  <Switch
+                    name="publicAccount"
+                    checked={formik.values.publicAccount}
+                    onChange={formik.handleChange}
+                  />
                 }
                 labelPlacement="start"
                 sx={{ mr: 11, mt: 40 }}

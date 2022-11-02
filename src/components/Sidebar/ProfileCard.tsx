@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import {
   Avatar,
   Box,
@@ -9,9 +8,8 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import getProfile from "@/api/getProfile";
-import { useAppStore } from "@/store";
 import { ReactComponent as ArrowPathIcon } from "@/assets/icons/arrow-path.svg";
+import useUser from "@/hooks/useUser";
 
 interface IProfileCard {
   onClick: () => void;
@@ -27,11 +25,7 @@ const SCurrentUser = styled("div")(({ theme }) => ({
 }));
 
 const ProfileCard: React.FC<IProfileCard> = (props) => {
-  const { data, isError, isLoading, refetch } = useQuery(
-    ["profile"],
-    getProfile
-  );
-  const setSidebarIsOpen = useAppStore((store) => store.setSidebarIsOpen);
+  const { data: currentUser, isError, isLoading, refetch } = useUser();
 
   if (isLoading) {
     return (
@@ -73,12 +67,12 @@ const ProfileCard: React.FC<IProfileCard> = (props) => {
   return (
     <Link to="/user/account" onClick={props.onClick}>
       <SCurrentUser>
-        <Avatar src={data.avatar} alt={data.name} />
+        <Avatar src={currentUser.avatar} alt={currentUser.name} />
 
         <Box sx={{ marginInlineStart: 16 }}>
-          <Typography variant="subtitle2">{data.name}</Typography>
+          <Typography variant="subtitle2">{currentUser.name}</Typography>
           <Typography variant="body2" color="text-secondary">
-            {data.role}
+            {currentUser.role}
           </Typography>
         </Box>
       </SCurrentUser>
