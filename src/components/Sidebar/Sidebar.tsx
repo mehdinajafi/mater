@@ -22,9 +22,11 @@ const Sidebar = () => {
   return (
     <Box sx={{ px: 20 }}>
       <Box pt={24} pb={16}>
-        <Link to="/" onClick={handleItemClick}>
-          <Logo />
-        </Link>
+        <Box>
+          <Link to="/" onClick={handleItemClick}>
+            <Logo />
+          </Link>
+        </Box>
 
         <ProfileCard onClick={handleItemClick} />
       </Box>
