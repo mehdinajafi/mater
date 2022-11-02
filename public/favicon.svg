@@ -1,0 +1,46 @@
+<svg
+  width="128"
+  height="128"
+  viewBox="0 0 128 128"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <line
+    x1="22.572"
+    y1="37.7308"
+    x2="22.5149"
+    y2="96.9269"
+    stroke="#7635DC"
+    stroke-width="31"
+    stroke-linecap="round"
+  />
+  <line
+    x1="22.572"
+    y1="37.7308"
+    x2="22.5149"
+    y2="96.9269"
+    stroke="black"
+    stroke-opacity="0.2"
+    stroke-width="31"
+    stroke-linecap="round"
+  />
+  <line
+    x1="107.053"
+    y1="36.0467"
+    x2="65.0467"
+    y2="59.1111"
+    stroke="#7635DC"
+    stroke-width="31"
+    stroke-linecap="round"
+  />
+  <line
+    x1="64.0428"
+    y1="59.209"
+    x2="22.0838"
+    y2="36.0592"
+    stroke="#7635DC"
+    stroke-width="31"
+    stroke-linecap="round"
+  />
+  <circle cx="105.5" cy="94.5" r="17.5" fill="#7635DC" />
+</svg>
