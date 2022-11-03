@@ -24,6 +24,7 @@ const Greeting = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: { xs: "center", md: "flex-start" },
+          textAlign: { xs: "center", md: "start" },
         }}
       >
         <Typography
@@ -31,7 +32,6 @@ const Greeting = () => {
           mb={16}
           color="primary.darker"
           sx={{
-            textAlign: { xs: "center", md: "start" },
             fontSize: { xs: "1.25rem", lg: "1.5rem" },
           }}
         >
