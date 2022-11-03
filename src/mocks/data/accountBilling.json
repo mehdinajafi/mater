@@ -1,0 +1,51 @@
+{
+  "plan": {
+    "name": "Premium"
+  },
+  "cards": [
+    {
+      "id": 0,
+      "bankLogo": "/assets/icons/payments/mastercard.svg",
+      "number": "**** **** **** 1234"
+    },
+    {
+      "id": 1,
+      "bankLogo": "/assets/icons/payments/mastercard.svg",
+      "number": "**** **** **** 1234"
+    }
+  ],
+  "addresses": [
+    {
+      "id": 0,
+      "name": "Jayvion Simon",
+      "address": "41256 Kamille Turnpike, East Sambury, New Hampshire, Kenya 85807",
+      "phone": "365-374-4961"
+    },
+    {
+      "id": 1,
+      "name": "Jayvion Simon",
+      "address": "41256 Kamille Turnpike, East Sambury, New Hampshire, Kenya 85807",
+      "phone": "365-374-4961"
+    }
+  ],
+  "invoices": [
+    {
+      "id": 0,
+      "date": 1667198813465,
+      "price": 16.19,
+      "link": "/"
+    },
+    {
+      "id": 1,
+      "date": 1667198813465,
+      "price": 16.19,
+      "link": "/"
+    },
+    {
+      "id": 2,
+      "date": 1667198813465,
+      "price": 16.19,
+      "link": "/"
+    }
+  ]
+}
