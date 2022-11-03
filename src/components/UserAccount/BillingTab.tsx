@@ -1,6 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { format } from "date-fns";
+import { useQuery } from "@tanstack/react-query";
 import {
   Box,
   Button,
@@ -14,117 +16,193 @@ import {
   IconButton,
   Link,
   Paper,
+  Skeleton,
   TextField,
   Typography,
 } from "@mui/material";
+import getAccountBilling from "@/api/user-account/getAccountBilling";
 import { ReactComponent as PlusIcon } from "@/assets/icons/plus.svg";
 import { ReactComponent as VerticalDotsIcon } from "@/assets/icons/dots-vertical.svg";
 import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
 import { ReactComponent as PenIcon } from "@/assets/icons/pen.svg";
 
+interface IAccountPlan {
+  name: string;
+}
+
+interface IBillingBankCard {
+  id: string;
+  bankLogo: string;
+  number: string;
+}
+
+interface IBillingAddress {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+}
+
+interface IBillingInvoice {
+  id: string;
+  date: number;
+  price: number;
+  link: string;
+}
+
+interface IBilling {
+  plan: IAccountPlan;
+  cards: IBillingBankCard[];
+  addresses: IBillingAddress[];
+  invoices: IBillingInvoice[];
+}
+
 const BillingTab = () => {
-  return (
-    <Box>
+  const {
+    data: accountBilling,
+    isLoading,
+    isError,
+  } = useQuery<IBilling>(["account-billing"], getAccountBilling);
+
+  if (isLoading) {
+    return (
       <Grid container spacing={40}>
-        <Grid item xs={12} md={8}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            <Card sx={{ p: 24 }}>
-              <Box sx={{ position: "relative", mb: 24 }}>
-                <Typography variant="overline" color="text-secondary">
-                  YOUR PLAN
-                </Typography>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    gap: 8,
-                    position: "absolute",
-                    right: 0,
-                    top: 0,
-                  }}
-                >
-                  <Button color="inherit" variant="outlined" size="small">
-                    Cancel Plan
-                  </Button>
-                  <Button color="primary" variant="outlined" size="small">
-                    Upgrade Plan
-                  </Button>
-                </Box>
-              </Box>
-              <Typography variant="h4">Premium</Typography>
-            </Card>
-
-            <Card sx={{ p: 24 }}>
-              <Box display="flex" mb={24}>
-                <Typography
-                  variant="overline"
-                  color="text-secondary"
-                  flexGrow={1}
-                >
-                  PAYMENT METHOD
-                </Typography>
-                <AddPaymentDialog />
-              </Box>
-
-              <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: {
-                    xs: "repeat(1, minmax(10px, 1fr))",
-                    md: "repeat(2, minmax(10px, 1fr))",
-                  },
-                  gap: 16,
-                }}
-              >
-                <PaymentPaper />
-                <PaymentPaper />
-              </Box>
-            </Card>
-
-            <Card sx={{ p: 24 }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  mb: 24,
-                }}
-              >
-                <Typography variant="overline" color="text-secondary">
-                  BILLING INFO
-                </Typography>
-                <Button startIcon={<PlusIcon />} size="small">
-                  New Billing Address
-                </Button>
-              </Box>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                <SingleBill />
-                <Divider variant="dashed" />
-                <SingleBill />
-              </Box>
-            </Card>
-          </Box>
+        <Grid
+          item
+          xs={12}
+          md={8}
+          display="flex"
+          flexDirection="column"
+          gap={24}
+        >
+          <Skeleton variant="rounded" height={132} />
+          <Skeleton variant="rounded" height={200} />
+          <Skeleton variant="rounded" height={400} />
         </Grid>
-
-        <Grid item xs={12} md={4}>
-          <Box mb={24}>
-            <Typography variant="overline" color="text-secondary">
-              Invoice History
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <SingleInvoice />
-            <SingleInvoice />
-            <SingleInvoice />
-          </Box>
+        <Grid
+          item
+          xs={12}
+          md={4}
+          display="flex"
+          flexDirection="column"
+          gap={24}
+        >
+          <Skeleton variant="rounded" height={24} />
+          <Skeleton variant="rounded" height={24} />
+          <Skeleton variant="rounded" height={24} />
         </Grid>
       </Grid>
-    </Box>
+    );
+  }
+
+  if (isError) {
+    // TODO: Show proper error
+    return <div>Something went wrong!</div>;
+  }
+
+  return (
+    <Grid container spacing={40}>
+      <Grid item xs={12} md={8} display="flex" flexDirection="column" gap={24}>
+        <Card sx={{ p: 24 }}>
+          <Box sx={{ position: "relative", mb: 24 }}>
+            <Typography variant="overline" color="text-secondary">
+              YOUR PLAN
+            </Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                gap: 8,
+                position: "absolute",
+                right: 0,
+                top: 0,
+              }}
+            >
+              <Button color="inherit" variant="outlined" size="small">
+                Cancel Plan
+              </Button>
+              <Button color="primary" variant="outlined" size="small">
+                Upgrade Plan
+              </Button>
+            </Box>
+          </Box>
+          <Typography variant="h4">{accountBilling.plan.name}</Typography>
+        </Card>
+
+        <Card sx={{ p: 24 }}>
+          <Box display="flex" mb={24}>
+            <Typography variant="overline" color="text-secondary" flexGrow={1}>
+              PAYMENT METHOD
+            </Typography>
+            <AddPaymentDialog />
+          </Box>
+
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "repeat(1, minmax(10px, 1fr))",
+                md: "repeat(2, minmax(10px, 1fr))",
+              },
+              gap: 16,
+            }}
+          >
+            {accountBilling.cards.map((card) => (
+              <BankingCard key={card.id} card={card} />
+            ))}
+          </Box>
+        </Card>
+
+        <Card sx={{ p: 24 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 24,
+            }}
+          >
+            <Typography variant="overline" color="text-secondary">
+              BILLING INFO
+            </Typography>
+            <Button startIcon={<PlusIcon />} size="small">
+              New Billing Address
+            </Button>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            {accountBilling.addresses.map((address, index) => (
+              <React.Fragment key={address.id}>
+                <SingleBill address={address} />
+                {index !== accountBilling.addresses.length - 1 && (
+                  <Divider variant="dashed" />
+                )}
+              </React.Fragment>
+            ))}
+          </Box>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12} md={4}>
+        <Typography
+          component="p"
+          variant="overline"
+          color="text-secondary"
+          mb={24}
+        >
+          Invoice History
+        </Typography>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {accountBilling.invoices.map((invoice) => (
+            <SingleInvoice key={invoice.id} invoice={invoice} />
+          ))}
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 
 // ------------------ Payment Paper ------------------ //
-const PaymentPaper = () => {
+const BankingCard: React.FC<{ card: IBillingBankCard }> = ({ card }) => {
   return (
     <Paper variant="outlined" elevation={0} sx={{ p: 24 }}>
       <IconButton sx={{ position: "absolute", top: 8, right: 8 }}>
@@ -132,9 +210,9 @@ const PaymentPaper = () => {
       </IconButton>
 
       <Box mb={8}>
-        <img src="/assets/icons/payments/mastercard.svg" />
+        <img src={card.bankLogo} alt="bank" />
       </Box>
-      <Typography variant="subtitle2">**** **** **** 1234</Typography>
+      <Typography variant="subtitle2">{card.number}</Typography>
     </Paper>
   );
 };
@@ -245,26 +323,26 @@ const AddPaymentDialog = () => {
 };
 
 // ------------------ Single Bill ------------------ //
-const SingleBill = () => {
+const SingleBill: React.FC<{ address: IBillingAddress }> = ({ address }) => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <Typography variant="subtitle2">Jayvion Simon</Typography>
-      <Box>
+      <Typography variant="subtitle2">{address.name}</Typography>
+      <div>
         <Typography variant="body2" component="span" color="text-secondary">
           Address:
         </Typography>
         <Typography variant="body2" component="span">
-          &nbsp;41256 Kamille Turnpike, East Sambury, New Hampshire, Kenya 85807
+          &nbsp;{address.address}
         </Typography>
-      </Box>
-      <Box>
+      </div>
+      <div>
         <Typography variant="body2" component="span" color="text-secondary">
           Phone:
         </Typography>
         <Typography variant="body2" component="span">
-          &nbsp;365-374-4961
+          &nbsp;{address.phone}
         </Typography>
-      </Box>
+      </div>
       <Box display="flex" gap={8}>
         <Button color="error" startIcon={<TrashIcon />} size="small">
           Delete
@@ -276,12 +354,17 @@ const SingleBill = () => {
     </Box>
   );
 };
+
 // ------------------ Single Invoice ------------------ //
-const SingleInvoice = () => {
+const SingleInvoice: React.FC<{
+  invoice: IBillingInvoice;
+}> = ({ invoice }) => {
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-      <Typography variant="body2">29 Oct 2022</Typography>
-      <Typography variant="body2">$16.19</Typography>
+      <Typography variant="body2">
+        {format(invoice.date, "dd MMM yyyy")}
+      </Typography>
+      <Typography variant="body2">${invoice.price}</Typography>
       <Link underline="hover">PDF</Link>
     </Box>
   );
