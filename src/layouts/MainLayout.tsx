@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { Box, Drawer } from "@mui/material";
 import Sidebar from "@/components/Sidebar";
-import { useAppStore } from "@/store";
 import AppBar from "@/components/AppBar";
+import { useAppStore } from "@/store";
 
 const SidebarWidth = 280;
 
@@ -52,7 +52,7 @@ const Layout = () => {
         }}
       >
         <AppBar />
-        <Box component="main" sx={{ px: { xs: 24, lg: 50 }, pb: 100 }}>
+        <Box component="main" sx={{ px: { xs: 16, sm: 24, lg: 40 }, pb: 100 }}>
           <Outlet />
         </Box>
       </Box>
