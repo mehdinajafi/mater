@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/api/useUser";
 import { ReactComponent as DashboardImage } from "@/assets/images/dashboard_illustration.svg";
 
 const Greeting = () => {

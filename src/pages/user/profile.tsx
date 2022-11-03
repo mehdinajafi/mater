@@ -1,7 +1,7 @@
 import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import Profile from "@/components/Profile";
-import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/api/useUser";
 
 const UserProfilePage = () => {
   const { data: currentColor } = useUser();

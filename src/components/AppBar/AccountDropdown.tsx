@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import useAnchorDisclosure from "@/hooks/useAnchorDisclosure";
-import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/api/useUser";
 
 const AccountDropdown = () => {
   const { data: currentUser } = useUser();
