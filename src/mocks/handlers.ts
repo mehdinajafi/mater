@@ -8,6 +8,9 @@ import topAuthors from "./data/topAuthors.json";
 import topCountries from "./data/topCountries.json";
 import totalStats from "./data/totalStats.json";
 import appTotalStats from "./data/appTotalStats.json";
+import profile from "./data/profile.json";
+import profilePersons from "./data/profilePersons.json";
+import profileGallery from "./data/profileGallery.json";
 
 export const handlers: RestHandler[] = [
   rest.get("/api/user/profile", (req, res, ctx) => {
@@ -38,5 +41,17 @@ export const handlers: RestHandler[] = [
   }),
   rest.post("/api/user/notification/mark-as-read", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(5000));
+  }),
+  rest.get("/api/profile", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(1000), ctx.json(profile));
+  }),
+  rest.get("/api/profile/followers", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(1000), ctx.json(profilePersons));
+  }),
+  rest.get("/api/profile/friends", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(1000), ctx.json(profilePersons));
+  }),
+  rest.get("/api/profile/gallery", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(1000), ctx.json(profileGallery));
   }),
 ];

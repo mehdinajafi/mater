@@ -3,7 +3,7 @@ import getUser from "@/api/getUser";
 import ICurrentUser from "@/types/interfaces/currentUser";
 
 const useUser = () => {
-  const query = useQuery(["profile"], getUser);
+  const query = useQuery(["user"], getUser);
 
   return {
     data: query.data as ICurrentUser,

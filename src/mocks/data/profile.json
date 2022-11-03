@@ -1,0 +1,71 @@
+{
+  "name": "Mehdi Najafi",
+  "avatar": "/assets/images/avatars/avatar_default.jpg",
+  "banner": "/assets/images/covers/cover_2.jpeg",
+  "job": "Front-end Devloper",
+  "followersCount": 68651,
+  "followingsCount": 9406,
+  "bio": "Tart I love sugar plum I love oat cake. Sweet roll caramels I love jujubes. Topping cake wafer..",
+  "location": "Alborz",
+  "email": "dev.mehdinajafi@gmail.com",
+  "resume": [
+    "UI Designer at Gleichner, Mueller and Tromp",
+    "Studied at Nikolaus - Leuschke"
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/lorem.ipsum",
+    "instagram": "https://www.instagram.com/lorem.ipsum",
+    "linkedin": "https://www.linkedin.com/in/lorem.ipsum",
+    "twitter": "https://www.twitter.com/lorem.ipsum"
+  },
+  "posts": [
+    {
+      "id": 0,
+      "author": {
+        "name": "Mehdi Najafi",
+        "avatar": "/assets/images/avatars/avatar_default.jpg"
+      },
+      "published": 1667198813465,
+      "body": "Assumenda nam repudiandae rerum fugiat vel maxime.",
+      "attachment": "/assets/images/covers/cover_2.jpeg",
+      "totalLikes": 32,
+      "lastLikes": [
+        {
+          "id": 0,
+          "name": "Mehdi Najafi",
+          "avatar": "/assets/images/avatars/avatar_default.jpg"
+        },
+        {
+          "id": 1,
+          "name": "Mehdi Najafi",
+          "avatar": "/assets/images/avatars/avatar_default.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Mehdi Najafi",
+          "avatar": "/assets/images/avatars/avatar_default.jpg"
+        }
+      ],
+      "comments": [
+        {
+          "id": 0,
+          "author": {
+            "name": "Mehdi Najafi",
+            "avatar": "/assets/images/avatars/avatar_default.jpg"
+          },
+          "date": 1667198813465,
+          "body": "Praesent venenatis metus at"
+        },
+        {
+          "id": 1,
+          "author": {
+            "name": "Mehdi Najafi",
+            "avatar": "/assets/images/avatars/avatar_default.jpg"
+          },
+          "date": 1667198813465,
+          "body": "Praesent venenatis metus at"
+        }
+      ]
+    }
+  ]
+}

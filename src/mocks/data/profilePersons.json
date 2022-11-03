@@ -1,0 +1,44 @@
+[
+  {
+    "id": 0,
+    "name": "Mehdi Najafi",
+    "avatar": "/assets/images/avatars/avatar_default.jpg",
+    "location": "Iran",
+    "job": "Front-end Devloper",
+    "isFollowed": true,
+    "social": {
+      "facebook": "https://www.facebook.com/lorem.ipsum",
+      "instagram": "https://www.instagram.com/lorem.ipsum",
+      "linkedin": "https://www.linkedin.com/in/lorem.ipsum",
+      "twitter": "https://www.twitter.com/lorem.ipsum"
+    }
+  },
+  {
+    "id": 1,
+    "name": "Mehdi Najafi",
+    "avatar": "/assets/images/avatars/avatar_default.jpg",
+    "location": "Iran",
+    "job": "Front-end Devloper",
+    "isFollowed": true,
+    "social": {
+      "facebook": "https://www.facebook.com/lorem.ipsum",
+      "instagram": "https://www.instagram.com/lorem.ipsum",
+      "linkedin": "https://www.linkedin.com/in/lorem.ipsum",
+      "twitter": "https://www.twitter.com/lorem.ipsum"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Mehdi Najafi",
+    "avatar": "/assets/images/avatars/avatar_default.jpg",
+    "location": "Iran",
+    "job": "Front-end Devloper",
+    "isFollowed": true,
+    "social": {
+      "facebook": "https://www.facebook.com/lorem.ipsum",
+      "instagram": "https://www.instagram.com/lorem.ipsum",
+      "linkedin": "https://www.linkedin.com/in/lorem.ipsum",
+      "twitter": "https://www.twitter.com/lorem.ipsum"
+    }
+  }
+]
