@@ -1,12 +1,17 @@
+import IAuthor from "./author";
 import IComment from "./comment";
-import IUser from "./user";
 
 export default interface IPost {
-  date: number;
-  image: string;
-  title: string;
-  author: IUser;
-  likes: IUser[];
+  id: number;
+  author: IAuthor;
+  published: number;
+  body: string;
+  attachment: string;
   totalLikes: number;
+  lastLikes: {
+    id: string;
+    name: string;
+    avatar: string;
+  }[];
   comments: IComment[];
 }
