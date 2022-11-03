@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Outlet, useNavigate } from "react-router-dom";
-import useUser from "./hooks/useUser";
+import useUser from "./hooks/api/useUser";
 import theme from "./theme";
 
 function App() {

@@ -1,16 +1,48 @@
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, Skeleton } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import TotalStats from "@/components/TotalStats";
 import FeaturedApps from "@/components/FeaturedApps";
 import Greeting from "@/components/Greeting";
 import NewInvoices from "@/components/NewInvoices";
 import TopApplications from "@/components/TopApplications";
-import ChromeIcon from "@/assets/icons/apps/chrome.svg";
-import DriveIcon from "@/assets/icons/apps/drive.svg";
 import TopCountries from "@/components/TopCountries";
 import TopAuthors from "@/components/TopAuthors";
 import ProfileCounter from "@/components/ProfileCounter";
+import getHomePage from "@/api/getHomePage";
 
 const AppPage = () => {
+  const { data, isLoading } = useQuery(["home-page"], getHomePage);
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Grid container spacing={24}>
+          <Grid item xs={12} md={8}>
+            <Skeleton variant="rounded" height={280} />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Skeleton variant="rounded" height={280} />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Skeleton variant="rounded" height={166} />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Skeleton variant="rounded" height={166} />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Skeleton variant="rounded" height={166} />
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <Skeleton variant="rounded" height={391} />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Skeleton variant="rounded" height={391} />
+          </Grid>
+        </Grid>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Grid container spacing={24}>
@@ -22,147 +54,54 @@ const AppPage = () => {
         </Grid>
         <Grid item xs={12} md={4}>
           <TotalStats
-            title="Active Users"
             color="primary"
-            total={18765}
-            history={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            title={data.totalStats.activeUsers.title}
+            total={data.totalStats.activeUsers.total}
+            history={data.totalStats.activeUsers.history}
           />
         </Grid>
         <Grid item xs={12} md={4}>
           <TotalStats
-            title="Installed"
             color="info"
-            total={4876}
-            history={[1, 2, 3, 4, 5, 6, 7, 8, 10, 9]}
+            title={data.totalStats.installed.title}
+            total={data.totalStats.installed.total}
+            history={data.totalStats.installed.history}
           />
         </Grid>
         <Grid item xs={12} md={4}>
           <TotalStats
-            title="Downloads"
             color="warning"
-            total={678}
-            history={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            title={data.totalStats.downloads.title}
+            total={data.totalStats.downloads.total}
+            history={data.totalStats.downloads.history}
           />
         </Grid>
         <Grid item xs={12} lg={8}>
-          <NewInvoices
-            invoices={[
-              {
-                id: "INV-1666857553344",
-                category: "Windows",
-                price: 16.9,
-                status: 0,
-              },
-              {
-                id: "INV-1666857553345",
-                category: "Windows",
-                price: 35.71,
-                status: 2,
-              },
-              {
-                id: "INV-1666857553347",
-                category: "Mac",
-                price: 93.1,
-                status: 1,
-              },
-            ]}
-          />
+          <NewInvoices invoices={data.invoices} />
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
-          <TopApplications
-            applications={[
-              {
-                id: 0,
-                logo: ChromeIcon,
-                name: "Chrome",
-                price: 0,
-                os: "Mac",
-                rate: 3,
-                reviews: 4090,
-              },
-              {
-                id: 1,
-                logo: DriveIcon,
-                name: "Drive",
-                price: 35.71,
-                os: "Mac",
-                rate: 3,
-                reviews: 71630,
-              },
-            ]}
-          />
+          <TopApplications applications={data.topApplications} />
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
-          <TopCountries
-            countries={[
-              {
-                countryName: "Germany",
-                countryCode: "de",
-                android: 1030,
-                windows: 78950,
-                mac: 11150,
-              },
-              {
-                countryName: "England",
-                countryCode: "en",
-                android: 1030,
-                windows: 78950,
-                mac: 11150,
-              },
-              {
-                countryName: "France",
-                countryCode: "fr",
-                android: 1030,
-                windows: 78950,
-                mac: 11150,
-              },
-              {
-                countryName: "Korean",
-                countryCode: "kr",
-                android: 1030,
-                windows: 78950,
-                mac: 11150,
-              },
-              {
-                countryName: "USA",
-                countryCode: "us",
-                android: 1030,
-                windows: 78950,
-                mac: 11150,
-              },
-            ]}
-          />
+          <TopCountries countries={data.topCountries} />
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
-          <TopAuthors
-            authors={[
-              {
-                avatar:
-                  "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
-                name: "Deja Brady",
-                likes: 17230,
-              },
-              {
-                avatar:
-                  "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
-                name: "Jayvion Simon",
-                likes: 11870,
-              },
-              {
-                avatar:
-                  "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
-                name: "Lucian Obrien",
-                likes: 10560,
-              },
-            ]}
-          />
+          <TopAuthors authors={data.topAuthors} />
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Box
             sx={{ display: "flex", flexDirection: "column", gap: 24, pb: 72 }}
           >
-            <ProfileCounter title="conversion" value={38566} percent={48} />
-            <ProfileCounter title="applications" value={55566} percent={75} />
+            <ProfileCounter
+              title={data.appTotalStats.conversion.title}
+              value={data.appTotalStats.conversion.value}
+              percent={data.appTotalStats.conversion.percent}
+            />
+            <ProfileCounter
+              title={data.appTotalStats.applications.title}
+              value={data.appTotalStats.applications.value}
+              percent={data.appTotalStats.applications.percent}
+            />
           </Box>
         </Grid>
       </Grid>

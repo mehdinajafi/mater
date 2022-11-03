@@ -1,0 +1,17 @@
+{
+  "activeUsers": {
+    "title": "Active Users",
+    "total": 18765,
+    "history": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  "installed": {
+    "title": "Installed",
+    "total": 4876,
+    "history": [1, 2, 3, 4, 5, 6, 7, 8, 10, 9]
+  },
+  "downloads": {
+    "title": "Downloads",
+    "total": 678,
+    "history": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  }
+}

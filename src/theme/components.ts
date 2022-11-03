@@ -361,6 +361,13 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
+  MuiSkeleton: {
+    styleOverrides: {
+      rounded: {
+        borderRadius: "1rem",
+      },
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {

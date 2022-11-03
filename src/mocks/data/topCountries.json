@@ -1,0 +1,37 @@
+[
+  {
+    "countryName": "Germany",
+    "countryCode": "de",
+    "android": 1030,
+    "windows": 78950,
+    "mac": 11150
+  },
+  {
+    "countryName": "England",
+    "countryCode": "en",
+    "android": 1030,
+    "windows": 78950,
+    "mac": 11150
+  },
+  {
+    "countryName": "France",
+    "countryCode": "fr",
+    "android": 1030,
+    "windows": 78950,
+    "mac": 11150
+  },
+  {
+    "countryName": "Korean",
+    "countryCode": "kr",
+    "android": 1030,
+    "windows": 78950,
+    "mac": 11150
+  },
+  {
+    "countryName": "USA",
+    "countryCode": "us",
+    "android": 1030,
+    "windows": 78950,
+    "mac": 11150
+  }
+]

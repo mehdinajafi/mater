@@ -1,0 +1,20 @@
+[
+  {
+    "id": "INV-1666857553344",
+    "category": "Windows",
+    "price": 16.9,
+    "status": 0
+  },
+  {
+    "id": "INV-1666857553345",
+    "category": "Windows",
+    "price": 35.71,
+    "status": 2
+  },
+  {
+    "id": "INV-1666857553347",
+    "category": "Mac",
+    "price": 93.1,
+    "status": 1
+  }
+]
