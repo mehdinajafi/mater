@@ -1,6 +1,6 @@
-const getProfile = async () => {
+const getUser = async () => {
   const res = await fetch("/api/user/profile");
   return res.json();
 };
 
-export default getProfile;
+export default getUser;

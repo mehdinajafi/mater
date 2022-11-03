@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import getProfile from "@/api/getProfile";
+import getUser from "@/api/getUser";
 import ICurrentUser from "@/types/interfaces/currentUser";
 
 const useUser = () => {
-  const query = useQuery(["profile"], getProfile);
+  const query = useQuery(["profile"], getUser);
 
   return {
     data: query.data as ICurrentUser,
