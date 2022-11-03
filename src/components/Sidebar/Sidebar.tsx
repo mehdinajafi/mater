@@ -7,6 +7,7 @@ import NavGroup from "./NavGroup";
 import NavLink from "./NavLink";
 import { ReactComponent as DashboardIcon } from "@/assets/icons/dashboard.svg";
 import { ReactComponent as UserIcon } from "@/assets/icons/user.svg";
+import { ReactComponent as LockIcon } from "@/assets/icons/lock.svg";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -48,6 +49,18 @@ const Sidebar = () => {
           items={[
             { to: "/user/profile", text: "profile" },
             { to: "/user/account", text: "account" },
+          ]}
+        />
+        <NavGroup
+          onClickOnLinks={handleItemClick}
+          toggle={{
+            text: "Auth",
+            icon: <LockIcon />,
+            to: "/auth",
+          }}
+          items={[
+            { to: "/auth/register", text: "register" },
+            { to: "/auth/login", text: "login" },
           ]}
         />
       </List>
