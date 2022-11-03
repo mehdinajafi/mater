@@ -11,7 +11,13 @@ const NewPostForm = () => {
     setPost(e.target.value);
   };
 
-  const handlePosting = () => {};
+  const handlePosting = () => {
+    setIsPosting(true);
+
+    setTimeout(() => {
+      setIsPosting(false);
+    }, 3000);
+  };
 
   return (
     <Card sx={{ p: 24 }}>

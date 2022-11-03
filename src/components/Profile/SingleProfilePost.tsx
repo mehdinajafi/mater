@@ -12,16 +12,15 @@ import {
   Typography,
 } from "@mui/material";
 import { format } from "date-fns";
+import useUser from "@/hooks/api/useUser";
 import IPost from "@/types/interfaces/post";
 import IComment from "@/types/interfaces/comment";
-import ICurrentUser from "@/types/interfaces/currentUser";
 import { ReactComponent as VerticalDotsIcon } from "@/assets/icons/dots-vertical.svg";
 import { ReactComponent as HeartIcon } from "@/assets/icons/heart.svg";
 import { ReactComponent as CommentSolidIcon } from "@/assets/icons/comment-solid.svg";
 import { ReactComponent as ShareIcon } from "@/assets/icons/share.svg";
 import { ReactComponent as EmojiIcon } from "@/assets/icons/emoji.svg";
 import { ReactComponent as MediaPlusSolidIcon } from "@/assets/icons/media-plus-solid.svg";
-import { nanoid } from "nanoid";
 
 interface ISingleProfilePost {
   post: IPost;
@@ -33,12 +32,13 @@ const SingleProfilePost: React.FC<ISingleProfilePost> = ({ post }) => {
       <CardHeader
         avatar={<Avatar src={post.author.avatar} alt={post.author.name} />}
         title={post.author.name}
-        subheader={format(post.date, "dd MMM yyyy")}
+        subheader={format(post.published, "dd MMM yyyy")}
         action={
           <IconButton>
             <VerticalDotsIcon width={20} height={20} />
           </IconButton>
         }
+        sx={{ pb: 0 }}
       />
 
       <Typography variant="body1" p={24} pb={16}>
@@ -62,7 +62,7 @@ const SingleProfilePost: React.FC<ISingleProfilePost> = ({ post }) => {
           },
         }}
       >
-        <img src={post.image} alt="" loading="lazy" />
+        <img src={post.attachment} alt="" loading="lazy" />
       </Box>
 
       <Box sx={{ p: 24, pt: 16, display: "flex", alignItems: "center" }}>
@@ -93,9 +93,9 @@ const SingleProfilePost: React.FC<ISingleProfilePost> = ({ post }) => {
             },
           }}
         >
-          {post.likes.map((user) => (
+          {post.lastLikes.map((user) => (
             <Avatar
-              key={user.name}
+              key={user.id}
               src={user.avatar}
               alt={user.name}
               sx={{ width: 32, height: 32 }}
@@ -126,14 +126,7 @@ const SingleProfilePost: React.FC<ISingleProfilePost> = ({ post }) => {
       </Box>
 
       <Box sx={{ px: 24, pb: 24 }}>
-        <NewCommentForm
-          currentUser={{
-            id: nanoid(),
-            name: "Mehdi Najafi",
-            avatar:
-              "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
-          }}
-        />
+        <NewCommentForm />
       </Box>
     </Card>
   );
@@ -174,11 +167,8 @@ const SingleComment: React.FC<ISingleComment> = ({ comment }) => {
 };
 
 // -------------------------- New Comment Form -------------------------- //
-interface INewCommentForm {
-  currentUser: ICurrentUser;
-}
-
-const NewCommentForm: React.FC<INewCommentForm> = ({ currentUser }) => {
+const NewCommentForm = () => {
+  const { data: currentUser } = useUser();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const addMediaOnClick = () => {

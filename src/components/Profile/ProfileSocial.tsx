@@ -3,14 +3,10 @@ import { ReactComponent as FacebookIcon } from "@/assets/icons/social/facebook.s
 import { ReactComponent as InstagramIcon } from "@/assets/icons/social/instagram.svg";
 import { ReactComponent as LinkedinIcon } from "@/assets/icons/social/linkedin.svg";
 import { ReactComponent as TwitterIcon } from "@/assets/icons/social/twitter.svg";
+import ISocial from "@/types/interfaces/social";
 
 interface IProfileSocial {
-  social: {
-    facebook?: string;
-    instagram?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
+  social: ISocial;
 }
 
 const ProfileSocial: React.FC<IProfileSocial> = ({ social }) => {

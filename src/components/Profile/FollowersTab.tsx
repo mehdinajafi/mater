@@ -1,19 +1,42 @@
 import { useState } from "react";
-import { Box, Typography, Avatar, Button, Card } from "@mui/material";
+import { Box, Typography, Avatar, Button, Card, Skeleton } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import getProfileFollower from "@/api/profile/getProfileFollower";
+import ISocial from "@/types/interfaces/social";
 import { ReactComponent as LocationIcon } from "@/assets/icons/location.svg";
 import { ReactComponent as CheckIcon } from "@/assets/icons/check.svg";
 
-interface IFollowersTab {
-  followers: {
-    id: string;
-    name: string;
-    avatar: string;
-    location: string;
-    following: boolean;
-  }[];
+interface IFollower {
+  id: number;
+  name: string;
+  avatar: string;
+  location: string;
+  job: string;
+  isFollowed: boolean;
+  social: ISocial;
 }
 
-const FollowersTab: React.FC<IFollowersTab> = (props) => {
+const FollowersTab: React.FC = () => {
+  const {
+    data: followers,
+    isLoading,
+    isError,
+  } = useQuery<IFollower[]>(["profile-follower"], getProfileFollower);
+
+  if (isError) {
+    return <div>Something went wrong!</div>;
+  }
+
+  const renderSkeleton = () => {
+    return (
+      <>
+        <Skeleton variant="rounded" height={92} />
+        <Skeleton variant="rounded" height={92} />
+        <Skeleton variant="rounded" height={92} />
+      </>
+    );
+  };
+
   return (
     <div>
       <Typography variant="h4" my={40}>
@@ -30,9 +53,11 @@ const FollowersTab: React.FC<IFollowersTab> = (props) => {
           gap: 24,
         }}
       >
-        {props.followers.map((follower) => (
-          <FollowerCard key={follower.id} follower={follower} />
-        ))}
+        {isLoading
+          ? renderSkeleton()
+          : followers.map((follower) => (
+              <FollowerCard key={follower.id} follower={follower} />
+            ))}
       </Box>
     </div>
   );
@@ -40,14 +65,14 @@ const FollowersTab: React.FC<IFollowersTab> = (props) => {
 
 // -------------------- Follower Card -------------------- //
 interface IFollowerCard {
-  follower: IFollowersTab["followers"][number];
+  follower: IFollower;
 }
 
 const FollowerCard: React.FC<IFollowerCard> = ({ follower }) => {
-  const [following, setFollowing] = useState(follower.following);
+  const [isFollowed, setIsFollowed] = useState(follower.isFollowed);
 
   const toggleFollow = () => {
-    setFollowing((prevFollowing) => !prevFollowing);
+    setIsFollowed((previsFollowed) => !previsFollowed);
   };
 
   return (
@@ -76,11 +101,11 @@ const FollowerCard: React.FC<IFollowerCard> = ({ follower }) => {
         </Box>
       </Box>
       <Button
-        variant={following ? "text" : "outlined"}
-        color={following ? "primary" : "inherit"}
+        variant={isFollowed ? "text" : "outlined"}
+        color={isFollowed ? "primary" : "inherit"}
         size="small"
         startIcon={
-          following && (
+          isFollowed && (
             <Box component={CheckIcon} sx={{ width: 20, height: 20 }} />
           )
         }
@@ -91,7 +116,7 @@ const FollowerCard: React.FC<IFollowerCard> = ({ follower }) => {
           },
         }}
       >
-        {following ? "Followed" : "Follow"}
+        {isFollowed ? "Followed" : "Follow"}
       </Button>
     </Card>
   );

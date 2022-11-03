@@ -2,6 +2,7 @@ import {
   Avatar,
   Box,
   Card,
+  Skeleton,
   styled,
   Tab,
   Tabs,
@@ -11,6 +12,9 @@ import { ReactComponent as UserIcon } from "@/assets/icons/user.svg";
 import { ReactComponent as HeartIcon } from "@/assets/icons/heart.svg";
 import { ReactComponent as PeopleIcon } from "@/assets/icons/people.svg";
 import { ReactComponent as MediaIcon } from "@/assets/icons/media.svg";
+import { useQuery } from "@tanstack/react-query";
+import getProfile from "@/api/profile/getProfile";
+import IProfile from "@/types/interfaces/profile";
 
 interface IProfileHeader {
   selectedTab: number;
@@ -54,12 +58,26 @@ const SUserInfo = styled("div")(({ theme }) => ({
 }));
 
 const ProfileHeader: React.FC<IProfileHeader> = (props) => {
+  const {
+    data: profile,
+    isLoading,
+    isError,
+  } = useQuery<IProfile>(["profile"], getProfile);
+
+  if (isLoading) {
+    return <Skeleton variant="rounded" height={280} />;
+  }
+
+  if (isError) {
+    return <div>Something went wrong!</div>;
+  }
+
   return (
     <Card>
       <SCoverWrapper>
         <SUserInfo>
           <Avatar
-            src="https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1"
+            src={profile.avatar}
             alt="profile-pic"
             sx={{ width: { xs: 80, md: 124 }, height: { xs: 80, md: 124 } }}
           />
@@ -71,10 +89,10 @@ const ProfileHeader: React.FC<IProfileHeader> = (props) => {
                 md: theme.typography.fontSizes["2xl"],
               })}
             >
-              Minimal UI
+              {profile.name}
             </Typography>
             <Typography variant="body1" sx={{ opacity: 0.72 }}>
-              UI Designer
+              {profile.job}
             </Typography>
           </Box>
         </SUserInfo>
@@ -90,7 +108,7 @@ const ProfileHeader: React.FC<IProfileHeader> = (props) => {
             },
           }}
         >
-          <img src="/assets/images/covers/cover_2.jpeg" alt="cover" />
+          <img src={profile.banner} alt="banner" />
         </Box>
       </SCoverWrapper>
 

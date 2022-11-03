@@ -8,8 +8,13 @@ import {
   InputBase,
   Menu,
   MenuItem,
+  Skeleton,
   Typography,
 } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import useAnchorDisclosure from "@/hooks/useAnchorDisclosure";
+import ISocial from "@/types/interfaces/social";
+import getProfileFriends from "@/api/profile/getProfileFriends";
 import { ReactComponent as SearchIcon } from "@/assets/icons/search.svg";
 import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
 import { ReactComponent as PenIcon } from "@/assets/icons/pen.svg";
@@ -18,26 +23,55 @@ import { ReactComponent as FacebookIcon } from "@/assets/icons/social/facebook.s
 import { ReactComponent as InstagramIcon } from "@/assets/icons/social/instagram.svg";
 import { ReactComponent as LinkedinIcon } from "@/assets/icons/social/linkedin.svg";
 import { ReactComponent as TwitterIcon } from "@/assets/icons/social/twitter.svg";
-import useAnchorDisclosure from "@/hooks/useAnchorDisclosure";
 
-interface IFriendsTab {
-  friends: {
-    id: string;
-    avatar: string;
-    name: string;
-    job: string;
-    socials: {
-      facebook?: string;
-      instagram?: string;
-      linkedin?: string;
-      twitter?: string;
-    };
-  }[];
+interface IFriend {
+  id: number;
+  name: string;
+  avatar: string;
+  location: string;
+  job: string;
+  isFollowing: boolean;
+  social: ISocial;
 }
 
-const FriendsTab: React.FC<IFriendsTab> = (props) => {
-  const [friends, setFriends] = useState(props.friends);
+const FriendsTab: React.FC = () => {
+  const {
+    data: friends,
+    isLoading,
+    isError,
+  } = useQuery<IFriend[]>(["profile-friends"], getProfileFriends);
+
   const [searchParams, setSearchParams] = useState("");
+
+  if (isLoading) {
+    return (
+      <Box mt={40}>
+        <Typography variant="h4" mb={40}>
+          Friends
+        </Typography>
+
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(1, minmax(10px, 1fr))",
+              sm: "repeat(2, minmax(10px, 1fr))",
+              md: "repeat(3, minmax(10px, 1fr))",
+            },
+            gap: 24,
+          }}
+        >
+          <Skeleton variant="rounded" height={262} />
+          <Skeleton variant="rounded" height={262} />
+          <Skeleton variant="rounded" height={262} />
+        </Box>
+      </Box>
+    );
+  }
+
+  if (isError) {
+    return <div>Something went wrong!</div>;
+  }
 
   const filteredFriends = friends.filter(
     (friend) => friend.name.search(searchParams) > -1
@@ -87,28 +121,45 @@ const FriendsTab: React.FC<IFriendsTab> = (props) => {
           })}
         />
       </Box>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "repeat(1, minmax(10px, 1fr))",
-            sm: "repeat(2, minmax(10px, 1fr))",
-            md: "repeat(3, minmax(10px, 1fr))",
-          },
-          gap: 24,
-        }}
-      >
-        {filteredFriends.map((friend) => (
-          <FriendCard key={friend.id} friend={friend} />
-        ))}
-      </Box>
+
+      {filteredFriends.length === 0 ? (
+        <Box mt={80} textAlign="center">
+          <Typography variant="h6" mb={16}>
+            Not found
+          </Typography>
+          <Typography variant="body2" color="text-secondary">
+            No results found for{" "}
+            <Box component="strong" color="gray.800">
+              "{searchParams}"
+            </Box>
+            <br />
+            Try checking for typos or using complete words.
+          </Typography>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(1, minmax(10px, 1fr))",
+              sm: "repeat(2, minmax(10px, 1fr))",
+              md: "repeat(3, minmax(10px, 1fr))",
+            },
+            gap: 24,
+          }}
+        >
+          {filteredFriends.map((friend) => (
+            <FriendCard key={friend.id} friend={friend} />
+          ))}
+        </Box>
+      )}
     </Box>
   );
 };
 
 // --------------------- Friend Card --------------------- //
 interface IFriendCard {
-  friend: IFriendsTab["friends"][number];
+  friend: IFriend;
 }
 
 const FriendCard: React.FC<IFriendCard> = ({ friend }) => {
@@ -129,30 +180,28 @@ const FriendCard: React.FC<IFriendCard> = ({ friend }) => {
         alt={friend.name}
         sx={{ width: 64, height: 64, mb: 24 }}
       />
-      <Typography variant="subtitle1" mb={4}>
-        {friend.name}
-      </Typography>
-      <Typography variant="body2" color="text-secondary">
+      <Typography variant="subtitle1">{friend.name}</Typography>
+      <Typography variant="body2" color="text-secondary" mt={4}>
         {friend.job}
       </Typography>
 
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        {friend.socials.facebook && (
+      <Box sx={{ display: "flex", alignItems: "center", mt: 8 }}>
+        {friend.social.facebook && (
           <IconButton sx={{ color: "rgb(24, 119, 242)" }}>
             <FacebookIcon width={20} height={20} />
           </IconButton>
         )}
-        {friend.socials.instagram && (
+        {friend.social.instagram && (
           <IconButton sx={{ color: "rgb(224, 45, 105)" }}>
             <InstagramIcon width={20} height={20} />
           </IconButton>
         )}
-        {friend.socials.linkedin && (
+        {friend.social.linkedin && (
           <IconButton sx={{ color: "rgb(0, 126, 187)" }}>
             <LinkedinIcon width={20} height={20} />
           </IconButton>
         )}
-        {friend.socials.twitter && (
+        {friend.social.twitter && (
           <IconButton sx={{ color: "rgb(0, 170, 236)" }}>
             <TwitterIcon width={20} height={20} />
           </IconButton>

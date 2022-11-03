@@ -2,7 +2,6 @@ import { Box, Card, Typography } from "@mui/material";
 import { ReactComponent as MarkerSolidIcon } from "@/assets/icons/marker-solid.svg";
 import { ReactComponent as MailSolidIcon } from "@/assets/icons/mail-solid.svg";
 import { ReactComponent as BriefCaseSolidIcon } from "@/assets/icons/briefcase-solid.svg";
-import { StringLocale } from "yup/lib/locale";
 
 interface IProfileAbout {
   about: {

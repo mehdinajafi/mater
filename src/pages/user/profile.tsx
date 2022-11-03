@@ -1,10 +1,11 @@
-import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
+import { Box, Breadcrumbs, Typography, Link, Skeleton } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import Profile from "@/components/Profile";
-import useUser from "@/hooks/api/useUser";
+import getProfile from "@/api/profile/getProfile";
 
 const UserProfilePage = () => {
-  const { data: currentColor } = useUser();
+  const { data: profile, isLoading } = useQuery(["profile"], getProfile);
 
   return (
     <Box>
@@ -44,9 +45,14 @@ const UserProfilePage = () => {
           >
             User
           </Link>
-          <Typography variant="body2" color="gray.500">
-            {currentColor?.name}
-          </Typography>
+          {isLoading && (
+            <Skeleton width={80} variant="text" sx={{ fontSize: "1rem" }} />
+          )}
+          {profile && (
+            <Typography variant="body2" color="gray.500">
+              {profile.name}
+            </Typography>
+          )}
         </Breadcrumbs>
       </Box>
 
