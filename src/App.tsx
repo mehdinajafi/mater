@@ -5,13 +5,14 @@ import theme from "./theme";
 
 function App() {
   const navigate = useNavigate();
-  const { data: currentUser, isLoading, error } = useUser();
+  const { data: currentUser, isLoading, isError } = useUser();
 
   if (isLoading) {
     // TODO: Show Loading
-    return;
+    return <div></div>;
   }
-  if (currentUser === null || error) {
+
+  if (currentUser === null || isError) {
     navigate("/auth/login");
   }
 
