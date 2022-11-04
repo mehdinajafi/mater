@@ -7,15 +7,14 @@ import {
   Button,
   Divider,
   IconButton,
-  Alert,
+  CircularProgress,
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Logo from "@/components/Logo";
 import { ReactComponent as GoogleIcon } from "@/assets/icons/companies/google.svg";
 import { ReactComponent as GithubIcon } from "@/assets/icons/companies/github.svg";
-import { ReactComponent as InfoIcon } from "@/assets/icons/info.svg";
 
 const validationSchema = yup.object({
   email: yup
@@ -29,13 +28,20 @@ const validationSchema = yup.object({
 });
 
 const AuthLoginPage = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {},
+    onSubmit: (values, helpers) => {
+      setTimeout(() => {
+        helpers.setSubmitting(false);
+        navigate("/");
+      }, 3000);
+    },
   });
 
   return (
@@ -64,15 +70,6 @@ const AuthLoginPage = () => {
         </Link>
       </Box>
 
-      <Alert
-        severity="info"
-        icon={<InfoIcon width={24} height={24} />}
-        sx={{ mb: 24 }}
-      >
-        Use email : <strong>demo@minimals.cc</strong> / password :{" "}
-        <strong>demo1234</strong>
-      </Alert>
-
       <form onSubmit={formik.handleSubmit}>
         <Stack spacing={16}>
           <TextField
@@ -81,17 +78,18 @@ const AuthLoginPage = () => {
             color="gray"
             value={formik.values.email}
             onChange={formik.handleChange}
-            error={formik.touched && Boolean(formik.errors.email)}
-            helperText={formik.touched && formik.errors.email}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
+            type="password"
             name="password"
             label="Password"
             color="gray"
             value={formik.values.password}
             onChange={formik.handleChange}
-            error={formik.touched && Boolean(formik.errors.password)}
-            helperText={formik.touched && formik.errors.password}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
           <Link variant="body2" color="inherit" textAlign="end">
             Forgot password?
@@ -101,9 +99,14 @@ const AuthLoginPage = () => {
             variant="contained"
             size="large"
             color="dark"
+            disabled={formik.isSubmitting}
             disableElevation
           >
-            Login
+            {formik.isSubmitting ? (
+              <CircularProgress color="inherit" size="1.5rem" disableShrink />
+            ) : (
+              "Login"
+            )}
           </Button>
         </Stack>
       </form>
@@ -111,9 +114,10 @@ const AuthLoginPage = () => {
       <Divider
         variant="dashed"
         sx={{
-          my: 20,
+          mt: 20,
+          mb: 12,
           color: "gray.600",
-          alignItems: "flex-start",
+          alignItems: "center",
           fontSize: "0.75rem",
           lineHeight: 1.5,
           "& .MuiDivider-wrapper": {

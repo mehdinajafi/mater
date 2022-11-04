@@ -7,10 +7,11 @@ import {
   Button,
   Divider,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Logo from "@/components/Logo";
 import { ReactComponent as GoogleIcon } from "@/assets/icons/companies/google.svg";
 import { ReactComponent as GithubIcon } from "@/assets/icons/companies/github.svg";
@@ -29,6 +30,8 @@ const validationSchema = yup.object({
 });
 
 const AuthRegisterPage = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -37,7 +40,12 @@ const AuthRegisterPage = () => {
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {},
+    onSubmit: (values, helpers) => {
+      setTimeout(() => {
+        helpers.setSubmitting(false);
+        navigate("/");
+      }, 3000);
+    },
   });
 
   return (
@@ -75,8 +83,10 @@ const AuthRegisterPage = () => {
               color="gray"
               value={formik.values.firstName}
               onChange={formik.handleChange}
-              error={formik.touched && Boolean(formik.errors.firstName)}
-              helperText={formik.touched && formik.errors.firstName}
+              error={
+                formik.touched.firstName && Boolean(formik.errors.firstName)
+              }
+              helperText={formik.touched.firstName && formik.errors.firstName}
             />
             <TextField
               name="lastName"
@@ -84,8 +94,8 @@ const AuthRegisterPage = () => {
               color="gray"
               value={formik.values.lastName}
               onChange={formik.handleChange}
-              error={formik.touched && Boolean(formik.errors.lastName)}
-              helperText={formik.touched && formik.errors.lastName}
+              error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+              helperText={formik.touched.lastName && formik.errors.lastName}
             />
           </Box>
           <TextField
@@ -94,26 +104,32 @@ const AuthRegisterPage = () => {
             color="gray"
             value={formik.values.email}
             onChange={formik.handleChange}
-            error={formik.touched && Boolean(formik.errors.email)}
-            helperText={formik.touched && formik.errors.email}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
+            type="password"
             name="password"
             label="Password"
             color="gray"
             value={formik.values.password}
             onChange={formik.handleChange}
-            error={formik.touched && Boolean(formik.errors.password)}
-            helperText={formik.touched && formik.errors.password}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
           <Button
             type="submit"
             variant="contained"
             size="large"
             color="dark"
+            disabled={formik.isSubmitting}
             disableElevation
           >
-            Create Account
+            {formik.isSubmitting ? (
+              <CircularProgress color="inherit" size="1.5rem" disableShrink />
+            ) : (
+              "Create Account"
+            )}
           </Button>
         </Stack>
       </form>
@@ -131,9 +147,10 @@ const AuthRegisterPage = () => {
       <Divider
         variant="dashed"
         sx={{
-          my: 20,
+          mt: 20,
+          mb: 12,
           color: "gray.600",
-          alignItems: "flex-start",
+          alignItems: "center",
           fontSize: "0.75rem",
           lineHeight: 1.5,
           "& .MuiDivider-wrapper": {
