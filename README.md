@@ -3,9 +3,9 @@
 ## Running Locally
 
 ```
-git clone https://github.com/mehdinajafi/Mater
+git clone https://github.com/mehdinajafi/mater.git
 
-cd Mater
+cd mater
 
 pnpm install
 
