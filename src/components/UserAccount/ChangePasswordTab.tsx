@@ -44,8 +44,10 @@ const ChangePasswordTab = () => {
           label="Old Password"
           value={formik.values.oldPassword}
           onChange={formik.handleChange}
-          error={formik.touched && Boolean(formik.errors.oldPassword)}
-          helperText={formik.touched && formik.errors.oldPassword}
+          error={
+            formik.touched.oldPassword && Boolean(formik.errors.oldPassword)
+          }
+          helperText={formik.touched.oldPassword && formik.errors.oldPassword}
         />
         <TextField
           type="password"
@@ -54,11 +56,13 @@ const ChangePasswordTab = () => {
           label="New Password"
           value={formik.values.newPassword}
           onChange={formik.handleChange}
-          error={formik.touched && Boolean(formik.errors.newPassword)}
+          error={
+            formik.touched.newPassword && Boolean(formik.errors.newPassword)
+          }
           helperText={
             <Box sx={{ display: "flex", gap: 4, mt: 5 }}>
               <InfoIcon width={16} height={16} />{" "}
-              {formik.touched && formik.errors.newPassword
+              {formik.touched.newPassword && formik.errors.newPassword
                 ? formik.errors.newPassword
                 : "Password must be minimum 8+"}
             </Box>
@@ -71,8 +75,13 @@ const ChangePasswordTab = () => {
           label="Confirm New Password"
           value={formik.values.repeatNewPassword}
           onChange={formik.handleChange}
-          error={formik.touched && Boolean(formik.errors.repeatNewPassword)}
-          helperText={formik.touched && formik.errors.repeatNewPassword}
+          error={
+            formik.touched.repeatNewPassword &&
+            Boolean(formik.errors.repeatNewPassword)
+          }
+          helperText={
+            formik.touched.repeatNewPassword && formik.errors.repeatNewPassword
+          }
         />
         <Button
           type="submit"
