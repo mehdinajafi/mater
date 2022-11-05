@@ -1,12 +1,17 @@
 import { Box } from "@mui/material";
 import { ReactComponent as LogoSvg } from "@/assets/images/logo.svg";
 
-const Logo = () => {
+interface ILogo {
+  width?: number;
+  height?: number;
+}
+
+const Logo: React.FC<ILogo> = ({ width = 40, height = 40 }) => {
   return (
     <Box
       component={LogoSvg}
-      width={40}
-      height={40}
+      width={width}
+      height={height}
       sx={{ display: "inline" }}
     />
   );
