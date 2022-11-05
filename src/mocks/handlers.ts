@@ -15,7 +15,7 @@ import accountBilling from "./data/accountBilling.json";
 
 export const handlers: RestHandler[] = [
   rest.get("/api/user/profile", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(currentUser));
+    return res(ctx.status(200), ctx.delay(1000), ctx.json(currentUser));
   }),
   rest.get("/api/user/billing", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(1000), ctx.json(accountBilling));

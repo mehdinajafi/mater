@@ -1,5 +1,6 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import App from "@/App";
+import ProtectedRoute from "./ProtectedRoute";
 import AuthLayout from "@/layouts/AuthLayout";
 import MainLayout from "@/layouts/MainLayout";
 import AppPage from "@/pages";
@@ -30,23 +31,28 @@ const routes = createBrowserRouter([
         ],
       },
       {
-        element: <MainLayout />,
+        element: <ProtectedRoute />,
         children: [
           {
-            path: "/",
-            element: <AppPage />,
-          },
-          {
-            path: "/user",
-            element: <UserProfilePage />,
-          },
-          {
-            path: "/user/profile",
-            element: <UserProfilePage />,
-          },
-          {
-            path: "/user/account",
-            element: <UserAccountPage />,
+            element: <MainLayout />,
+            children: [
+              {
+                path: "/",
+                element: <AppPage />,
+              },
+              {
+                path: "/user",
+                element: <UserProfilePage />,
+              },
+              {
+                path: "/user/profile",
+                element: <UserProfilePage />,
+              },
+              {
+                path: "/user/account",
+                element: <UserAccountPage />,
+              },
+            ],
           },
         ],
       },
