@@ -2,16 +2,16 @@
   {
     "id": 0,
     "name": "Jayvion Simon",
-    "avatar": "https://api-prod-minimal-v4.vercel.app/assets/images/avatars/avatar_1.jpg"
+    "avatar": "/assets/images/avatars/avatar_1.jpeg"
   },
   {
     "id": 1,
     "name": "Jayvion Simon",
-    "avatar": "https://api-prod-minimal-v4.vercel.app/assets/images/avatars/avatar_1.jpg"
+    "avatar": "/assets/images/avatars/avatar_1.jpeg"
   },
   {
     "id": 2,
     "name": "Jayvion Simon",
-    "avatar": "https://api-prod-minimal-v4.vercel.app/assets/images/avatars/avatar_1.jpg"
+    "avatar": "/assets/images/avatars/avatar_1.jpeg"
   }
 ]

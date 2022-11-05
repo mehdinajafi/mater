@@ -1,16 +1,16 @@
 [
   {
-    "avatar": "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+    "avatar": "/assets/images/avatars/avatar_default.jpg",
     "name": "Deja Brady",
     "likes": 17230
   },
   {
-    "avatar": "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+    "avatar": "/assets/images/avatars/avatar_default.jpg",
     "name": "Jayvion Simon",
     "likes": 11870
   },
   {
-    "avatar": "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1",
+    "avatar": "/assets/images/avatars/avatar_default.jpg",
     "name": "Lucian Obrien",
     "likes": 10560
   }

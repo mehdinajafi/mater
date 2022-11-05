@@ -5,7 +5,7 @@
     "title": "Your order is placed",
     "dec": "waiting for shipping",
     "time": 1666631654794,
-    "icon": "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1"
+    "icon": "/assets/images/avatars/avatar_default.jpg"
   },
   {
     "id": 1,
@@ -13,7 +13,7 @@
     "title": "Your order is placed",
     "dec": "waiting for shipping",
     "time": 1666631654794,
-    "icon": "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1"
+    "icon": "/assets/images/avatars/avatar_default.jpg"
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "title": "Your order is placed",
     "dec": "waiting for shipping",
     "time": 1666631654794,
-    "icon": "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1"
+    "icon": "/assets/images/avatars/avatar_default.jpg"
   },
   {
     "id": 3,
@@ -29,6 +29,6 @@
     "title": "Your order is placed",
     "dec": "waiting for shipping",
     "time": 1666631654794,
-    "icon": "https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1"
+    "icon": "/assets/images/avatars/avatar_default.jpg"
   }
 ]
