@@ -296,6 +296,9 @@ const components: ThemeOptions["components"] = {
       rounded: {
         borderRadius: "0.5rem",
       },
+      outlined: (theme) => ({
+        border: "1px dashed rgba(145, 158, 171, 0.24)",
+      }),
     },
   },
   MuiDialog: {
