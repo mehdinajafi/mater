@@ -1,54 +1,64 @@
+import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { useState } from "react";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { nanoid } from "nanoid";
 import KanbanColumn from "./KanbanColumn";
-
-export interface ITask {
-  id: string;
-  content: string;
-  attachment?: string[];
-}
-
-interface ITasks {
-  [x: string]: ITask;
-}
-
-type TaskId = keyof ITasks;
-
-export interface IColumn {
-  id: string;
-  title: string;
-  taskIds: TaskId[];
-}
-
-interface IColumns {
-  [x: string]: IColumn;
-}
-
-type ColumnId = keyof IColumns;
-
-interface IData {
-  tasks: ITasks;
-  columns: IColumns;
-  columnsOrder: ColumnId[];
-}
+import { IData, ITask } from "./interfaces";
+import AddNewColumnForm from "./AddNewColumnForm";
 
 const initialData: IData = {
   tasks: {
     "task-1": {
       id: "task-1",
-      content: "Take out the garbage",
-      attachment: ["/assets/images/covers/cover_1.jpeg"],
+      title: "Take out the garbage",
+      attachments: ["/assets/images/covers/cover_1.jpeg"],
+      assignee: [],
+      completed: false,
+      description: "",
+      dueDate: [new Date().getTime(), undefined],
+      liked: false,
+      comments: [
+        {
+          id: nanoid(),
+          date: new Date().getTime(),
+          author: {
+            avatar: "/assets/images/avatars/avatar_default.jpg",
+            name: "Lucian Obrien",
+          },
+          attachment: "/assets/images/covers/cover_1.jpeg",
+          content: "Quis veniam aut saepe aliquid nulla.",
+        },
+        {
+          id: nanoid(),
+          date: new Date().getTime(),
+          author: {
+            avatar: "/assets/images/avatars/avatar_default.jpg",
+            name: "Lucian Obrien",
+          },
+          attachment: "/assets/images/covers/cover_1.jpeg",
+          content: "Quis veniam aut saepe aliquid nulla.",
+        },
+      ],
+      prioritize: "Low",
     },
-    "task-2": { id: "task-2", content: "Watch my favorite show" },
-    "task-3": { id: "task-3", content: "Charge my phone" },
-    "task-4": { id: "task-4", content: "Cook dinner" },
+    "task-2": {
+      id: "task-2",
+      title: "Take out the garbage",
+      attachments: [],
+      assignee: [],
+      completed: false,
+      description: "",
+      dueDate: [new Date().getTime(), undefined],
+      liked: false,
+      comments: [],
+      prioritize: "Low",
+    },
   },
   columns: {
     backlog: {
       id: "backlog",
       title: "Backlog",
-      taskIds: ["task-1", "task-2", "task-3"],
+      taskIds: ["task-1", "task-2"],
     },
     progress: {
       id: "progress",
@@ -61,6 +71,34 @@ const initialData: IData = {
 
 const Kanban: React.FC = (props) => {
   const [data, setData] = useState<IData>(initialData);
+
+  const deleteColumn = (columnId: string) => {
+    const newData = { ...data };
+    newData.columnsOrder = newData.columnsOrder.filter((id) => id !== columnId);
+    delete newData.columns[columnId];
+    setData(newData);
+  };
+
+  const addNewColumn = (columnId: string, title: string) => {
+    const newData = { ...data };
+    newData.columnsOrder = [...newData.columnsOrder, columnId];
+    newData.columns[columnId] = {
+      id: columnId,
+      title,
+      taskIds: [],
+    };
+    setData(newData);
+  };
+
+  const addNewTask = (columnId: string, task: ITask) => {
+    const newData = { ...data };
+    newData.tasks[task.id] = task;
+    newData.columns[columnId].taskIds = [
+      ...newData.columns[columnId].taskIds,
+      task.id,
+    ];
+    setData(newData);
+  };
 
   const onDragEnd = (result: any) => {
     const { destination, source, draggableId, type } = result;
@@ -150,7 +188,8 @@ const Kanban: React.FC = (props) => {
             ref={provided.innerRef}
             sx={{
               display: "flex",
-              ml: -24,
+              gap: 24,
+              overflow: "auto",
             }}
           >
             {data.columnsOrder.map((columnId, index) => {
@@ -163,10 +202,15 @@ const Kanban: React.FC = (props) => {
                   column={column}
                   tasks={tasks}
                   index={index}
+                  deleteColumn={deleteColumn}
+                  addNewTask={addNewTask}
                 />
               );
             })}
             {provided.placeholder}
+            <Box flexShrink={0}>
+              <AddNewColumnForm addNewColumn={addNewColumn} />
+            </Box>
           </Box>
         )}
       </Droppable>

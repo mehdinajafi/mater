@@ -1,18 +1,20 @@
-import { Box, IconButton, InputBase, Paper } from "@mui/material";
+import React from "react";
+import { Box, Paper } from "@mui/material";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
-import { IColumn, ITask } from "./Kanban";
 import KanbanTask from "./KanbanTask";
-import { ReactComponent as DotsIcon } from "@/assets/icons/dots.svg";
+import KanbanColumnHeader from "./KanbanColumnHeader";
+import AddNewTask from "./AddNewTask";
+import { IColumn, ITask } from "./interfaces";
 
 interface IKanbanColumn {
   column: IColumn;
   tasks: ITask[];
   index: number;
+  deleteColumn: (columnId: string) => void;
+  addNewTask: (columnId: string, task: ITask) => void;
 }
 
 const KanbanColumn: React.FC<IKanbanColumn> = (props) => {
-  const handleTitileOnChange = () => {};
-
   return (
     <Draggable draggableId={props.column.id} index={props.index}>
       {(provided) => (
@@ -20,25 +22,25 @@ const KanbanColumn: React.FC<IKanbanColumn> = (props) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           variant="outlined"
-          sx={{ bgcolor: "gray.100", px: 16, ml: 24 }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            bgcolor: "gray.100",
+            px: 16,
+            height: "max-content",
+            border: "1px dashed rgba(145, 158, 171, 0.24)",
+          }}
           ref={provided.innerRef}
         >
-          <Box
-            sx={{ display: "flex", justifyContent: "space-between", pt: 24 }}
-          >
-            <InputBase
-              value={props.column.title}
-              onChange={handleTitileOnChange}
-            />
-            <IconButton>
-              <DotsIcon />
-            </IconButton>
-          </Box>
+          <KanbanColumnHeader
+            column={props.column}
+            deleteColumn={props.deleteColumn}
+          />
 
           <Droppable droppableId={props.column.id} type="task">
             {(provided) => (
               <Box
-                sx={{ width: 280 }}
+                sx={{ width: 280, flexGrow: 1, minHeight: 10 }}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
@@ -49,6 +51,10 @@ const KanbanColumn: React.FC<IKanbanColumn> = (props) => {
               </Box>
             )}
           </Droppable>
+
+          <Box mt={16} mb={24}>
+            <AddNewTask column={props.column} addNewTask={props.addNewTask} />
+          </Box>
         </Paper>
       )}
     </Draggable>
