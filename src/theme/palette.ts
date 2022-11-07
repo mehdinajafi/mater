@@ -80,8 +80,8 @@ export const lightpalette: PaletteOptions = {
     900: "rgb(22, 28, 36)",
   },
   background: {
-    semiTransparent: "rgba(249, 250, 251, 0.8)",
-    default: "rgb(249, 250, 251)",
+    semiTransparent: "rgba(255, 255, 255, 0.8)",
+    default: "rgb(255, 255, 255)",
   },
   action: {
     disabled: "rgb(99, 115, 129)",
