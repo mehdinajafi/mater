@@ -8,6 +8,7 @@ import NavLink from "./NavLink";
 import { ReactComponent as DashboardIcon } from "@/assets/icons/dashboard.svg";
 import { ReactComponent as UserIcon } from "@/assets/icons/user.svg";
 import { ReactComponent as LockIcon } from "@/assets/icons/lock.svg";
+import { ReactComponent as KanbanIcon } from "@/assets/icons/kanban.svg";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -50,6 +51,12 @@ const Sidebar = () => {
             { to: "/user/profile", text: "profile" },
             { to: "/user/account", text: "account" },
           ]}
+        />
+        <NavLink
+          to="/kanban"
+          icon={<KanbanIcon />}
+          text="Kanban"
+          onClick={handleItemClick}
         />
         <NavGroup
           onClickOnLinks={handleItemClick}

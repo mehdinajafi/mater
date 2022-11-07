@@ -117,6 +117,7 @@ interface IFontWeights {
 }
 
 interface ICustomShadows {
+  z1: string;
   z20: string;
   card: string;
   dropdown: string;

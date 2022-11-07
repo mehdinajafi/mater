@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "@/App";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthLayout from "@/layouts/AuthLayout";
@@ -8,6 +8,7 @@ import UserAccountPage from "@/pages/user/account";
 import UserProfilePage from "@/pages/user/profile";
 import AuthLoginPage from "@/pages/auth/login";
 import AuthRegisterPage from "@/pages/auth/register";
+import KanbanPage from "@/pages/kanban";
 
 const routes = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const routes = createBrowserRouter([
               {
                 path: "/user/account",
                 element: <UserAccountPage />,
+              },
+              {
+                path: "/kanban",
+                element: <KanbanPage />,
               },
             ],
           },

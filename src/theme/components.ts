@@ -368,6 +368,13 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
+  MuiIconButton: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        color: theme.palette.gray[600],
+      }),
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: `
       @font-face {
