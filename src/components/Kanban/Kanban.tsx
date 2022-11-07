@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box } from "@mui/material";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import { nanoid } from "nanoid";
 import KanbanColumn from "./KanbanColumn";
-import { IData, ITask } from "./interfaces";
 import AddNewColumnForm from "./AddNewColumnForm";
+import { IData, ITask } from "./interfaces";
 
 const initialData: IData = {
   tasks: {
     "task-1": {
       id: "task-1",
-      title: "Take out the garbage",
+      title: "Take out the garbage.",
       attachments: ["/assets/images/covers/cover_1.jpeg"],
       assignee: [],
       completed: false,
@@ -43,7 +43,7 @@ const initialData: IData = {
     },
     "task-2": {
       id: "task-2",
-      title: "Take out the garbage",
+      title: "Go to the gym.",
       attachments: [],
       assignee: [],
       completed: false,
@@ -69,7 +69,7 @@ const initialData: IData = {
   columnsOrder: ["backlog", "progress"],
 };
 
-const Kanban: React.FC = (props) => {
+const Kanban = () => {
   const [data, setData] = useState<IData>(initialData);
 
   const deleteColumn = (columnId: string) => {
@@ -97,6 +97,12 @@ const Kanban: React.FC = (props) => {
       ...newData.columns[columnId].taskIds,
       task.id,
     ];
+    setData(newData);
+  };
+
+  const changeTaskCompletion = (taskId: string, complete: boolean) => {
+    const newData = { ...data };
+    newData.tasks[taskId].completed = complete;
     setData(newData);
   };
 
@@ -189,7 +195,8 @@ const Kanban: React.FC = (props) => {
             sx={{
               display: "flex",
               gap: 24,
-              overflow: "auto",
+              overflowX: "auto",
+              pb: 24,
             }}
           >
             {data.columnsOrder.map((columnId, index) => {
@@ -204,6 +211,7 @@ const Kanban: React.FC = (props) => {
                   index={index}
                   deleteColumn={deleteColumn}
                   addNewTask={addNewTask}
+                  changeTaskCompletion={changeTaskCompletion}
                 />
               );
             })}

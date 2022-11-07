@@ -79,7 +79,18 @@ const AddTaskForm: React.FC<IAddNewTask> = (props) => {
   };
 
   return (
-    <Paper variant="outlined">
+    <Paper variant="outlined" sx={{ pl: 16 }}>
+      <Tooltip title="Mark complete">
+        <Checkbox
+          checked={completed}
+          onChange={handleTaskComplete}
+          disableRipple
+          icon={<CircleIcon width={24} height={24} />}
+          checkedIcon={<CheckRoundedIcon width={24} height={24} />}
+          sx={{ p: 0 }}
+        />
+      </Tooltip>
+
       <InputBase
         name="task"
         multiline
@@ -87,19 +98,9 @@ const AddTaskForm: React.FC<IAddNewTask> = (props) => {
         value={taskTitle}
         onChange={handleTaskOnChange}
         onKeyPress={handleTitleInputKeyPress}
-        sx={{ px: 16, pt: 16, pb: 5 }}
+        sx={{ p: 16 }}
       />
-      <Box sx={{ display: "flex", pb: 16, pr: 12, pl: 8 }}>
-        <Tooltip title="Mark complete">
-          <Checkbox
-            checked={completed}
-            onChange={handleTaskComplete}
-            disableRipple
-            icon={<CircleIcon width={24} height={24} />}
-            checkedIcon={<CheckRoundedIcon width={24} height={24} />}
-          />
-        </Tooltip>
-      </Box>
+      {/* <Box sx={{ display: "flex", pb: 16, pr: 12, pl: 8 }}></Box> */}
     </Paper>
   );
 };

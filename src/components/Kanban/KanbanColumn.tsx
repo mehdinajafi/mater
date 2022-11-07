@@ -12,6 +12,7 @@ interface IKanbanColumn {
   index: number;
   deleteColumn: (columnId: string) => void;
   addNewTask: (columnId: string, task: ITask) => void;
+  changeTaskCompletion: (taskId: string, complete: boolean) => void;
 }
 
 const KanbanColumn: React.FC<IKanbanColumn> = (props) => {
@@ -45,7 +46,12 @@ const KanbanColumn: React.FC<IKanbanColumn> = (props) => {
                 {...provided.droppableProps}
               >
                 {props.tasks.map((task, index) => (
-                  <KanbanTask key={task.id} task={task} index={index} />
+                  <KanbanTask
+                    key={task.id}
+                    task={task}
+                    index={index}
+                    changeTaskCompletion={props.changeTaskCompletion}
+                  />
                 ))}
                 {provided.placeholder}
               </Box>
