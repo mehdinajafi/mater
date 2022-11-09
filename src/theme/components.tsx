@@ -1,4 +1,8 @@
 import { ThemeOptions } from "@mui/material";
+import { ReactComponent as ChevronDownIcon } from "@/assets/icons/chevron-down.svg";
+import { ReactComponent as CheckSolidIcon } from "@/assets/icons/check-solid.svg";
+import { ReactComponent as SquareIcon } from "@/assets/icons/square.svg";
+import { ReactComponent as IndeterminateIcon } from "@/assets/icons/indeterminate.svg";
 
 const components: ThemeOptions["components"] = {
   MuiButton: {
@@ -15,6 +19,12 @@ const components: ThemeOptions["components"] = {
       }),
       sizeLarge: {
         paddingBlock: "0.75rem",
+      },
+      startIcon: {
+        flexShrink: 0,
+      },
+      endIcon: {
+        flexShrink: 0,
       },
     },
   },
@@ -255,17 +265,26 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
+  MuiOutlinedInput: {
+    styleOverrides: {
+      notchedOutline: {
+        borderColor: "rgba(145, 158, 171, 0.32)",
+        borderRadius: "0.5rem",
+      },
+    },
+  },
+  MuiFormLabel: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        color: theme.palette.gray[500],
+      }),
+    },
+  },
   MuiTextField: {
     styleOverrides: {
       root: ({ theme }) => ({
         "& .MuiFormLabel-root": {
           color: theme.palette.gray[500],
-        },
-        "& .MuiInputBase-root": {
-          borderRadius: "0.5rem",
-        },
-        "& .MuiOutlinedInput-notchedOutline": {
-          borderColor: "rgba(145, 158, 171, 0.32)",
         },
         "& .MuiNativeSelect-icon": {
           width: 16,
@@ -373,6 +392,29 @@ const components: ThemeOptions["components"] = {
       root: ({ theme }) => ({
         color: theme.palette.gray[600],
       }),
+    },
+  },
+  MuiSelect: {
+    styleOverrides: {
+      icon: {
+        width: 16,
+        height: 16,
+      },
+    },
+    defaultProps: {
+      IconComponent: ChevronDownIcon,
+    },
+  },
+  MuiCheckbox: {
+    styleOverrides: {
+      root: {
+        padding: 8,
+      },
+    },
+    defaultProps: {
+      checkedIcon: <CheckSolidIcon width={24} height={24} />,
+      icon: <SquareIcon width={24} height={24} />,
+      indeterminateIcon: <IndeterminateIcon width={24} height={24} />,
     },
   },
   MuiCssBaseline: {
