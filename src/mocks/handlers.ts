@@ -1,4 +1,5 @@
 import { rest, RestHandler } from "msw";
+import eCommerceHandlers from "./handlers/e-commerce";
 import contacts from "./data/contacts.json";
 import currentUser from "./data/currentUser.json";
 import notifications from "./data/notifications.json";
@@ -58,4 +59,5 @@ export const handlers: RestHandler[] = [
   rest.get("/api/profile/gallery", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(1000), ctx.json(profileGallery));
   }),
+  ...eCommerceHandlers,
 ];

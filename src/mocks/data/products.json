@@ -1,0 +1,42 @@
+[
+  {
+    "id": "0",
+    "image": "/assets/images/products/product_1.jpeg",
+    "title": "Nike Air Force 1 NDESTRUKT",
+    "price": 16.19,
+    "createAt": 1667198813465,
+    "status": 0
+  },
+  {
+    "id": "1",
+    "image": "/assets/images/products/product_1.jpeg",
+    "title": "Foundations Matte Flip Flop",
+    "price": 35.71,
+    "createAt": 1667112413000,
+    "status": 1
+  },
+  {
+    "id": "2",
+    "image": "/assets/images/products/product_1.jpeg",
+    "title": "Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear",
+    "price": 34.3,
+    "createAt": 1667026013000,
+    "status": 2
+  },
+  {
+    "id": "3",
+    "image": "/assets/images/products/product_1.jpeg",
+    "title": "Boston Soft Footbed Sandal",
+    "price": 55.47,
+    "createAt": 1666939613000,
+    "status": 2
+  },
+  {
+    "id": "4",
+    "image": "/assets/images/products/product_1.jpeg",
+    "title": "Zoom Freak 2",
+    "price": 89.09,
+    "createAt": 1666853213000,
+    "status": 2
+  }
+]
