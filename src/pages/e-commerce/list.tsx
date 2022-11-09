@@ -1,8 +1,9 @@
 import { Box, Breadcrumbs, Button, Link, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import ECommerceList from "@/components/ECommerce/List";
 import { ReactComponent as PlusIcon } from "@/assets/icons/plus.svg";
 
-const ECommerceList = () => {
+const ECommerceListPage = () => {
   return (
     <div>
       <Box
@@ -66,8 +67,10 @@ const ECommerceList = () => {
           </Button>
         </Box>
       </Box>
+
+      <ECommerceList />
     </div>
   );
 };
 
-export default ECommerceList;
+export default ECommerceListPage;
