@@ -33,45 +33,49 @@ import { ReactComponent as PenIcon } from "@/assets/icons/pen.svg";
 import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
 
 const ECommerceList = () => {
-  const queryClient = useQueryClient();
+  const statusSelectId = useId();
+  const [searchInputValue, setSearchInputValue] = useState("");
+  const [statusFilter, setStatusFilter] = useState<string[]>([]);
+
   const {
     data: list,
+    status: queryStatus,
+    isFetching,
     isLoading,
     isError,
-  } = useQuery(["products"], getProducts);
+  } = useQuery(
+    ["products", { search: searchInputValue, status: statusFilter.join(",") }],
+    getProducts,
+    { keepPreviousData: true }
+  );
+
+  const queryClient = useQueryClient();
   const mutation = useMutation(deleteProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(["products"]);
     },
   });
 
-  const statusSelectId = useId();
-  const [searchParams, setSearchParams] = useState("");
-  const [status, setStatus] = useState<string[]>([]);
-
-  const isResultFiltered = searchParams.trim() !== "" || status.length > 0;
+  const isResultFiltered =
+    searchInputValue.trim() !== "" || statusFilter.length > 0;
   const products = list ? list.products : [];
 
   const handleStatusOnChange = (e: SelectChangeEvent<string[]>) => {
     const {
       target: { value },
     } = e;
-    setStatus(typeof value === "string" ? value.split(",") : value);
+    setStatusFilter(typeof value === "string" ? value.split(",") : value);
   };
 
   const handleSearchInputOnChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setSearchParams(e.target.value);
+    setSearchInputValue(e.target.value);
   };
 
   const clearFilters = () => {
-    setSearchParams("");
-    setStatus([]);
-  };
-
-  const deleteSingleProduct = (productId: string) => {
-    mutation.mutate({ productId });
+    setSearchInputValue("");
+    setStatusFilter([]);
   };
 
   const rows = useMemo(
@@ -123,6 +127,7 @@ const ECommerceList = () => {
         width: 143,
         field: "createAt",
         headerName: "Create At",
+        headerAlign: "center",
         align: "center",
         disableColumnMenu: true,
         sortComparator: gridDateComparator,
@@ -134,6 +139,7 @@ const ECommerceList = () => {
         width: 180,
         field: "status",
         headerName: "Status",
+        headerAlign: "center",
         align: "center",
         disableColumnMenu: true,
         renderCell: (params: GridRenderCellParams<any>) => {
@@ -167,6 +173,7 @@ const ECommerceList = () => {
         field: "price",
         headerName: "Price",
         width: 114,
+        headerAlign: "center",
         align: "center",
         disableColumnMenu: true,
         valueFormatter: (params: GridValueFormatterParams<number>) => {
@@ -209,7 +216,7 @@ const ECommerceList = () => {
           <Select
             multiple
             labelId={statusSelectId}
-            value={status}
+            value={statusFilter}
             onChange={handleStatusOnChange}
             renderValue={(selected) => selected.join(", ")}
             input={<OutlinedInput label="Status" />}
@@ -227,7 +234,7 @@ const ECommerceList = () => {
             {["In Stock", "Low Stock", "Out Of Stock"].map((statusName) => (
               <MenuItem key={statusName} value={statusName} sx={{ p: 0 }}>
                 <Checkbox
-                  checked={status.indexOf(statusName) > -1}
+                  checked={statusFilter.indexOf(statusName) > -1}
                   sx={{
                     "& svg": {
                       width: 20,
@@ -243,7 +250,7 @@ const ECommerceList = () => {
 
         <TextField
           fullWidth
-          value={searchParams}
+          value={searchInputValue}
           onChange={handleSearchInputOnChange}
           placeholder="Search..."
           InputProps={{
@@ -270,16 +277,19 @@ const ECommerceList = () => {
         )}
       </Box>
 
-      <DataGrid
-        autoHeight
-        checkboxSelection
-        disableSelectionOnClick
-        columns={columns}
-        rows={rows}
-        pageSize={5}
-        rowsPerPageOptions={[5, 10, 25]}
-        rowHeight={80}
-      />
+      <Box sx={{ opacity: isFetching && queryStatus === "success" ? 0.7 : 1 }}>
+        <DataGrid
+          autoHeight
+          checkboxSelection
+          disableSelectionOnClick
+          columns={columns}
+          rows={rows}
+          pageSize={5}
+          rowsPerPageOptions={[5, 10, 25]}
+          rowHeight={80}
+          hideFooterSelectedRowCount
+        />
+      </Box>
     </Card>
   );
 };
