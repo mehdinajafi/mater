@@ -15,6 +15,7 @@ import {
   SelectChangeEvent,
   Chip,
   Link,
+  Skeleton,
 } from "@mui/material";
 import {
   DataGrid,
@@ -28,17 +29,14 @@ import {
 } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import {
-  Link as RouterLink,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
+import HeaderToolbar from "./HeaderToolbar";
 import DeleteProductDialog from "./DeleteProductDialog";
 import getProducts from "@/api/e-commerce/getProducts";
 import { ReactComponent as SearchIcon } from "@/assets/icons/search.svg";
 import { ReactComponent as PenIcon } from "@/assets/icons/pen.svg";
 import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
-import HeaderToolbar from "./HeaderToolbar";
 
 const ECommerceList = () => {
   const statusSelectId = useId();
@@ -50,6 +48,7 @@ const ECommerceList = () => {
     data: list,
     status: queryStatus,
     isFetching,
+    isLoading,
   } = useQuery(
     ["products", { search: searchInputValue, status: statusFilter.join(",") }],
     getProducts,
@@ -327,35 +326,116 @@ const ECommerceList = () => {
           onSelectAllClick={handleSelectAllClick}
           rowCount={rows.length}
         />
-        <DataGrid
-          autoHeight
-          checkboxSelection
-          disableSelectionOnClick
-          hideFooterSelectedRowCount
-          columns={columns}
-          rows={rows}
-          pageSize={5}
-          rowsPerPageOptions={[5, 10, 25]}
-          rowHeight={80}
-          onSelectionModelChange={(newSelectionModel) => {
-            setSelectionModel(newSelectionModel);
-          }}
-          selectionModel={selectionModel}
-          componentsProps={{
-            basePopper: {
-              sx: {
-                "& .MuiPaper-root": {
-                  boxShaddow: "none",
-                  "& .MuiList-root": {
-                    p: 8,
+        {isLoading ? (
+          <LoadingDataGrid />
+        ) : (
+          <DataGrid
+            autoHeight
+            checkboxSelection
+            disableSelectionOnClick
+            hideFooterSelectedRowCount
+            columns={columns}
+            rows={rows}
+            pageSize={5}
+            rowsPerPageOptions={[5, 10, 25]}
+            rowHeight={80}
+            onSelectionModelChange={(newSelectionModel) => {
+              setSelectionModel(newSelectionModel);
+            }}
+            selectionModel={selectionModel}
+            componentsProps={{
+              basePopper: {
+                sx: {
+                  "& .MuiPaper-root": {
+                    boxShaddow: "none",
+                    "& .MuiList-root": {
+                      p: 8,
+                    },
                   },
                 },
               },
-            },
-          }}
-        />
+            }}
+          />
+        )}
       </Box>
     </Card>
+  );
+};
+
+// -------------------- LoadingDataGrid -------------------- //
+
+const dataGrid: {
+  columns: GridColumns;
+  rows: any;
+} = {
+  columns: [
+    {
+      flex: 1,
+      field: "product",
+      headerName: "Product",
+      renderCell: () => {
+        return (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <Skeleton variant="rounded" width={48} height={48} />
+            <Skeleton
+              variant="text"
+              width={200}
+              sx={{ fontSize: "0.875rem" }}
+            />
+          </Box>
+        );
+      },
+    },
+    {
+      field: "createAt",
+      headerName: "Create At",
+      width: 150,
+      headerAlign: "center",
+      align: "center",
+      renderCell: () => (
+        <Skeleton variant="text" width={100} sx={{ fontSize: "0.875rem" }} />
+      ),
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 180,
+      headerAlign: "center",
+      align: "center",
+      renderCell: () => (
+        <Skeleton variant="text" width={80} sx={{ fontSize: "0.875rem" }} />
+      ),
+    },
+    {
+      field: "price",
+      headerName: "Price",
+      width: 100,
+      headerAlign: "center",
+      align: "center",
+      renderCell: () => (
+        <Skeleton variant="text" width={50} sx={{ fontSize: "0.875rem" }} />
+      ),
+    },
+  ],
+  rows: Array(5).fill({
+    id: nanoid(),
+    product: "",
+    createAt: "",
+    status: "",
+    price: "",
+  }),
+};
+
+const LoadingDataGrid = () => {
+  return (
+    <DataGrid
+      autoHeight
+      disableSelectionOnClick
+      hideFooterSelectedRowCount
+      columns={dataGrid.columns}
+      rows={dataGrid.rows}
+      rowHeight={80}
+    />
   );
 };
 
