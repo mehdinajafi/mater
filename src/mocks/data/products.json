@@ -9,33 +9,33 @@
   },
   {
     "id": "1",
-    "image": "/assets/images/products/product_1.jpeg",
-    "title": "Foundations Matte Flip Flop",
-    "price": 35.71,
+    "image": "/assets/images/products/product_4.jpeg",
+    "title": "Arizona Soft Footbed Sandal",
+    "price": 93.1,
     "createAt": 1667112413000,
     "status": 1
   },
   {
     "id": "2",
-    "image": "/assets/images/products/product_1.jpeg",
-    "title": "Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear",
-    "price": 34.3,
+    "image": "/assets/images/products/product_6.jpeg",
+    "title": "zoom-freak-2",
+    "price": 89.09,
     "createAt": 1667026013000,
-    "status": 2
+    "status": 0
   },
   {
     "id": "3",
-    "image": "/assets/images/products/product_1.jpeg",
-    "title": "Boston Soft Footbed Sandal",
-    "price": 55.47,
+    "image": "/assets/images/products/product_13.jpeg",
+    "title": "Nike Blazer Low 77 Vintage",
+    "price": 90.69,
     "createAt": 1666939613000,
-    "status": 2
+    "status": 0
   },
   {
     "id": "4",
-    "image": "/assets/images/products/product_1.jpeg",
-    "title": "Zoom Freak 2",
-    "price": 89.09,
+    "image": "/assets/images/products/product_16.jpeg",
+    "title": "Ultraboost 21 sneakers",
+    "price": 94.75,
     "createAt": 1666853213000,
     "status": 2
   }
