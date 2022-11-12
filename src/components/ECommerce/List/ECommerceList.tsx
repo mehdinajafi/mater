@@ -43,6 +43,7 @@ const ECommerceList = () => {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [statusFilter, setStatusFilter] = useState<string[]>([]);
   const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
+  const [pageSize, setPageSize] = useState(5);
 
   const {
     data: list,
@@ -336,24 +337,15 @@ const ECommerceList = () => {
             hideFooterSelectedRowCount
             columns={columns}
             rows={rows}
-            pageSize={5}
-            rowsPerPageOptions={[5, 10, 25]}
             rowHeight={80}
-            onSelectionModelChange={(newSelectionModel) => {
-              setSelectionModel(newSelectionModel);
+            rowsPerPageOptions={[5, 10, 25]}
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => {
+              setPageSize(newPageSize);
             }}
             selectionModel={selectionModel}
-            componentsProps={{
-              basePopper: {
-                sx: {
-                  "& .MuiPaper-root": {
-                    boxShaddow: "none",
-                    "& .MuiList-root": {
-                      p: 8,
-                    },
-                  },
-                },
-              },
+            onSelectionModelChange={(newSelectionModel) => {
+              setSelectionModel(newSelectionModel);
             }}
           />
         )}
@@ -361,10 +353,8 @@ const ECommerceList = () => {
     </Card>
   );
 };
-
-// -------------------- LoadingDataGrid -------------------- //
-
-const dataGrid: {
+// -------------------- Loading DataGrid -------------------- //
+const loadingDataGrid: {
   columns: GridColumns;
   rows: any;
 } = {
@@ -389,7 +379,7 @@ const dataGrid: {
     {
       field: "createAt",
       headerName: "Create At",
-      width: 150,
+      width: 143,
       headerAlign: "center",
       align: "center",
       renderCell: () => (
@@ -409,12 +399,17 @@ const dataGrid: {
     {
       field: "price",
       headerName: "Price",
-      width: 100,
+      width: 114,
       headerAlign: "center",
       align: "center",
       renderCell: () => (
         <Skeleton variant="text" width={50} sx={{ fontSize: "0.875rem" }} />
       ),
+    },
+    {
+      field: "actions",
+      headerName: "",
+      width: 80,
     },
   ],
   rows: Array(5).fill({
@@ -430,10 +425,12 @@ const LoadingDataGrid = () => {
   return (
     <DataGrid
       autoHeight
+      checkboxSelection
+      isRowSelectable={() => false}
       disableSelectionOnClick
       hideFooterSelectedRowCount
-      columns={dataGrid.columns}
-      rows={dataGrid.rows}
+      columns={loadingDataGrid.columns}
+      rows={loadingDataGrid.rows}
       rowHeight={80}
     />
   );

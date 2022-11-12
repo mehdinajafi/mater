@@ -387,13 +387,7 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
-  MuiIconButton: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        color: theme.palette.gray[600],
-      }),
-    },
-  },
+  MuiIconButton: {},
   MuiSelect: {
     styleOverrides: {
       icon: {
@@ -415,6 +409,80 @@ const components: ThemeOptions["components"] = {
       checkedIcon: <CheckSolidIcon width={24} height={24} />,
       icon: <SquareIcon width={24} height={24} />,
       indeterminateIcon: <IndeterminateIcon width={24} height={24} />,
+    },
+  },
+  MuiDataGrid: {
+    styleOverrides: {
+      root: {
+        border: "none",
+        "& .MuiDataGrid-row": {
+          "&:hover": {
+            backgroundColor: "rgba(145, 158, 171, 0.08)",
+          },
+          "&.Mui-selected": {
+            backgroundColor: "rgba(145, 158, 171, 0.16)",
+            "&:hover": {
+              backgroundColor: "rgba(145, 158, 171, 0.08)",
+            },
+          },
+        },
+      },
+      columnSeparator: {
+        display: "none",
+      },
+      columnHeader: ({ theme }) => ({
+        color: theme.palette.gray[600],
+        "&.MuiDataGrid-columnHeader--sorted": {
+          color: theme.palette.gray[800],
+        },
+      }),
+      sortIcon: ({ theme }) => ({
+        color: theme.palette.gray[600],
+      }),
+      cell: {
+        borderBottom: "none",
+      },
+      columnHeaders: {
+        borderBottom: "none",
+      },
+      columnHeadersInner: ({ theme }) => ({
+        backgroundColor: theme.palette.gray[200],
+      }),
+      footerContainer: ({ theme }) => ({
+        borderColor: "rgba(145, 158, 171, 0.24)",
+        "& .MuiTablePagination-root": {
+          "& .MuiTablePagination-select": {
+            "&:focus": {
+              borderRadius: theme.borderRadius.lg,
+            },
+          },
+          "& .MuiTablePagination-actions": {
+            "& .MuiIconButton-root": {
+              color: theme.palette.gray[800],
+              "&.Mui-disabled": {
+                color: theme.palette.rgbToRgba(theme.palette.gray[500], 0.8),
+              },
+            },
+          },
+        },
+      }),
+    },
+    defaultProps: {
+      componentsProps: {
+        basePopper: {
+          sx: (theme: any) => ({
+            "& .MuiPaper-root": {
+              boxShadow: theme.customShadows.dropdown,
+              "& .MuiList-root": {
+                p: 8,
+              },
+            },
+          }),
+        },
+        pagination: {
+          sx: {},
+        },
+      },
     },
   },
   MuiCssBaseline: {
