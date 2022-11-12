@@ -1,6 +1,13 @@
-const deleteProduct = async ({ productId }: { productId: string }) => {
-  const res = await fetch(`/api/products/delete/${productId}`, {
+import { MutationFunction } from "@tanstack/react-query";
+
+const deleteProduct: MutationFunction<any, { ids: string[] }> = async ({
+  ids,
+}) => {
+  const res = await fetch("/api/products/delete", {
     method: "POST",
+    body: JSON.stringify({
+      ids,
+    }),
   });
   return res.json();
 };

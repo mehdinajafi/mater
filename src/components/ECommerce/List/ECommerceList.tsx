@@ -22,39 +22,39 @@ import {
   GridColumns,
   gridDateComparator,
   GridRenderCellParams,
+  GridRowParams,
+  GridSelectionModel,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
+import {
+  Link as RouterLink,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
+import DeleteProductDialog from "./DeleteProductDialog";
 import getProducts from "@/api/e-commerce/getProducts";
-import deleteProduct from "@/api/e-commerce/deleteProduct";
 import { ReactComponent as SearchIcon } from "@/assets/icons/search.svg";
 import { ReactComponent as PenIcon } from "@/assets/icons/pen.svg";
 import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
+import HeaderToolbar from "./HeaderToolbar";
 
 const ECommerceList = () => {
   const statusSelectId = useId();
   const [searchInputValue, setSearchInputValue] = useState("");
   const [statusFilter, setStatusFilter] = useState<string[]>([]);
+  const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
 
   const {
     data: list,
     status: queryStatus,
     isFetching,
-    isLoading,
-    isError,
   } = useQuery(
     ["products", { search: searchInputValue, status: statusFilter.join(",") }],
     getProducts,
-    { keepPreviousData: true }
+    { keepPreviousData: true, refetchInterval: Infinity }
   );
-
-  const queryClient = useQueryClient();
-  const mutation = useMutation(deleteProduct, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["products"]);
-    },
-  });
 
   const isResultFiltered =
     searchInputValue.trim() !== "" || statusFilter.length > 0;
@@ -76,6 +76,15 @@ const ECommerceList = () => {
   const clearFilters = () => {
     setSearchInputValue("");
     setStatusFilter([]);
+  };
+
+  const handleSelectAllClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      const newSelected = rows.map((row: any) => row.id);
+      setSelectionModel(newSelected);
+      return;
+    }
+    setSelectionModel([]);
   };
 
   const rows = useMemo(
@@ -186,21 +195,52 @@ const ECommerceList = () => {
         width: 80,
         align: "center",
         disableColumnMenu: true,
-        getActions: (params: any) => [
-          <GridActionsCellItem
-            icon={<TrashIcon />}
-            label="Delete"
-            showInMenu
-          />,
-          <GridActionsCellItem icon={<PenIcon />} label="Edit" showInMenu />,
-        ],
+        getActions: (params: GridRowParams) => {
+          const navigate = useNavigate();
+          const [isModalOpen, setIsModalOpen] = useState(false);
+
+          const goToEditProduct = () => {
+            navigate(`/e-commerce/product/${params.id}/edit`);
+          };
+
+          return [
+            <DeleteProductDialog
+              open={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              selectionModel={[params.id]}
+            />,
+            <GridActionsCellItem
+              icon={<TrashIcon width={20} height={20} />}
+              label="Delete"
+              showInMenu
+              onClick={() => setIsModalOpen(true)}
+              sx={{
+                color: "error.main",
+                "& .MuiListItemIcon-root": {
+                  color: "inherit",
+                },
+              }}
+            />,
+            <GridActionsCellItem
+              icon={<PenIcon width={20} height={20} />}
+              label="Edit"
+              showInMenu
+              onClick={goToEditProduct}
+              sx={{
+                "& .MuiListItemIcon-root": {
+                  color: "inherit",
+                },
+              }}
+            />,
+          ];
+        },
       },
     ],
     []
   );
 
   return (
-    <Card>
+    <Card sx={{ position: "relative" }}>
       <Box
         sx={{
           py: 24,
@@ -277,17 +317,42 @@ const ECommerceList = () => {
         )}
       </Box>
 
-      <Box sx={{ opacity: isFetching && queryStatus === "success" ? 0.7 : 1 }}>
+      <Box
+        sx={{
+          opacity: isFetching && queryStatus === "success" ? 0.7 : 1,
+        }}
+      >
+        <HeaderToolbar
+          selectionModel={selectionModel}
+          onSelectAllClick={handleSelectAllClick}
+          rowCount={rows.length}
+        />
         <DataGrid
           autoHeight
           checkboxSelection
           disableSelectionOnClick
+          hideFooterSelectedRowCount
           columns={columns}
           rows={rows}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 25]}
           rowHeight={80}
-          hideFooterSelectedRowCount
+          onSelectionModelChange={(newSelectionModel) => {
+            setSelectionModel(newSelectionModel);
+          }}
+          selectionModel={selectionModel}
+          componentsProps={{
+            basePopper: {
+              sx: {
+                "& .MuiPaper-root": {
+                  boxShaddow: "none",
+                  "& .MuiList-root": {
+                    p: 8,
+                  },
+                },
+              },
+            },
+          }}
         />
       </Box>
     </Card>

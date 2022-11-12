@@ -43,12 +43,14 @@ const eCommerceHandlers = [
       })
     );
   }),
-  rest.post("/api/products/delete/:productId", (req, res, ctx) => {
-    const { productId } = req.params as { productId: string };
-    products = products.filter((product) => product.id !== productId);
+  rest.post("/api/products/delete", async (req, res, ctx) => {
+    const { ids } = await req.json();
+    const isInDeletedIds = (id: string) => ids.indexOf(id) > -1;
+    products = products.filter((product) => !isInDeletedIds(product.id));
 
     return res(
       ctx.status(201),
+      ctx.delay(500),
       ctx.json({
         products,
         perpage: 5,
