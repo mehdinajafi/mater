@@ -9,6 +9,7 @@ import { ReactComponent as DashboardIcon } from "@/assets/icons/dashboard.svg";
 import { ReactComponent as UserIcon } from "@/assets/icons/user.svg";
 import { ReactComponent as LockIcon } from "@/assets/icons/lock.svg";
 import { ReactComponent as KanbanIcon } from "@/assets/icons/kanban.svg";
+import { ReactComponent as CartIcon } from "@/assets/icons/cart.svg";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -51,6 +52,15 @@ const Sidebar = () => {
             { to: "/user/profile", text: "profile" },
             { to: "/user/account", text: "account" },
           ]}
+        />
+        <NavGroup
+          onClickOnLinks={handleItemClick}
+          toggle={{
+            text: "E-Commerce",
+            icon: <CartIcon />,
+            to: "/e-commerce",
+          }}
+          items={[{ to: "/e-commerce/list", text: "List" }]}
         />
         <NavLink
           to="/kanban"

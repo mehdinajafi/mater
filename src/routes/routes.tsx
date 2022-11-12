@@ -9,6 +9,7 @@ import UserProfilePage from "@/pages/user/profile";
 import AuthLoginPage from "@/pages/auth/login";
 import AuthRegisterPage from "@/pages/auth/register";
 import KanbanPage from "@/pages/kanban";
+import ECommerceList from "@/pages/e-commerce/list";
 
 const routes = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const routes = createBrowserRouter([
               {
                 path: "/kanban",
                 element: <KanbanPage />,
+              },
+              {
+                path: "/e-commerce/list",
+                element: <ECommerceList />,
               },
             ],
           },

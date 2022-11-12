@@ -1,3 +1,7 @@
+import type {} from "@mui/x-data-grid/themeAugmentation";
+import type {} from "@mui/x-data-grid-pro/themeAugmentation";
+import type {} from "@mui/x-data-grid-premium/themeAugmentation";
+
 export declare module "@mui/material/styles" {
   // Theme
   interface Theme {
