@@ -60,7 +60,11 @@ const Sidebar = () => {
             icon: <CartIcon />,
             to: "/e-commerce",
           }}
-          items={[{ to: "/e-commerce/list", text: "List" }]}
+          items={[
+            { to: "/e-commerce/list", text: "List" },
+            { to: "/e-commerce/shop", text: "Shop" },
+            { to: "/e-commerce/checkout", text: "Checkout" },
+          ]}
         />
         <NavLink
           to="/kanban"

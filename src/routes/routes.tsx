@@ -9,7 +9,11 @@ import UserProfilePage from "@/pages/user/profile";
 import AuthLoginPage from "@/pages/auth/login";
 import AuthRegisterPage from "@/pages/auth/register";
 import KanbanPage from "@/pages/kanban";
-import ECommerceList from "@/pages/e-commerce/list";
+import ECommerceListPage from "@/pages/e-commerce/list";
+import ECommerceShopPage from "@/pages/e-commerce/shop";
+import ECommerceCartPage from "@/pages/e-commerce/checkout/cart";
+import ECommerceShippingPage from "@/pages/e-commerce/checkout/shipping";
+import ECommercePaymentPage from "@/pages/e-commerce/checkout/payment";
 
 const routes = createBrowserRouter([
   {
@@ -60,7 +64,27 @@ const routes = createBrowserRouter([
               },
               {
                 path: "/e-commerce/list",
-                element: <ECommerceList />,
+                element: <ECommerceListPage />,
+              },
+              {
+                path: "/e-commerce/shop",
+                element: <ECommerceShopPage />,
+              },
+              {
+                path: "/e-commerce/checkout",
+                element: <ECommerceCartPage />,
+              },
+              {
+                path: "/e-commerce/checkout/cart",
+                element: <ECommerceCartPage />,
+              },
+              {
+                path: "/e-commerce/checkout/shipping",
+                element: <ECommerceShippingPage />,
+              },
+              {
+                path: "/e-commerce/checkout/payment",
+                element: <ECommercePaymentPage />,
               },
             ],
           },
