@@ -1,15 +1,19 @@
 import PageHeader from "@/components/PageHeader";
+import ECommerceShop from "@/components/ECommerce/ECommerceShop";
 
 const ECommerceShopPage = () => {
   return (
-    <PageHeader
-      title="Shop"
-      breadcrumbs={[
-        { to: "/", title: "Dashboard" },
-        { to: "/e-commerce", title: "E-Commerce" },
-        { title: "Shop", text: true },
-      ]}
-    />
+    <div>
+      <PageHeader
+        title="Shop"
+        breadcrumbs={[
+          { to: "/", title: "Dashboard" },
+          { to: "/e-commerce", title: "E-Commerce" },
+          { title: "Shop", text: true },
+        ]}
+      />
+      <ECommerceShop />
+    </div>
   );
 };
 

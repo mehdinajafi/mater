@@ -2,41 +2,87 @@
   {
     "id": "0",
     "image": "/assets/images/products/product_1.jpeg",
+    "gallery": [
+      "/assets/images/products/product_1.jpeg",
+      "/assets/images/products/product_4.jpeg",
+      "/assets/images/products/product_6.jpeg",
+      "/assets/images/products/product_13.jpeg",
+      "/assets/images/products/product_16.jpeg"
+    ],
     "title": "Nike Air Force 1 NDESTRUKT",
     "price": 16.19,
+    "discountPercent": 10,
     "createAt": 1667198813465,
-    "status": 0
+    "status": 0,
+    "colors": ["rgb(0 189 123)", "rgb(255, 72, 66)", "rgb(24, 144, 255)"],
+    "sizes": [6, 7, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 13]
   },
   {
     "id": "1",
     "image": "/assets/images/products/product_4.jpeg",
+    "gallery": [
+      "/assets/images/products/product_1.jpeg",
+      "/assets/images/products/product_4.jpeg",
+      "/assets/images/products/product_6.jpeg",
+      "/assets/images/products/product_13.jpeg",
+      "/assets/images/products/product_16.jpeg"
+    ],
     "title": "Arizona Soft Footbed Sandal",
     "price": 93.1,
     "createAt": 1667112413000,
-    "status": 1
+    "status": 1,
+    "colors": ["rgb(0 189 123)", "rgb(255, 72, 66)", "rgb(24, 144, 255)"],
+    "sizes": [6, 7, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 13]
   },
   {
     "id": "2",
     "image": "/assets/images/products/product_6.jpeg",
+    "gallery": [
+      "/assets/images/products/product_1.jpeg",
+      "/assets/images/products/product_4.jpeg",
+      "/assets/images/products/product_6.jpeg",
+      "/assets/images/products/product_13.jpeg",
+      "/assets/images/products/product_16.jpeg"
+    ],
     "title": "zoom-freak-2",
     "price": 89.09,
     "createAt": 1667026013000,
-    "status": 0
+    "status": 0,
+    "colors": ["rgb(0 189 123)", "rgb(255, 72, 66)", "rgb(24, 144, 255)"],
+    "sizes": [6, 7, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 13]
   },
   {
     "id": "3",
     "image": "/assets/images/products/product_13.jpeg",
+    "gallery": [
+      "/assets/images/products/product_1.jpeg",
+      "/assets/images/products/product_4.jpeg",
+      "/assets/images/products/product_6.jpeg",
+      "/assets/images/products/product_13.jpeg",
+      "/assets/images/products/product_16.jpeg"
+    ],
     "title": "Nike Blazer Low 77 Vintage",
     "price": 90.69,
     "createAt": 1666939613000,
-    "status": 0
+    "status": 0,
+    "colors": ["rgb(0 189 123)", "rgb(255, 72, 66)", "rgb(24, 144, 255)"],
+    "sizes": [6, 7, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 13]
   },
   {
     "id": "4",
     "image": "/assets/images/products/product_16.jpeg",
+    "gallery": [
+      "/assets/images/products/product_1.jpeg",
+      "/assets/images/products/product_4.jpeg",
+      "/assets/images/products/product_6.jpeg",
+      "/assets/images/products/product_13.jpeg",
+      "/assets/images/products/product_16.jpeg"
+    ],
     "title": "Ultraboost 21 sneakers",
     "price": 94.75,
     "createAt": 1666853213000,
-    "status": 2
+    "status": 2,
+    "colors": ["rgb(0 189 123)", "rgb(255, 72, 66)", "rgb(24, 144, 255)"],
+    "sizes": [6, 7, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 13]
   }
 ]
