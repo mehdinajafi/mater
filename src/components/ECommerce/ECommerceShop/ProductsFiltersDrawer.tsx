@@ -19,6 +19,7 @@ import {
   styled,
   Typography,
 } from "@mui/material";
+import ColorCheckbox from "../ColorCheckbox";
 import { ReactComponent as FilterIcon } from "@/assets/icons/filter.svg";
 import { ReactComponent as XIcon } from "@/assets/icons/x.svg";
 import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
@@ -27,22 +28,6 @@ interface IProductsFiltersDrawer {
   minPrice: number;
   maxPrice: number;
 }
-
-const SColorCheckboxIcon = styled("div", {
-  shouldForwardProp: (prop) => prop !== "checked",
-})<{ checked?: boolean }>(({ theme, checked }) => ({
-  width: 20,
-  height: 20,
-  borderRadius: "50%",
-  backgroundColor: "currentcolor",
-  transition: theme.transitions.create("transform", {
-    duration: 150,
-    easing: "cubic-bezier(0.4, 0, 0.2, 1)",
-  }),
-  ...(checked && {
-    transform: "scale(1.4)",
-  }),
-}));
 
 const SRangeInput = styled(InputBase)(({ theme }) => ({
   backgroundColor: "rgba(145, 158, 171, 0.12)",
@@ -264,22 +249,15 @@ const ProductsFiltersDrawer: React.FC<IProductsFiltersDrawer> = (props) => {
                 "rgb(148, 216, 45)",
                 "rgb(255, 193, 7)",
               ].map((color) => (
-                <Checkbox
+                <ColorCheckbox
                   key={color}
-                  icon={<SColorCheckboxIcon />}
-                  checkedIcon={<SColorCheckboxIcon checked />}
+                  colorCode={color}
                   value={color}
                   checked={
                     searchParams.getAll("color") &&
                     searchParams.getAll("color").includes(color)
                   }
                   onChange={handleColorChange}
-                  sx={{
-                    color,
-                    "&.Mui-checked": {
-                      color,
-                    },
-                  }}
                 />
               ))}
             </Box>
