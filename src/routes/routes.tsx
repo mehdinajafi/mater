@@ -14,6 +14,7 @@ import ECommerceShopPage from "@/pages/e-commerce/shop";
 import ECommerceCartPage from "@/pages/e-commerce/checkout/cart";
 import ECommerceShippingPage from "@/pages/e-commerce/checkout/shipping";
 import ECommercePaymentPage from "@/pages/e-commerce/checkout/payment";
+import ProductPage from "@/pages/e-commerce/product";
 
 const routes = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const routes = createBrowserRouter([
               {
                 path: "/e-commerce/checkout/payment",
                 element: <ECommercePaymentPage />,
+              },
+              {
+                path: "/e-commerce/product/:productId/:productSlug",
+                element: <ProductPage />,
               },
             ],
           },

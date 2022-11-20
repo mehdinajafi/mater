@@ -64,6 +64,10 @@ const Sidebar = () => {
             { to: "/e-commerce/list", text: "List" },
             { to: "/e-commerce/shop", text: "Shop" },
             { to: "/e-commerce/checkout", text: "Checkout" },
+            {
+              to: "/e-commerce/product/0/nike-air-force-1-ndestrukt",
+              text: "Product",
+            },
           ]}
         />
         <NavLink
