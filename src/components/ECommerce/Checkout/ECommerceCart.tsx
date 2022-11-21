@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSnackbar } from "notistack";
 import {
   Box,
   Button,
+  Link,
   Card,
   CardHeader,
   CircularProgress,
@@ -29,7 +31,6 @@ import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
 import { ReactComponent as ChevronLeftIcon } from "@/assets/icons/chevron-left.svg";
 import deleteCartItems from "@/api/e-commerce/deleteCartItems";
 import updateCartItem from "@/api/e-commerce/updateCartItem";
-import { useSnackbar } from "notistack";
 
 const ECommerceCart = () => {
   const { data: cartData, isLoading: cartLoading } = useQuery(
@@ -90,7 +91,7 @@ const ECommerceCart = () => {
           )}
         </Card>
         <Button
-          component={Link}
+          component={RouterLink}
           to="/e-commerce/shop"
           color="dark"
           sx={{ mt: 24 }}
@@ -128,7 +129,7 @@ const ECommerceCart = () => {
         </OrderSummeryCard>
 
         <Button
-          component={Link}
+          component={RouterLink}
           to="/e-commerce/checkout/shipping"
           variant="contained"
           size="large"
@@ -238,9 +239,15 @@ const ProductRow: React.FC<IProductRow> = ({ cartItem }) => {
             />
           </Box>
           <Box>
-            <Typography variant="subtitle2">
+            <Link
+              variant="subtitle2"
+              color="gray.800"
+              component={RouterLink}
+              to={`/e-commerce/product/${cartItem.product.id}/${cartItem.product.url.uri}`}
+              underline="hover"
+            >
               {cartItem.product.title}
-            </Typography>
+            </Link>
             <Stack direction="row" alignItems="center" mt={4}>
               <Typography
                 component="span"
