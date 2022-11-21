@@ -32,42 +32,52 @@ const ECommerceShop = () => {
   if (isLoading) {
     return (
       <>
-        <Box height={88}></Box>
+        <Box mb={40}>
+          <Skeleton
+            variant="rectangular"
+            width={300}
+            height={48}
+            sx={{ borderRadius: "8px" }}
+          />
+        </Box>
         <SProductsWrapper>
-          {Array(8)
-            .fill("")
-            .map((_, index) => (
-              <Card key={index} sx={{ p: 8 }}>
-                <Skeleton variant="rounded" height={232} width="100%" />
+          {Array.from({ length: 8 }).map((_, index) => (
+            <Card key={index} sx={{ p: 8 }}>
+              <Skeleton
+                variant="rounded"
+                height={232}
+                width="100%"
+                sx={{ paddingBottom: "100%" }}
+              />
 
+              <Box
+                sx={{
+                  p: 24,
+                }}
+              >
+                <Skeleton
+                  variant="text"
+                  width="100%"
+                  sx={{ fontSize: "0.875rem" }}
+                />
                 <Box
                   sx={{
-                    p: 24,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mt: 15,
                   }}
                 >
+                  <Skeleton variant="circular" width={16} height={16} />
                   <Skeleton
                     variant="text"
-                    width="100%"
-                    sx={{ fontSize: "0.875rem" }}
+                    width={70}
+                    sx={{ fontSize: "1rem" }}
                   />
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mt: 15,
-                    }}
-                  >
-                    <Skeleton variant="circular" width={16} height={16} />
-                    <Skeleton
-                      variant="text"
-                      width={70}
-                      sx={{ fontSize: "1rem" }}
-                    />
-                  </Box>
                 </Box>
-              </Card>
-            ))}
+              </Box>
+            </Card>
+          ))}
         </SProductsWrapper>
       </>
     );
