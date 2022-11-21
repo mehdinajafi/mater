@@ -32,7 +32,7 @@ const ECommerceShop = () => {
   if (isLoading) {
     return (
       <>
-        <Box height={87}></Box>
+        <Box height={88}></Box>
         <SProductsWrapper>
           {Array(8)
             .fill("")
