@@ -1,4 +1,4 @@
-import { Box, IconButton, styled } from "@mui/material";
+import { Box, IconButton, styled, Typography } from "@mui/material";
 import { ICarousel } from "./Carousel";
 import { ReactComponent as ChevronRightIcon } from "@/assets/icons/chevron-right.svg";
 
@@ -6,29 +6,43 @@ interface ICarouselArrow {
   handleNextSlide: () => void;
   handlePrevSlide: () => void;
   arrowPosition: ICarousel["arrowPosition"];
+  counterText?: string;
 }
 
 const SArrowsWrapper = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "arrowPosition",
+  shouldForwardProp: (prop) =>
+    prop !== "arrowPosition" && prop !== "hasCounter",
 })<{
-  arrowPosition: ICarousel["arrowPosition"];
-}>(({ arrowPosition }) => ({
+  arrowPosition: ICarouselArrow["arrowPosition"];
+  hasCounter: boolean;
+}>(({ arrowPosition, hasCounter, theme }) => ({
+  display: "flex",
+  alignItems: "center",
   position: "absolute",
-  top: 8,
-  right: 8,
 
   ...(arrowPosition === "top-right" && {
     top: 8,
     right: 8,
   }),
+  ...(arrowPosition === "bottom-right" && {
+    bottom: 8,
+    right: 8,
+  }),
+  ...(hasCounter && {
+    backgroundColor: "rgba(22, 28, 36, 0.48)",
+    backdropFilter: "blur(6px)",
+    borderRadius: theme.borderRadius.lg,
+  }),
 }));
 
 const CarouselArrows: React.FC<ICarouselArrow> = (props) => {
   return (
-    <SArrowsWrapper arrowPosition={props.arrowPosition}>
+    <SArrowsWrapper
+      hasCounter={Boolean(props.counterText)}
+      arrowPosition={props.arrowPosition}
+    >
       <IconButton
-        onClick={props.handleNextSlide}
-        className="carousel-arrow carousel-next"
+        onClick={props.handlePrevSlide}
         sx={{
           color: "#fff",
           opacity: 0.48,
@@ -39,9 +53,13 @@ const CarouselArrows: React.FC<ICarouselArrow> = (props) => {
       >
         <ChevronRightIcon width={20} height={20} />
       </IconButton>
+      {props.counterText && (
+        <Typography variant="subtitle2" color="#ffffff" mx={2}>
+          {props.counterText}
+        </Typography>
+      )}
       <IconButton
-        onClick={props.handlePrevSlide}
-        className="carousel-arrow carousel-prev"
+        onClick={props.handleNextSlide}
         sx={{
           color: "#fff",
           opacity: 0.48,

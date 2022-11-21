@@ -3,6 +3,7 @@ import { ReactComponent as ChevronDownIcon } from "@/assets/icons/chevron-down.s
 import { ReactComponent as CheckSolidIcon } from "@/assets/icons/check-solid.svg";
 import { ReactComponent as SquareIcon } from "@/assets/icons/square.svg";
 import { ReactComponent as IndeterminateIcon } from "@/assets/icons/indeterminate.svg";
+import { ReactComponent as StarIcon } from "@/assets/icons/star.svg";
 
 const components: ThemeOptions["components"] = {
   MuiButton: {
@@ -79,6 +80,13 @@ const components: ThemeOptions["components"] = {
         style: ({ theme }) => ({
           backgroundColor: "rgba(255, 171, 0, 0.16)",
           color: theme.palette.warning.dark,
+        }),
+      },
+      {
+        props: { color: "info" },
+        style: ({ theme }) => ({
+          backgroundColor: "rgba(0, 184, 217, 0.16)",
+          color: theme.palette.info.dark,
         }),
       },
     ],
@@ -190,6 +198,10 @@ const components: ThemeOptions["components"] = {
       iconEmpty: {
         color: "rgba(145, 158, 171, 0.48)",
       },
+    },
+    defaultProps: {
+      icon: <StarIcon width={20} height={20} />,
+      emptyIcon: <StarIcon width={20} height={20} />,
     },
   },
   MuiTab: {
@@ -388,6 +400,17 @@ const components: ThemeOptions["components"] = {
     },
   },
   MuiIconButton: {},
+  MuiNativeSelect: {
+    styleOverrides: {
+      icon: {
+        width: 16,
+        height: 16,
+      },
+    },
+    defaultProps: {
+      IconComponent: ChevronDownIcon,
+    },
+  },
   MuiSelect: {
     styleOverrides: {
       icon: {
@@ -409,6 +432,20 @@ const components: ThemeOptions["components"] = {
       checkedIcon: <CheckSolidIcon width={24} height={24} />,
       icon: <SquareIcon width={24} height={24} />,
       indeterminateIcon: <IndeterminateIcon width={24} height={24} />,
+    },
+  },
+  MuiCardHeader: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        padding: theme.spacing(24, 24, 0, 24),
+      }),
+    },
+  },
+  MuiCardContent: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        padding: theme.spacing(24),
+      }),
     },
   },
   MuiDataGrid: {
@@ -486,7 +523,7 @@ const components: ThemeOptions["components"] = {
     },
   },
   MuiCssBaseline: {
-    styleOverrides: `
+    styleOverrides: (theme) => `
       @font-face {
         font-family: "Public Sans";
         font-style: normal;
@@ -552,6 +589,110 @@ const components: ThemeOptions["components"] = {
         display: block;
         max-width: 100%;
       }
+      
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+    
+      address {
+        font-style: normal;
+      }
+
+      /* -------------------- Start Snackbar --------------------  */
+
+      .SnackbarContainer-root {
+        &.SnackbarContainer-top.SnackbarContainer-right {
+          top: 65px;
+          z-index: 1200;
+        }
+      }
+
+      .SnackbarItem-wrappedRoot {
+        & .SnackbarContent-root {
+          &.SnackbarItem-contentRoot {
+            color: ${"#ffffff"};
+            font-weight: ${theme.typography.fontWeights.semiBold};
+            padding: ${theme.spacing(8)};
+            box-shadow: ${theme.customShadows.z8};
+            border-radius: ${theme.borderRadius.lg};
+            background-color: ${theme.palette.gray[900]};
+
+            & .SnackbarItem-action {
+              margin-right: 0;
+              & button {
+                color: inherit;
+              }
+            }
+          }
+
+          & .icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            margin-right: ${theme.spacing(12)};
+            border-radius: ${theme.borderRadius.xl};
+          }
+
+          & .SnackbarItem-message {
+            padding: 0;
+          }
+
+          &.SnackbarItem-contentRoot.SnackbarItem-variantSuccess {
+            color: ${theme.palette.text.primary};
+            background-color: ${theme.palette.background.paper};
+            & .icon-wrapper {
+              color: ${theme.palette.success.main};
+              background-color: ${theme.palette.rgbToRgba(
+                theme.palette.success.main,
+                0.16
+              )};
+            }
+          }
+          &.SnackbarItem-contentRoot.SnackbarItem-variantError {
+            color: ${theme.palette.text.primary};
+            background-color: ${theme.palette.background.paper};
+            & .icon-wrapper {
+              color: ${theme.palette.error.main};
+              background-color: ${theme.palette.rgbToRgba(
+                theme.palette.error.main,
+                0.16
+              )};
+            }
+          }
+          &.SnackbarItem-contentRoot.SnackbarItem-variantInfo {
+            color: ${theme.palette.text.primary};
+            background-color: ${theme.palette.background.paper};
+            & .icon-wrapper {
+              color: ${theme.palette.info.main};
+              background-color: ${theme.palette.rgbToRgba(
+                theme.palette.info.main,
+                0.16
+              )};
+            }
+          }
+          &.SnackbarItem-contentRoot.SnackbarItem-variantWarning {
+            color: ${theme.palette.text.primary};
+            background-color: ${theme.palette.background.paper};
+            & .icon-wrapper {
+              color: ${theme.palette.warning.main};
+              background-color: ${theme.palette.rgbToRgba(
+                theme.palette.warning.main,
+                0.16
+              )};
+            }
+          }
+        }
+      }
+
+      /* -------------------- End Snackbar --------------------  */
     `,
   },
 };
