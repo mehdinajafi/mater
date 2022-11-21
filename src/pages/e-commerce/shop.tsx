@@ -1,5 +1,5 @@
 import PageHeader from "@/components/PageHeader";
-import ECommerceShop from "@/components/ECommerce/ECommerceShop";
+import ECommerceShop from "@/components/ECommerce/Shop";
 
 const ECommerceShopPage = () => {
   return (
