@@ -93,6 +93,7 @@ const CheckoutStepper: React.FC<ICheckoutStepper> = (props) => {
     <Stepper
       activeStep={ActiveStep[props.activeStep]}
       connector={<SStepConnector />}
+      sx={{ mb: 30 }}
     >
       {Object.values(steps).map((step, index) => (
         <Step key={step.label}>

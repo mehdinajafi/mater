@@ -23,12 +23,11 @@ import OrderSummeryCard from "./OrderSummeryCard";
 import CheckoutStepper from "./CheckoutStepper";
 import OrderSummeryRow from "./OrderSummeryRow";
 import DiscountForm from "./DiscountForm";
-import getCart from "@/api/e-commerce/getCart";
-import getShippingCost from "@/api/e-commerce/getShippingCost";
+import { IAddress } from "../interface/cart";
+import getPayment from "@/api/e-commerce/getPayment";
 import { ReactComponent as ChevronLeftIcon } from "@/assets/icons/chevron-left.svg";
 import { ReactComponent as PenIcon } from "@/assets/icons/pen.svg";
-import getPayment from "@/api/e-commerce/getPayment";
-import { IAddress } from "../interface/cart";
+import { ReactComponent as CheckIcon } from "@/assets/icons/check-solid-rounded.svg";
 
 type PaymentMethod = "Paypal" | "CreditCard" | "Cash";
 
@@ -43,8 +42,18 @@ const SPaymentMethodPaper = styled(Paper, {
   alignItems: "center",
 
   "& .MuiFormControlLabel-root": {
-    padding: theme.spacing(24, 56, 24, 20),
+    padding: theme.spacing(14, 10, 14, 10),
     flexGrow: 1,
+    [theme.breakpoints.up("sm")]: {
+      padding: theme.spacing(24, 56, 24, 20),
+    },
+  },
+
+  "& img": {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
   },
 
   "& .MuiFormControlLabel-label": {
@@ -208,7 +217,14 @@ const FormRadio: React.FC<IFormRadio> = (props) => {
           </Typography>
         </Box>
       }
-      control={<Radio name={props.value} value={props.value} />}
+      control={
+        <Radio
+          name={props.value}
+          value={props.value}
+          sx={{ flexShrink: 0 }}
+          checkedIcon={<CheckIcon width={24} height={24} />}
+        />
+      }
     />
   );
 };
