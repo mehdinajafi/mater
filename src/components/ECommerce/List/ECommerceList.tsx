@@ -37,6 +37,7 @@ import getProducts from "@/api/e-commerce/getProducts";
 import { ReactComponent as SearchIcon } from "@/assets/icons/search.svg";
 import { ReactComponent as PenIcon } from "@/assets/icons/pen.svg";
 import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
+import { ProductStatus } from "../interface/product";
 
 const ECommerceList = () => {
   const statusSelectId = useId();
@@ -156,15 +157,15 @@ const ECommerceList = () => {
             number,
             { color: "error" | "warning" | "success"; title: string }
           > = {
-            0: {
+            [ProductStatus.InStock]: {
               color: "success",
               title: "In Stock",
             },
-            1: {
+            [ProductStatus.LowStock]: {
               color: "warning",
               title: "Low Stock",
             },
-            2: {
+            [ProductStatus.OutOfStock]: {
               color: "error",
               title: "Out Of Stock",
             },

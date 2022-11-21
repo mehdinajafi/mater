@@ -1,4 +1,5 @@
 import { ICartItem } from "@/components/ECommerce/interface/cart";
+import { ProductStatus } from "@/components/ECommerce/interface/product";
 import { rest } from "msw";
 import { nanoid } from "nanoid";
 import fakeProducts from "../data/products.json";
@@ -23,12 +24,6 @@ const roundPrice = (price: number) => {
   return Math.round(price * 100) / 100;
 };
 
-enum ProductsStatus {
-  "In Stock",
-  "Low Stock",
-  "Out Of Stock",
-}
-
 const eCommerceHandlers = [
   rest.get("/api/products", (req, res, ctx) => {
     const searchParams = req.url.searchParams;
@@ -48,7 +43,7 @@ const eCommerceHandlers = [
     if (statusParam) {
       const statusArray = statusParam.split(",");
       const hasThisStatus = (status: number) =>
-        statusArray.indexOf(ProductsStatus[status]) > -1;
+        statusArray.indexOf(ProductStatus[status]) > -1;
       filteredProducts = filteredProducts.filter((product) =>
         hasThisStatus(product.status)
       );

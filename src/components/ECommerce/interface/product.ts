@@ -6,9 +6,15 @@ export default interface IProduct {
   price: number;
   discountPercent: number;
   createAt: number;
-  status: number;
+  status: ProductStatus;
   colors: { id: number; code: string }[];
   sizes: number[];
   url: { uri: string };
   rating: { rate: number; count: number };
+}
+
+export enum ProductStatus {
+  InStock = 0,
+  LowStock = 1,
+  OutOfStock = 2,
 }
