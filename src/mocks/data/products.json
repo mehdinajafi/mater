@@ -44,8 +44,8 @@
     "id": "1",
     "image": "/assets/images/products/product_4.jpeg",
     "gallery": [
-      "/assets/images/products/product_1.jpeg",
       "/assets/images/products/product_4.jpeg",
+      "/assets/images/products/product_1.jpeg",
       "/assets/images/products/product_6.jpeg",
       "/assets/images/products/product_13.jpeg",
       "/assets/images/products/product_16.jpeg"
@@ -77,9 +77,9 @@
     "id": "2",
     "image": "/assets/images/products/product_6.jpeg",
     "gallery": [
+      "/assets/images/products/product_6.jpeg",
       "/assets/images/products/product_1.jpeg",
       "/assets/images/products/product_4.jpeg",
-      "/assets/images/products/product_6.jpeg",
       "/assets/images/products/product_13.jpeg",
       "/assets/images/products/product_16.jpeg"
     ],
@@ -110,10 +110,10 @@
     "id": "3",
     "image": "/assets/images/products/product_13.jpeg",
     "gallery": [
+      "/assets/images/products/product_13.jpeg",
       "/assets/images/products/product_1.jpeg",
       "/assets/images/products/product_4.jpeg",
       "/assets/images/products/product_6.jpeg",
-      "/assets/images/products/product_13.jpeg",
       "/assets/images/products/product_16.jpeg"
     ],
     "title": "Nike Blazer Low 77 Vintage",
@@ -143,11 +143,11 @@
     "id": "4",
     "image": "/assets/images/products/product_16.jpeg",
     "gallery": [
+      "/assets/images/products/product_16.jpeg",
       "/assets/images/products/product_1.jpeg",
       "/assets/images/products/product_4.jpeg",
       "/assets/images/products/product_6.jpeg",
-      "/assets/images/products/product_13.jpeg",
-      "/assets/images/products/product_16.jpeg"
+      "/assets/images/products/product_13.jpeg"
     ],
     "title": "Ultraboost 21 sneakers",
     "discountPercent": 0,
