@@ -14,9 +14,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import ProductNotAvailableBox from "./ProductNotAvailableBox";
 import QuantityInput from "../QuantityInput";
 import ColorCheckbox from "../ColorCheckbox";
-import IProduct from "../interface/product";
+import IProduct, { ProductStatus } from "../interface/product";
 import Carousel from "@/components/Carousel";
 import kFormatter from "@/utils/kFormatter";
 import addToCart from "@/api/e-commerce/addToCart";
@@ -132,7 +133,7 @@ const Product: React.FC<IProductComponent> = (props) => {
         >
           {product.gallery.map((image) => (
             <Carousel.Item key={image}>
-              <img src={image} />
+              <img src={image} alt="product-image" />
             </Carousel.Item>
           ))}
         </Carousel>
@@ -153,104 +154,121 @@ const Product: React.FC<IProductComponent> = (props) => {
               ({kFormatter(product.rating.count)} reviews)
             </Typography>
           </Box>
-          <Box>
-            <Typography
-              component="span"
-              variant="h4"
-              fontWeight={600}
-              color={product.discountPercent ? "text.disabled" : "text.primary"}
-              sx={{
-                textDecoration: product.discountPercent
-                  ? "line-through"
-                  : "none",
-              }}
-            >
-              ${product.price}
-            </Typography>
-            {product.discountPercent !== 0 && (
-              <Typography component="span" variant="h4" fontWeight={600} ml={4}>
-                ${priceWithDiscount(product.price, product.discountPercent)}
+          {product.status !== ProductStatus.OutOfStock && (
+            <Box>
+              <Typography
+                component="span"
+                variant="h4"
+                fontWeight={600}
+                color={
+                  product.discountPercent ? "text.disabled" : "text.primary"
+                }
+                sx={{
+                  textDecoration: product.discountPercent
+                    ? "line-through"
+                    : "none",
+                }}
+              >
+                ${product.price}
               </Typography>
-            )}
-          </Box>
-        </Stack>
-        <Divider variant="dashed" sx={{ my: 24 }} />
-        <Stack spacing={24}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="body2">Color</Typography>
-            <Box maxWidth={144}>
-              {product.colors.map(({ code, id }) => (
-                <ColorCheckbox
-                  key={id}
-                  colorCode={code}
-                  value={String(id)}
-                  checked={selectedColor === String(id)}
-                  onChange={handleColorChange}
-                />
-              ))}
+              {product.discountPercent !== 0 && (
+                <Typography
+                  component="span"
+                  variant="h4"
+                  fontWeight={600}
+                  ml={4}
+                >
+                  ${priceWithDiscount(product.price, product.discountPercent)}
+                </Typography>
+              )}
             </Box>
-          </Stack>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="body2">Size</Typography>
-            <Select
-              native
-              size="small"
-              value={selectedSize}
-              onChange={handleSizeChange}
-            >
-              {product.sizes.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </Select>
-          </Stack>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="body2">Quantity</Typography>
-            <QuantityInput
-              value={selectedQuantity}
-              onChange={handleQuantityChange}
-            />
-          </Stack>
-
-          <Divider variant="dashed" />
-
-          <Stack direction="row" spacing={16}>
-            <Button
-              fullWidth
-              variant="contained"
-              color="warning"
-              size="large"
-              startIcon={<ShoppingCartPlusIcon width={20} height={20} />}
-              onClick={handleAddToCard}
-              disabled={addToCartMutation.isLoading}
-            >
-              Add To Cart
-            </Button>
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={handleBuynow}
-              disabled={buyNowMutation.isLoading}
-            >
-              Buy Now
-            </Button>
-          </Stack>
+          )}
+          {product.status === ProductStatus.OutOfStock && (
+            <ProductNotAvailableBox />
+          )}
         </Stack>
+
+        {product.status !== ProductStatus.OutOfStock && (
+          <>
+            <Divider variant="dashed" sx={{ my: 24 }} />
+            <Stack spacing={24}>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Typography variant="body2">Color</Typography>
+                <Box maxWidth={144}>
+                  {product.colors.map(({ code, id }) => (
+                    <ColorCheckbox
+                      key={id}
+                      colorCode={code}
+                      value={String(id)}
+                      checked={selectedColor === String(id)}
+                      onChange={handleColorChange}
+                    />
+                  ))}
+                </Box>
+              </Stack>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Typography variant="body2">Size</Typography>
+                <Select
+                  native
+                  size="small"
+                  value={selectedSize}
+                  onChange={handleSizeChange}
+                >
+                  {product.sizes.map((size) => (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </Select>
+              </Stack>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Typography variant="body2">Quantity</Typography>
+                <QuantityInput
+                  value={selectedQuantity}
+                  onChange={handleQuantityChange}
+                />
+              </Stack>
+
+              <Divider variant="dashed" />
+
+              <Stack direction="row" spacing={16}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="warning"
+                  size="large"
+                  startIcon={<ShoppingCartPlusIcon width={20} height={20} />}
+                  onClick={handleAddToCard}
+                  disabled={addToCartMutation.isLoading}
+                >
+                  Add To Cart
+                </Button>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  onClick={handleBuynow}
+                  disabled={buyNowMutation.isLoading}
+                >
+                  Buy Now
+                </Button>
+              </Stack>
+            </Stack>
+          </>
+        )}
       </Grid>
     </Grid>
   );
