@@ -7,13 +7,16 @@ import ProductPageSkeleton from "@/components/ECommerce/Product/ProductPageSkele
 import ProductDetails from "@/components/ECommerce/Product/ProductDetails";
 import OrderProductForm from "@/components/ECommerce/Product/OrderProductForm";
 import { ProductStatus } from "@/components/ECommerce/interface/product";
+import ProductNotFound from "@/components/ECommerce/Product/ProductNotFound";
+import ProductNotAvailableBox from "@/components/ECommerce/Product/ProductNotAvailableBox";
 import getProduct from "@/api/e-commerce/getProduct";
 
 const ProductPage = () => {
   const params = useParams();
   const { data, isLoading, isError } = useQuery(
     ["product", { id: params.productId }],
-    getProduct
+    getProduct,
+    { refetchOnWindowFocus: false, staleTime: Infinity }
   );
 
   if (isLoading) {
@@ -21,7 +24,11 @@ const ProductPage = () => {
   }
 
   if (isError) {
-    return <div>Product Not Found!</div>;
+    return (
+      <Box mt={100}>
+        <ProductNotFound />
+      </Box>
+    );
   }
 
   const product = data.product;
@@ -55,6 +62,11 @@ const ProductPage = () => {
         </Grid>
         <Grid item xs={12} md={6} lg={5}>
           <ProductDetails product={product} />
+          {product.status === ProductStatus.OutOfStock && (
+            <Box mt={16}>
+              <ProductNotAvailableBox />
+            </Box>
+          )}
           {product.status !== ProductStatus.OutOfStock && (
             <>
               <Divider />

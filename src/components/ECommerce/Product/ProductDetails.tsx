@@ -1,5 +1,4 @@
 import { Box, Chip, Rating, Stack, Typography } from "@mui/material";
-import ProductNotAvailableBox from "./ProductNotAvailableBox";
 import kFormatter from "@/utils/kFormatter";
 import IProduct, { ProductStatus } from "../interface/product";
 
@@ -67,9 +66,6 @@ const ProductDetails: React.FC<IProductDetails> = ({ product }) => {
             </Typography>
           )}
         </Box>
-      )}
-      {product.status === ProductStatus.OutOfStock && (
-        <ProductNotAvailableBox />
       )}
     </Stack>
   );
