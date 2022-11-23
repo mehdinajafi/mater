@@ -146,14 +146,18 @@ const ECommerceCart = () => {
 // ----------------------- Empty Cart ----------------------- //
 const EmptyCart = () => {
   return (
-    <Stack alignItems="center" sx={{ py: 64, px: 16 }}>
-      <Box sx={{ mb: 24, width: 320, maxWidth: "100%" }}>
+    <Stack alignItems="center" sx={{ pt: 15, pb: 52, px: 16 }}>
+      <Box sx={{ mb: 15, maxWidth: 200 }}>
         <img
           src="/assets/images/illustrations/empty-cart.svg"
           alt="empty-cart"
+          width={200}
+          height={150}
         />
       </Box>
-      <Typography variant="h5">Cart is empty</Typography>
+      <Typography variant="h6" mb={5}>
+        Cart is empty!
+      </Typography>
       <Typography variant="body2" color="text-secondary" textAlign="center">
         Look like you have no items in your shopping cart.
       </Typography>
