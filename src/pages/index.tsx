@@ -1,13 +1,13 @@
 import { Box, Grid, Skeleton } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import TotalStats from "@/components/TotalStats";
-import FeaturedApps from "@/components/FeaturedApps";
-import Greeting from "@/components/Greeting";
-import NewInvoices from "@/components/NewInvoices";
-import TopApplications from "@/components/TopApplications";
-import TopCountries from "@/components/TopCountries";
-import TopAuthors from "@/components/TopAuthors";
-import ProfileCounter from "@/components/ProfileCounter";
+import TotalStats from "@/components/Cards/TotalStats";
+import FeaturedApps from "@/components/Cards/FeaturedApps";
+import Greeting from "@/components/Cards/Greeting";
+import NewInvoices from "@/components/Cards/NewInvoices";
+import TopApplications from "@/components/Cards/TopApplications";
+import TopCountries from "@/components/Cards/TopCountries";
+import TopAuthors from "@/components/Cards/TopAuthors";
+import ProfileCounter from "@/components/Cards/ProfileCounter";
 import getHomePage from "@/api/getHomePage";
 
 const AppPage = () => {
