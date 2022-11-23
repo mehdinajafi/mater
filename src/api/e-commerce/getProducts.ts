@@ -6,7 +6,7 @@ const getProducts: QueryFunction<
     string,
     {
       search?: string;
-      status?: string;
+      statuses?: string[];
       gender?: string[];
       category?: string;
       color?: string[];
@@ -18,10 +18,14 @@ const getProducts: QueryFunction<
     }
   ]
 > = async ({ queryKey, signal }) => {
-  const [_key, { search, status }] = queryKey;
+  const [_key, { search, statuses }] = queryKey;
   const params = new URLSearchParams();
   if (search) params.set("search", search);
-  if (status) params.set("status", status);
+  if (statuses) {
+    statuses.forEach((status) => {
+      params.append("status", status);
+    });
+  }
   const res = await fetch("/api/products?" + params.toString(), { signal });
   return res.json();
 };

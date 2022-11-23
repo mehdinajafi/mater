@@ -28,7 +28,7 @@ const eCommerceHandlers = [
   rest.get("/api/products", (req, res, ctx) => {
     const searchParams = req.url.searchParams;
     const searchParam = searchParams.get("search");
-    const statusParam = searchParams.get("status");
+    const statusParam = searchParams.getAll("status");
 
     let filteredProducts = products;
 
@@ -40,13 +40,14 @@ const eCommerceHandlers = [
       );
     }
 
-    if (statusParam) {
-      const statusArray = statusParam.split(",");
-      const hasThisStatus = (status: number) =>
-        statusArray.indexOf(ProductStatus[status]) > -1;
+    if (statusParam.length > 0) {
+      const hasThisStatus = (status: number) => {
+        return statusParam.includes(String(status));
+      };
       filteredProducts = filteredProducts.filter((product) =>
         hasThisStatus(product.status)
       );
+      console.log(filteredProducts);
     }
 
     return res(

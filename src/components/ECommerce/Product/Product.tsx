@@ -29,19 +29,22 @@ interface IProductComponent {
 
 const statusVariant: Record<
   number,
-  { color: "error" | "warning" | "success"; title: string }
+  {
+    title: string;
+    color: "success" | "warning" | "error";
+  }
 > = {
-  0: {
-    color: "success",
+  [ProductStatus.InStock]: {
     title: "In Stock",
+    color: "success",
   },
-  1: {
-    color: "warning",
+  [ProductStatus.LowStock]: {
     title: "Low Stock",
+    color: "warning",
   },
-  2: {
-    color: "error",
+  [ProductStatus.OutOfStock]: {
     title: "Out Of Stock",
+    color: "error",
   },
 };
 

@@ -1,4 +1,7 @@
 import React, { useState, useId, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Button,
@@ -27,17 +30,34 @@ import {
   GridSelectionModel,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
-import { useQuery } from "@tanstack/react-query";
-import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
-import { nanoid } from "nanoid";
 import HeaderToolbar from "./HeaderToolbar";
 import DeleteProductDialog from "./DeleteProductDialog";
 import getProducts from "@/api/e-commerce/getProducts";
+import IProduct, { ProductStatus } from "../interface/product";
 import { ReactComponent as SearchIcon } from "@/assets/icons/search.svg";
 import { ReactComponent as PenIcon } from "@/assets/icons/pen.svg";
 import { ReactComponent as TrashIcon } from "@/assets/icons/trash.svg";
-import { ProductStatus } from "../interface/product";
+
+const statusVariants: Record<
+  number,
+  {
+    title: string;
+    color: "success" | "warning" | "error";
+  }
+> = {
+  [ProductStatus.InStock]: {
+    title: "In Stock",
+    color: "success",
+  },
+  [ProductStatus.LowStock]: {
+    title: "Low Stock",
+    color: "warning",
+  },
+  [ProductStatus.OutOfStock]: {
+    title: "Out Of Stock",
+    color: "error",
+  },
+};
 
 const ECommerceList = () => {
   const statusSelectId = useId();
@@ -47,24 +67,22 @@ const ECommerceList = () => {
   const [pageSize, setPageSize] = useState(5);
 
   const {
-    data: list,
+    data,
     status: queryStatus,
     isFetching,
     isLoading,
   } = useQuery(
-    ["products", { search: searchInputValue, status: statusFilter.join(",") }],
+    ["products", { search: searchInputValue, statuses: statusFilter }],
     getProducts,
-    { keepPreviousData: true, refetchInterval: Infinity }
+    { keepPreviousData: true, staleTime: Infinity, refetchOnWindowFocus: false }
   );
 
   const isResultFiltered =
     searchInputValue.trim() !== "" || statusFilter.length > 0;
-  const products = list ? list.products : [];
+  const products = data ? data.products : [];
 
   const handleStatusOnChange = (e: SelectChangeEvent<string[]>) => {
-    const {
-      target: { value },
-    } = e;
+    const value = e.target.value;
     setStatusFilter(typeof value === "string" ? value.split(",") : value);
   };
 
@@ -90,12 +108,13 @@ const ECommerceList = () => {
 
   const rows = useMemo(
     () =>
-      products.map((product: any) => ({
+      products.map((product: IProduct) => ({
         id: product.id,
         product: {
           id: product.id,
           image: product.image,
           title: product.title,
+          uri: product.url.uri,
         },
         createAt: product.createAt,
         status: product.status,
@@ -116,7 +135,7 @@ const ECommerceList = () => {
         },
         renderCell: (params: GridRenderCellParams<any>) => {
           const {
-            value: { image, title },
+            value: { image, title, uri },
           } = params;
           return (
             <Box sx={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -126,7 +145,13 @@ const ECommerceList = () => {
                 alt="product-img"
                 sx={{ borderRadius: "0.75rem", width: 48, height: 48 }}
               />
-              <Link variant="subtitle2" color="inherit" underline="hover">
+              <Link
+                component={RouterLink}
+                to={uri}
+                variant="subtitle2"
+                color="inherit"
+                underline="hover"
+              >
                 {title}
               </Link>
             </Box>
@@ -153,28 +178,10 @@ const ECommerceList = () => {
         align: "center",
         disableColumnMenu: true,
         renderCell: (params: GridRenderCellParams<any>) => {
-          const variants: Record<
-            number,
-            { color: "error" | "warning" | "success"; title: string }
-          > = {
-            [ProductStatus.InStock]: {
-              color: "success",
-              title: "In Stock",
-            },
-            [ProductStatus.LowStock]: {
-              color: "warning",
-              title: "Low Stock",
-            },
-            [ProductStatus.OutOfStock]: {
-              color: "error",
-              title: "Out Of Stock",
-            },
-          };
-
           return (
             <Chip
-              color={variants[params.value].color}
-              label={variants[params.value].title}
+              color={statusVariants[params.value].color}
+              label={statusVariants[params.value].title}
             />
           );
         },
@@ -259,7 +266,12 @@ const ECommerceList = () => {
             labelId={statusSelectId}
             value={statusFilter}
             onChange={handleStatusOnChange}
-            renderValue={(selected) => selected.join(", ")}
+            renderValue={(selected) => {
+              const titles = selected.map(
+                (select) => statusVariants[Number(select)].title
+              );
+              return titles.join(", ");
+            }}
             input={<OutlinedInput label="Status" />}
             MenuProps={{
               sx: {
@@ -272,10 +284,10 @@ const ECommerceList = () => {
               },
             }}
           >
-            {["In Stock", "Low Stock", "Out Of Stock"].map((statusName) => (
-              <MenuItem key={statusName} value={statusName} sx={{ p: 0 }}>
+            {Object.entries(statusVariants).map(([val, status]) => (
+              <MenuItem key={val} value={val} sx={{ p: 0 }}>
                 <Checkbox
-                  checked={statusFilter.indexOf(statusName) > -1}
+                  checked={statusFilter.indexOf(val) > -1}
                   sx={{
                     "& svg": {
                       width: 20,
@@ -283,7 +295,7 @@ const ECommerceList = () => {
                     },
                   }}
                 />
-                <Typography variant="body2">{statusName}</Typography>
+                <Typography variant="body2">{status.title}</Typography>
               </MenuItem>
             ))}
           </Select>
@@ -354,6 +366,7 @@ const ECommerceList = () => {
     </Card>
   );
 };
+
 // -------------------- Loading DataGrid -------------------- //
 const loadingDataGrid: {
   columns: GridColumns;
@@ -413,13 +426,15 @@ const loadingDataGrid: {
       width: 80,
     },
   ],
-  rows: Array(5).fill({
-    id: nanoid(),
-    product: "",
-    createAt: "",
-    status: "",
-    price: "",
-  }),
+  rows: Array(5)
+    .fill("")
+    .map((_, index) => ({
+      id: index,
+      product: "",
+      createAt: "",
+      status: "",
+      price: "",
+    })),
 };
 
 const LoadingDataGrid = () => {
