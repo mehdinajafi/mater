@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import PageHeader from "@/components/PageHeader";
+import PageHeader from "@/components/ui/PageHeader";
 import ECommerceShipping from "@/components/ECommerce/Checkout/ECommerceShipping";
 
 const ECommerceShippingPage = () => {

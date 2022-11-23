@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import PageHeader from "@/components/PageHeader";
+import PageHeader from "@/components/ui/PageHeader";
 import Product from "@/components/ECommerce/Product";
 import ProductPageSkeleton from "@/components/ECommerce/Product/ProductPageSkeleton";
 import getProduct from "@/api/e-commerce/getProduct";

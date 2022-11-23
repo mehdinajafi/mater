@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
-import TabPanel from "@/components/TabPanel";
+import TabPanel from "@/components/ui/TabPanel";
 import ProfileHeader from "./ProfileHeader";
 import ProfileTab from "./ProfileTab";
 import FriendsTab from "./FriendsTab";

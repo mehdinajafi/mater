@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
-import TabPanel from "@/components/TabPanel";
+import TabPanel from "@/components/ui/TabPanel";
 import useUser from "@/hooks/api/useUser";
 import AccountGeneralTab from "./AccountGeneralTab";
 import BillingTab from "./BillingTab";

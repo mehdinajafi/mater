@@ -18,7 +18,7 @@ import ProductNotAvailableBox from "./ProductNotAvailableBox";
 import QuantityInput from "../QuantityInput";
 import ColorCheckbox from "../ColorCheckbox";
 import IProduct, { ProductStatus } from "../interface/product";
-import Carousel from "@/components/Carousel";
+import Carousel from "@/components/ui/Carousel";
 import kFormatter from "@/utils/kFormatter";
 import addToCart from "@/api/e-commerce/addToCart";
 import { ReactComponent as ShoppingCartPlusIcon } from "@/assets/icons/shopping-cart-plus.svg";

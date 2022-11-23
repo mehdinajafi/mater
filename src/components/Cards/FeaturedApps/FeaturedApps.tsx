@@ -1,5 +1,5 @@
 import { Box, Card, Typography } from "@mui/material";
-import Carousel from "@/components/Carousel";
+import Carousel from "@/components/ui/Carousel";
 import Cover1Img from "@/assets/images/covers/cover_1.jpeg";
 import Cover2Img from "@/assets/images/covers/cover_2.jpeg";
 import Cover3Img from "@/assets/images/covers/cover_3.jpeg";
