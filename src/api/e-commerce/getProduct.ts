@@ -1,7 +1,8 @@
 import { QueryFunction } from "@tanstack/react-query";
+import IProduct from "@/components/ECommerce/interface/product";
 
 const getProduct: QueryFunction<
-  any,
+  { product: IProduct },
   [
     string,
     {
