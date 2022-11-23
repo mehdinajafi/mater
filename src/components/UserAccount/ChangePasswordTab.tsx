@@ -1,4 +1,4 @@
-import { Box, Button, Card, TextField } from "@mui/material";
+import { Button, Card, Stack, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { ReactComponent as InfoIcon } from "@/assets/icons/info.svg";
@@ -60,12 +60,14 @@ const ChangePasswordTab = () => {
             formik.touched.newPassword && Boolean(formik.errors.newPassword)
           }
           helperText={
-            <Box sx={{ display: "flex", gap: 4, mt: 5 }}>
-              <InfoIcon width={16} height={16} />{" "}
-              {formik.touched.newPassword && formik.errors.newPassword
-                ? formik.errors.newPassword
-                : "Password must be minimum 8+"}
-            </Box>
+            <Stack component="span" direction="row" spacing={4} mt={5}>
+              <InfoIcon width={16} height={16} />
+              <span>
+                {formik.touched.newPassword && formik.errors.newPassword
+                  ? formik.errors.newPassword
+                  : "Password must be minimum 8+"}
+              </span>
+            </Stack>
           }
         />
         <TextField
