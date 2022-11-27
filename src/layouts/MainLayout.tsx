@@ -11,7 +11,7 @@ const Layout = () => {
   const setSidebarIsOpen = useAppStore((store) => store.setSidebarIsOpen);
 
   return (
-    <Box display="flex">
+    <Box display="flex" height="100%">
       <Box
         component="aside"
         sx={{ width: { lg: SidebarWidth }, flexShrink: { lg: 0 } }}
@@ -47,6 +47,7 @@ const Layout = () => {
 
       <Box
         sx={{
+          position: "relative",
           flexGrow: 1,
           width: { xs: "100%", lg: `calc(100% - ${SidebarWidth}px)` },
         }}
