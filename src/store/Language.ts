@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand";
 import { RootState } from ".";
 
-export type Langs = "en" | "fa";
+export type Langs = "en";
 
 export interface ILanguageSlice {
   language: Langs;
