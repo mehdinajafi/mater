@@ -522,6 +522,24 @@ const components: ThemeOptions["components"] = {
       },
     },
   },
+  MuiPopover: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        boxShadow: theme.customShadows.dropdown,
+        borderRadius: theme.borderRadius.xl,
+      }),
+    },
+    defaultProps: {
+      anchorOrigin: {
+        horizontal: "right",
+        vertical: "bottom",
+      },
+      transformOrigin: {
+        horizontal: "right",
+        vertical: "top",
+      },
+    },
+  },
   MuiCssBaseline: {
     styleOverrides: (theme) => `
       @font-face {
