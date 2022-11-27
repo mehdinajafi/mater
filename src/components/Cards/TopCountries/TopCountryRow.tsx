@@ -1,18 +1,13 @@
 import { Box, Typography } from "@mui/material";
-import EnFlag from "@/assets/flags/en.svg";
+import kFormatter from "@/utils/kFormatter";
+import IInstalledCountry from "@/types/interfaces/installedCountry";
 import { ReactComponent as MacIcon } from "@/assets/icons/mac.svg";
 import { ReactComponent as WindowsIcon } from "@/assets/icons/windows.svg";
 import { ReactComponent as AndroidIcon } from "@/assets/icons/android.svg";
-import kFormatter from "@/utils/kFormatter";
-import IInstalledCountry from "@/types/interfaces/installedCountry";
 
 interface ITopCountryRow {
   country: IInstalledCountry;
 }
-
-const countryFlag: Record<IInstalledCountry["countryCode"], string> = {
-  de: EnFlag,
-};
 
 const TopCountryRow: React.FC<ITopCountryRow> = ({ country }) => {
   return (
@@ -47,7 +42,7 @@ const TopCountryRow: React.FC<ITopCountryRow> = ({ country }) => {
   );
 };
 
-// ------------------------- OsWrapper -------------------------
+// ------------------------- OsWrapper ------------------------- //
 const OsWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Box

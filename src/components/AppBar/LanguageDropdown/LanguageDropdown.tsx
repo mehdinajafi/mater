@@ -2,17 +2,10 @@ import { lazy, Suspense, Fragment } from "react";
 import { IconButton, Popover } from "@mui/material";
 import useAnchorDisclosure from "@/hooks/useAnchorDisclosure";
 import { useAppStore } from "@/store";
-import { Langs } from "@/store/Language";
+import { languages } from "@/store/Language";
 import DropdownLoading from "../DropdownLoading";
 
 const LanguageDropdownContent = lazy(() => import("./LanguageDropdownContent"));
-
-export const languages: Record<Langs, { name: string; flag: string }> = {
-  en: {
-    name: "English",
-    flag: "/assets/images/flags/en.png",
-  },
-};
 
 const LanguageDropdown = () => {
   const selectedLanguage = useAppStore((store) => store.language);

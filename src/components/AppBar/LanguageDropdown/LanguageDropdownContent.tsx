@@ -1,7 +1,6 @@
 import { MenuItem, MenuList, Typography } from "@mui/material";
-import { Langs } from "@/store/Language";
+import { Langs, languages } from "@/store/Language";
 import { useAppStore } from "@/store";
-import { languages } from "./LanguageDropdown";
 
 interface ILanguageDropdownMenu {
   onClose: () => void;
