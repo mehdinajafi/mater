@@ -7,7 +7,12 @@ import Cover3Img from "@/assets/images/covers/cover_3.jpeg";
 const FeaturedApps = () => {
   return (
     <Card>
-      <Carousel arrowPosition="top-right" dotsPosition="top-left">
+      <Carousel
+        autoplay
+        speed={400}
+        arrowPosition="top-right"
+        dotsPosition="top-left"
+      >
         <Carousel.Item>
           <Slide
             img={Cover1Img}

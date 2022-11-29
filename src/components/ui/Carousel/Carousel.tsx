@@ -8,6 +8,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 export interface ICarousel {
   children: React.ReactNode;
+  autoplay?: boolean;
+  speed?: number;
   arrowPosition?: "top-right" | "bottom-right";
   dotsPosition?: "top-left";
   disableDots?: boolean;
@@ -19,12 +21,15 @@ const SSlickDots = styled("ul")<{
   dotsPosition: ICarousel["dotsPosition"];
 }>(({ dotsPosition }) => ({
   position: "absolute",
-  width: "max-content",
   margin: 0,
   padding: 0,
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
+
+  "&.slick-dots": {
+    width: "max-content",
+  },
 
   ...(dotsPosition === "top-left" && {
     top: 12,
@@ -98,9 +103,10 @@ const Carousel: React.FC<ICarousel> = (props) => {
   const sliderRef = useRef<any>();
 
   const settings: Settings = {
+    autoplay: Boolean(props.autoplay),
     dots: true,
     infinite: true,
-    speed: 150,
+    speed: props.speed || 150,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -130,13 +136,11 @@ const Carousel: React.FC<ICarousel> = (props) => {
   return (
     <Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           position: "relative",
-          "& .slick-slide": {
-            overflow: "hidden",
-            borderRadius: "0.75rem",
-          },
-        }}
+          borderRadius: theme.borderRadius["2xl"],
+          overflow: "hidden",
+        })}
       >
         <Slider ref={(c) => (sliderRef.current = c)} {...settings}>
           {props.children}
