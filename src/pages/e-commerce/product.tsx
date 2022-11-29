@@ -69,7 +69,7 @@ const ProductPage = () => {
           )}
           {product.status !== ProductStatus.OutOfStock && (
             <>
-              <Divider />
+              <Divider variant="dashed" sx={{ my: 24 }} />
               <OrderProductForm product={product} />
             </>
           )}
