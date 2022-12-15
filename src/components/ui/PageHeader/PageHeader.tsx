@@ -1,54 +1,33 @@
-import { Box, Breadcrumbs, Link, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Box, Stack } from "@mui/material";
 
 interface IPageHeader {
-  title: string;
-  breadcrumbs: {
-    title: string;
-    to?: string;
-    text?: boolean;
-  }[];
+  children: React.ReactNode;
+  actions?: React.ReactNode[];
 }
 
 const PageHeader: React.FC<IPageHeader> = (props) => {
+  if (props.actions) {
+    return (
+      <Stack
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+        flexWrap="wrap"
+        spacing={24}
+        mt={30}
+        mb={40}
+      >
+        <div>{props.children}</div>
+        <Stack flexDirection="row" spacing={8} flexShrink={0}>
+          {props.actions}
+        </Stack>
+      </Stack>
+    );
+  }
+
   return (
     <Box mt={30} mb={40}>
-      <Typography variant="h4" mb={8}>
-        {props.title}
-      </Typography>
-
-      <Breadcrumbs
-        aria-label="breadcrumb"
-        separator={
-          <Box
-            sx={{
-              width: 4,
-              height: 4,
-              borderRadius: "50%",
-              bgcolor: "gray.500",
-            }}
-          />
-        }
-      >
-        {props.breadcrumbs.map((item) =>
-          item.text ? (
-            <Typography key={item.title} variant="body2" color="gray.500">
-              {item.title}
-            </Typography>
-          ) : (
-            <Link
-              key={item.title}
-              to={item.to || "/"}
-              component={RouterLink}
-              variant="body2"
-              color="text.primary"
-              underline="hover"
-            >
-              {item.title}
-            </Link>
-          )
-        )}
-      </Breadcrumbs>
+      {props.children}
     </Box>
   );
 };

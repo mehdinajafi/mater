@@ -5,14 +5,18 @@ import ECommerceCart from "@/components/ECommerce/Checkout/ECommerceCart";
 const ECommerceCartPage = () => {
   return (
     <Box>
-      <PageHeader
-        title="Cart"
-        breadcrumbs={[
-          { to: "/", title: "Dashboard" },
-          { to: "/e-commerce", title: "E-Commerce" },
-          { title: "Cart", text: true },
-        ]}
-      />
+      <PageHeader>
+        <PageHeader.Heading>Cart</PageHeader.Heading>
+        <PageHeader.Breadcrumb>
+          <PageHeader.BreadcrumbItem href="/">
+            Dashboard
+          </PageHeader.BreadcrumbItem>
+          <PageHeader.BreadcrumbItem href="/e-commerce/shop">
+            E-Commerce Shop
+          </PageHeader.BreadcrumbItem>
+          <PageHeader.BreadcrumbItem active>Cart</PageHeader.BreadcrumbItem>
+        </PageHeader.Breadcrumb>
+      </PageHeader>
 
       <ECommerceCart />
     </Box>

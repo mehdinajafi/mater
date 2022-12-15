@@ -1,51 +1,24 @@
-import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Box } from "@mui/material";
 import UserAccount from "@/components/UserAccount";
+import PageHeader from "@/components/ui/PageHeader";
 
 const UserAccountPage = () => {
   return (
     <Box>
-      <Box mt={30} mb={40}>
-        <Typography variant="h4" mb={8}>
-          Account
-        </Typography>
-
-        <Breadcrumbs
-          aria-label="breadcrumb"
-          separator={
-            <Box
-              sx={{
-                width: 4,
-                height: 4,
-                borderRadius: "50%",
-                bgcolor: "gray.500",
-              }}
-            />
-          }
-        >
-          <Link
-            to="/"
-            component={RouterLink}
-            variant="body2"
-            color="text.primary"
-            underline="hover"
-          >
+      <PageHeader>
+        <PageHeader.Heading>Account</PageHeader.Heading>
+        <PageHeader.Breadcrumb>
+          <PageHeader.BreadcrumbItem href="/">
             Dashboard
-          </Link>
-          <Link
-            to="/user"
-            component={RouterLink}
-            variant="body2"
-            color="text.primary"
-            underline="hover"
-          >
+          </PageHeader.BreadcrumbItem>
+          <PageHeader.BreadcrumbItem href="/user/profile">
             User
-          </Link>
-          <Typography variant="body2" color="gray.500">
+          </PageHeader.BreadcrumbItem>
+          <PageHeader.BreadcrumbItem active>
             Account Settings
-          </Typography>
-        </Breadcrumbs>
-      </Box>
+          </PageHeader.BreadcrumbItem>
+        </PageHeader.Breadcrumb>
+      </PageHeader>
 
       <UserAccount />
     </Box>

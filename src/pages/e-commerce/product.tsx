@@ -35,15 +35,20 @@ const ProductPage = () => {
 
   return (
     <Box>
-      <PageHeader
-        title="Product Details"
-        breadcrumbs={[
-          { to: "/", title: "Dashboard" },
-          { to: "/e-commerce", title: "E-Commerce" },
-          { to: "/e-commerce/shop", title: "Shop" },
-          { text: true, title: product.title },
-        ]}
-      />
+      <PageHeader>
+        <PageHeader.Heading>Product Details</PageHeader.Heading>
+        <PageHeader.Breadcrumb>
+          <PageHeader.BreadcrumbItem href="/">
+            Dashboard
+          </PageHeader.BreadcrumbItem>
+          <PageHeader.BreadcrumbItem href="/e-commerce/shop">
+            E-Commerce Shop
+          </PageHeader.BreadcrumbItem>
+          <PageHeader.BreadcrumbItem active>
+            {product.title}
+          </PageHeader.BreadcrumbItem>
+        </PageHeader.Breadcrumb>
+      </PageHeader>
 
       <Grid container spacing={24}>
         <Grid item xs={12} md={6} lg={7}>
