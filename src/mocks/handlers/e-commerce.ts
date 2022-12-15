@@ -47,7 +47,6 @@ const eCommerceHandlers = [
       filteredProducts = filteredProducts.filter((product) =>
         hasThisStatus(product.status)
       );
-      console.log(filteredProducts);
     }
 
     return res(
